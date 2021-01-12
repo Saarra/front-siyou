@@ -1,0 +1,232 @@
+@import "~@angular/material/theming";
+@include mat-core();
+$superadmin-primary-color: (
+    50 : #e1f7f9,
+    100 : #b3ecf0,
+    200 : #81e0e7,
+    300 : #4ed3dd,
+    400 : #28c9d5,
+    500 : #02c0ce,
+    600 : #02bac9,
+    700 : #01b2c2,
+    800 : #01aabc,
+    900 : #019cb0,
+    A100 : #dafaff,
+    A200 : #a7f3ff,
+    A400 : #74edff,
+    A700 : #5ae9ff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+$shop-primary-color: (
+  50: #e6e7e8,
+  100: #c1c3c6,
+  200: #989ca1,
+  300: #6e747b,
+  400: #4f565e,
+  500: #1161ED,
+  600: #2b323c,
+  700: #242b33,
+  800: #1e242b,
+  900: #13171d,
+  A100: #639dff,
+  A200: #307dff,
+  A400: #005efc,
+  A700: #0055e2,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff
+  )
+);
+$salesmanager-primary-color: (
+  50: #eaebee,
+  100: #c9ced6,
+  200: #a6adba,
+  300: #828c9e,
+  400: #67738a,
+  500: #4c5a75,
+  600: #45526d,
+  700: #3c4862,
+  800: #333f58,
+  900: #242e45,
+  A100: #8caeff,
+  A200: #5989ff,
+  A400: #2665ff,
+  A700: #0d53ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #ffffff,
+    A700: #ffffff
+  )
+);
+$supplier-primary-color: (
+  50: #edf1f6,
+  100: #d3dbe9,
+  200: #b5c4da,
+  300: #97accb,
+  400: #819ac0,
+  500: #6b88b5,
+  600: #6380ae,
+  700: #5875a5,
+  800: #4e6b9d,
+  900: #3c588d,
+  A100: #dfe9ff,
+  A200: #acc7ff,
+  A400: #79a5ff,
+  A700: #5f94ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #000000,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+$accent-color: (
+  50: #fff4e3,
+  100: #fee2b8,
+  200: #fed08b,
+  300: #ffbd52,
+  400: #feae40,
+  500: #fea12f,
+  600: #f9952c,
+  700: #f38628,
+  800: #ec7725,
+  900: #e16022,
+  A100: #fed08b,
+  A200: #feae40,
+  A400: #feae40,
+  A700: #f38628,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text
+  )
+);
+$theme-superadmin-primary-color: mat-palette($superadmin-primary-color);
+$theme-salesmanager-primary-color: mat-palette($salesmanager-primary-color);
+$theme-supplier-primary-color: mat-palette($supplier-primary-color);
+$theme-shop-primary-color: mat-palette($shop-primary-color);
+$theme-secondary-color: mat-palette($accent-color, A200, A100, A400);
+$theme-warn-color: mat-palette($mat-red);
+$superadmin-theme: mat-light-theme($theme-superadmin-primary-color, $theme-secondary-color, $theme-warn-color);
+$salesmanager-theme: mat-light-theme($theme-salesmanager-primary-color, $theme-secondary-color, $theme-warn-color);
+$supplier-theme: mat-light-theme($theme-supplier-primary-color, $theme-secondary-color, $theme-warn-color);
+$shop-theme: mat-light-theme($theme-shop-primary-color, $theme-secondary-color, $theme-warn-color);
+.supplier-dashboard {
+  --ion-color-primary: #6b88b5;
+  --ion-color-primary-rgb: 107, 136, 181;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5e789f;
+  --ion-color-primary-tint: #7a94bc;
+  --ion-color-secondary: #fea02f;
+  --ion-color-secondary-rgb: 254, 160, 47;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #e08d29;
+  --ion-color-secondary-tint: #feaa44;
+  @include angular-material-theme($supplier-theme);
+}
+.salesmanager-dashboard {
+  --ion-color-primary: #4C5A75;
+  --ion-color-primary-rgb: 76, 90, 117;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #434167;
+  --ion-color-primary-tint: #5e5c83;
+  --ion-color-secondary: #fea02f;
+  --ion-color-secondary-rgb: 254, 160, 47;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #e08d29;
+  --ion-color-secondary-tint: #feaa44;
+  @include angular-material-theme($salesmanager-theme);
+}
+.shop-dashboard {
+  --ion-color-primary: #303842;
+  --ion-color-primary-rgb: 48, 56, 66;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #2a313a;
+  --ion-color-primary-tint: #454c55;
+  --ion-color-secondary: #fea02f;
+  --ion-color-secondary-rgb: 254, 160, 47;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #e08d29;
+  --ion-color-secondary-tint: #feaa44;
+  @include angular-material-theme($shop-theme);
+}
+.superadmin-dashboard {
+  --ion-color-primary: #02c0ce;
+  --ion-color-primary-rgb: 2,192,206;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #02a9b5;
+  --ion-color-primary-tint: #1bc6d3;
+  --ion-color-secondary: #fea02f;
+  --ion-color-secondary-rgb: 254, 160, 47;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #e08d29;
+  --ion-color-secondary-tint: #feaa44;
+  @include angular-material-theme($superadmin-theme);
+}

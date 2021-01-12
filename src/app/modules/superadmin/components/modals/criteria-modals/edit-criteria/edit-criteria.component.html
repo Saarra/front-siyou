@@ -1,0 +1,16 @@
+<h3>Edit this Criteria:</h3>
+<hr>
+<p>
+    <mat-form-field appearance="outline">
+        <mat-label>Criteria Name:</mat-label>
+        <input type="text" matInput placeholder="{{currentCriteria.name}}" #criteria_name>
+      
+    </mat-form-field>
+</p>
+
+
+<br>
+
+<button mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;"
+    (click)="onEditCriteria(currentCriteria.id , criteria_name.value)">Submit</button>
+<button mat-raised-button mat-dialog-close>Close</button>

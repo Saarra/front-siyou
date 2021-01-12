@@ -1,0 +1,17 @@
+<div class="container mainContainer shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="container my-2 mx-2">
+      <form action="">
+        <mat-form-field appearance="legacy" class="example-full-width" style="margin-right:20px">
+          <mat-label>{{'Name' | translate}}</mat-label>
+          <input matInput #name [value]="currentPayment.name">
+        </mat-form-field>
+  
+        <mat-form-field appearance="legacy" class="example-full-width" style="margin-right:20px">
+          <input matInput #days type="number" [value]="currentPayment.days">
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+  
+        <button class="btn btn-primary" (click)="onUpdatePayment(name.value,days.value)">Submit</button>
+      </form>
+    </div>
+  </div>

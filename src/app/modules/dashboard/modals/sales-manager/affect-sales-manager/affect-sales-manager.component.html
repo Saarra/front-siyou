@@ -1,0 +1,61 @@
+<div class="titleSection" mat-dialog-title>
+    <span>Search Shop Owner By Email</span>
+    <span class="salesmanagerInfos">SalesManager: {{ salesmanager.first_name }} {{  salesmanager.last_name }}</span>
+</div>
+<section mat-dialog-content>
+    <div class="searchContent">
+        <form [formGroup]="form">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Please insert email" type="Email" name="quantity" formControlName="email">
+                <mat-hint>
+                    <span class="informInput">Please insert Email to search the Shop Owner</span>
+                </mat-hint>
+                <mat-error *ngIf="form.get('email').hasError('email')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-icon mat-icon-button *ngIf="!isSearch" type="submit" (click)="serachShopOwnerByEmail()" matSuffix
+                    id="searchIcon">search</mat-icon>
+                <mat-spinner *ngIf="isSearch" [diameter]="25" id="loadingSpinner" matSuffix #loadingSpinner>
+                </mat-spinner>
+            </mat-form-field>
+        </form>
+        <section class="resultContainer">
+            <span>Results</span>
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                <ng-container matColumnDef="first_name">
+                    <th mat-header-cell *matHeaderCellDef> First Name </th>
+                    <td mat-cell *matCellDef="let shop_owner"> {{shop_owner.first_name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="last_name">
+                    <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                    <td mat-cell *matCellDef="let shop_owner"> {{shop_owner.last_name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>Email</th>
+                    <td mat-cell *matCellDef="let shop_owner"> {{shop_owner.email}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Actions</th>
+                    <td mat-cell *matCellDef="let shop_owner">
+                        <div class="actionsContainer">
+                            <mat-icon matTooltip="Affect Shop to Salesmanager" (click)="affectShopToSalesmanager(shop_owner)">add</mat-icon>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns; let element"></tr>
+
+            </table>
+        </section>
+    </div>
+</section>
+<section mat-dialog-actions class="buttomActionContainer">
+    <!-- <span>no shop Owner with this email</span> -->
+    <button mat-dialog-close mat-raised-button mat-button color="warn" class="closeButton">Close</button>
+</section>

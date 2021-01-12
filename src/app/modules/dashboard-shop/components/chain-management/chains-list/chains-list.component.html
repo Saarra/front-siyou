@@ -1,0 +1,150 @@
+<div class=" mainContainer rounded">
+
+
+
+
+      <mat-form-field class="filterclass" style="width: 25%;">
+        <mat-label>{{'Search' | translate}}</mat-label>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Chain">
+      </mat-form-field>
+      <div>
+        <table mat-table [dataSource]="dataSource" class="table1 " matSort>
+
+
+
+
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="chain_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Chain-Name' | translate}}</th>
+            <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+            <td mat-cell *matCellDef="let element">
+
+              {{element.chain_name}}
+
+
+
+
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+
+
+          <ng-container matColumnDef="adress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Address' | translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.adress}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Contact' | translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
+          </ng-container>
+
+
+
+
+          <!-- Weight Column -->
+          <!-- <ng-container matColumnDef="chain_telephone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Chaintelephone' | translate}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.chain_telephone}} </td>
+          </ng-container> -->
+
+
+          <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+          <!-- <ng-container matColumnDef="manager">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Manager' | translate}} </th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="element.manager">
+                <span class="material-icons" style=" color: #003366;"
+                (click)="openUpdateAssignManager(element)">
+                person_remove_alt_1
+              </span>              
+              </span>
+              <span *ngIf="!element.manager" (click)="openAssignManager(element)"
+                style=" color: #730E33;" class="material-icons"
+                matTooltip="Assign a manager for this store">
+                person_add
+              </span>
+
+
+            </td>
+          </ng-container> -->
+          <ng-container matColumnDef="manager">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Manager' | translate}} </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button (click)="openListManagers(element.manager,element.manager2,element.manager3)">
+                <span class="material-icons" style=" color: #003366;">
+              people
+            </span>
+              </button>
+              
+              <!-- <span *ngIf="element.manager">
+                {{element.manager.first_name}} {{element.manager.last_name}}
+              </span>
+              <span *ngIf="!element.manager" style="text-align: center;">
+                ---
+              </span> -->
+
+            </td>
+          </ng-container>
+
+          <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Email' | translate}} </th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="element.manager">
+                {{element.manager.email}}
+              </span>
+              <span *ngIf="!element.manager" style="text-align: center;">
+                ---
+              </span>
+
+            </td>
+          </ng-container>
+
+          <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+          <ng-container matColumnDef="managercontact">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Managercontact' | translate}} </th>
+            <td mat-cell *matCellDef="let element">
+
+              <span *ngIf="element.manager">
+                {{element.manager.contact}}
+              </span>
+              <span *ngIf="!element.manager" style="text-align: center;">
+                ---
+              </span>
+
+
+
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Edit' | translate}} </th>
+            <td mat-cell *matCellDef="let element">
+              <span class="material-icons" style=" color: #003366;"
+              routerLink="/shop/edit-chain/{{element.id}}">
+              edit
+            </span>  
+            </td>
+          </ng-container>
+
+
+          <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+
+          <!-- Symbol Column -->
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+      </div>
+    </div>
+
+
+

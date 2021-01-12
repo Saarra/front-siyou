@@ -1,0 +1,56 @@
+<div class="container">
+
+
+
+  <div class="col-md-12">
+    <div class="container">
+      <h4>Add this product to your shopping cart</h4>
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Unit Price</th>
+            <th>Product Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img [src]="currentProd.image_url" alt="" class="prodImg">
+            </td>
+            <td style="vertical-align: center; margin-top: 10px; padding-top: 10px;">{{currentProd.product_name}}</td>
+            <td *ngIf="currentProd.item_discount_price" class="priceTab mt-3" style="vertical-align: center;">
+              {{currentProd.item_discount_price | currency:'EUR':'symbol'}}</td>
+            <td *ngIf="!currentProd.item_discount_price" class="priceTab mt-3" style="vertical-align: center;">
+              {{currentProd.item_offline_price | currency:'EUR':'symbol'}}</td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <mat-label>Quantity</mat-label>
+                <input id="quant" matInput type="number" maxlength="5" (change)="changeQuantity()" [value]="quantity">
+              </mat-form-field>
+            </td>
+            <td class="priceTab font-weight-bold">
+              {{totalPrice | currency:'EUR':'symbol'}}
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="container text-right">
+      <button mat-dialog-close class="btn btn-secondary">Discard</button>
+      <button class="btn btn-success ml-3" (click)="addToBasket()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+
+        Add</button>
+
+    </div>
+  </div>
+
+
+</div>

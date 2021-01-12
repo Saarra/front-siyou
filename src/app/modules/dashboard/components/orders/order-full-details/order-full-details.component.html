@@ -1,0 +1,184 @@
+
+<div class="container shadow-lg p-3 mb bg-white rounded main_container">
+    
+   <div>
+    
+
+
+
+
+ <div class="my-2">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row p-5">
+                        <div class="col-md-6">
+                            <img [src]="currentOrder.supplier.img_url" alt="" class="img_supp">
+                            <p class="font-weight-bold mb-4 ">{{'Supplier-Information' | translate}}</p>
+                            <p class="mb-1 text-capitalize "> <span class="border-0 text-uppercase small font-weight-bold">{{'Full-Name' | translate}}: </span><span >{{currentOrder.supplier.first_name}} {{currentOrder.supplier.last_name}}</span> </p>
+                            <p> <span class="border-0 text-uppercase small font-weight-bold">{{'Email' | translate}}: </span>{{currentOrder.supplier.email}}</p>
+                            <p class="mb-1 text-capitalize"> <span class="border-0 text-uppercase small font-weight-bold"> {{'Address' | translate}}:</span> {{currentOrder.supplier.adress}}</p>
+                            <p class="mb-1 text-capitalize"> <span class="border-0 text-uppercase small font-weight-bold"> {{'Country' | translate}}:</span> {{currentOrder.supplier.country}}</p>
+                            <p class="mb-1 text-capitalize"> <span class="border-0 text-uppercase small font-weight-bold">{{'Code-Postal' | translate}}:</span> {{currentOrder.supplier.postal_code}}</p>
+                        </div>
+
+                        <div class="col-md-6 text-right">
+                            <h1 class="font-weight-bold mb-1 text-muted"> {{'Order' | translate}}:</h1>
+                            <p class="font-weight-bold mb-1">{{'Order-Reference' | translate}}:</p>
+                            <p class="text-muted"> {{currentOrder.order_ref}}</p>
+                            <p class="text-muted"><span>Due to: </span> {{currentOrder.order_date | date}}</p>
+
+
+                            <p class="font-weight-bold mb-4 ">{{'Shop-Information' | translate}}</p>
+                            <p class="mb-1 text-capitalize "> <span class="border-0 text-uppercase small font-weight-bold">{{'Full-Name' | translate}}: </span><span >{{currentOrder.shop_owner.first_name}} {{currentOrder.shop_owner.last_name}}</span> </p>
+                            <p> <span class="border-0 text-uppercase small font-weight-bold">{{'Email' | translate}}: </span>{{currentOrder.shop_owner.email}}</p>
+                            <p class="mb-1 text-capitalize"> <span class="border-0 text-uppercase small font-weight-bold">{{'Address' | translate}}:</span> {{currentOrder.shop_owner.adress}}</p>
+                            <p class="mb-1 text-capitalize"> <span class="border-0 text-uppercase small font-weight-bold">{{'Country' | translate}}:</span> {{currentOrder.shop_owner.country}}</p>
+                            <p class="mb-1 text-capitalize"> <span class="border-0 text-uppercase small font-weight-bold">{{'Code-Postal' | translate}}:</span> {{currentOrder.shop_owner.postal_code}}</p>
+                        </div>
+                    </div>
+
+                    <hr class="my-2">
+
+                
+
+                 
+
+
+
+
+                    <div class="row p-5">
+                        <div class="col-md-12">
+                            <p class="font-weight-bold mb-4 text-capitalize">{{'Order-Products' | translate}}:</p>
+                            <table class="table table-responsive table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-uppercase small font-weight-bold">{{'Product-image' | translate}}</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold"> {{'Product-Name' | translate}}</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">{{'Description' | translate}}</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold"> {{'Quantity' | translate}}</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">{{'Unit-Cost' | translate}}</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">{{'Details' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let order_prod of currentOrder.product_item">
+                                        <td>
+                                            <img *ngFor="let prod_img of order_prod.images | slice:0:1" [src]="prod_img.image_url" alt="" class="main_img">
+                                        </td>
+                                        <td>{{order_prod.product.product_name | slice:0:40}}...</td>
+                                        <td>{{order_prod.product.product_description | slice:0:80}}...</td>
+                                        <td>{{order_prod.pivot.quantity}}</td>
+                                        <td>{{order_prod.item_offline_price |currency:'EUR':'symbol'}}</td>
+                                        <td>
+                                            <button routerLink="/dashboard/product-details/{{order_prod.id}}" title=""  matTooltip="Show product item full details" mat-icon-button><i
+                                                class="material-icons icon-green" style="color: #000000; padding-top: -10px;">
+                                                view_headline
+                                            </i>
+                                           </button>
+                                        </td>
+                                    </tr>
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="row pb-5 p-5">
+                        <div class="col-md-12">
+                            <p class="font-weight-bold mb-4 text-capitalize"> {{'Order-full-details' | translate}}:</p>
+
+
+                            <div class="row">
+
+                            <div class="col-md-6">
+
+                                <p class="mb-1"> <span class="border-0 text-uppercase small font-weight-bold">{{'Order-Reference' | translate}}: </span>  <span> {{currentOrder.order_ref}}</span>  </p>
+                                <hr>
+                               
+                                <p class="mb-1"> <span class="border-0 text-uppercase small font-weight-bold">{{'Require-Date' | translate}}: </span><span> {{currentOrder.required_date}}</span></p>
+                                <hr>
+                               
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold">{{'Shipping-Date' | translate}}: </span>  <span>{{currentOrder.shipping_date}}</span></p>
+                                <hr>
+                               
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold"> {{'Shipping-Type' | translate}}: </span>  <span>{{currentOrder.shipping_type}}</span>  </p>
+                                <hr>
+                               
+                                <p class="mb-1" > <span class="border-0 text-uppercase small font-weight-bold"> {{'Shipping-Price' | translate}}: </span>  <span style="color:red">{{currentOrder.shipping_price |currency:'EUR':'symbol'}}</span>  </p>
+                                <hr>
+                               
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold">{{'Shipping-Address' | translate}}: </span>  <span>{{currentOrder.shipping_adresse}}</span>  </p>
+                                <hr>
+    
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold">{{'Shipping-Price' | translate}}: </span>  <span>{{currentOrder.shipping_adresse}}</span>  </p>
+                                <hr>
+                               
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold"> {{'Commission' | translate}}: </span>  <span>{{currentOrder.commission}}</span>  </p>
+                                <hr>
+                               
+                                
+                               
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold">{{'Shop-Full-Name' | translate}}: </span> <span>{{currentOrder.shop_owner.first_name}} {{currentOrder.shop_owner.last_name}}</span>  </p>
+                                <hr>
+    
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold">{{'Order-Price' | translate}}: </span> <span>{{currentOrder.order_price |currency:'EUR':'symbol'}}</span>  </p>
+                                <hr>
+    
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold"> {{'Order-Weight' | translate}}: </span> <span>{{currentOrder.order_weight}}</span>  </p>
+                                <hr>
+    
+                                <p class="mb-1"><span class="border-0 text-uppercase small font-weight-bold"> {{'Order-Status' | translate}}: </span><span class="text-capitalize">{{currentOrder.statut.statut_name}}</span>  </p>
+                                <hr>
+
+                            </div>
+
+
+                        </div>
+                          
+                           
+
+                       
+                           
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">{{'Order-Price' | translate}}:</div>
+                            <div class="h2 font-weight-light">{{currentOrder.order_price |currency:'EUR':'symbol'}}</div>
+                        </div>
+
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+
+
+   </div>
+
+ 
+
+
+</div>

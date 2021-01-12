@@ -1,0 +1,282 @@
+<div class="container shadow-lg bg-white rounded"
+    style="background-color: white; padding: 40px; margin-top: 100px; margin-bottom: 30px;">
+
+
+
+
+    <div>
+        <div class="row">
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{'prod_bases' | translate}}</h6>
+                        <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>{{prodLength}}</span></h2>
+                        <p class="m-b-0">{{'prod_items' | translate}}<span class="f-right">{{prodItemsLength}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{'sum_order_price' | translate}}</h6>
+                        <h2 class="text-right"><i class="fa fa-money f-left"></i><span>${{sumProd}}</span></h2>
+                        <p class="m-b-0">{{'last_prod'| translate}}<span class="f-right"></span>{{lastProdDate | date}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{'max_prod_price' | translate}}</h6>
+                        <h2 class="text-right"><i class="fa fa-arrow-up f-left"></i><span>${{minProdPrice}}</span></h2>
+                        <p class="m-b-0">{{'date'| translate}}<span class="f-right">{{maxProdDate | date}}</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-pink order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{'min_prod_price'| translate}}</h6>
+                        <h2 class="text-right"><i class="fa fa-arrow-down f-left"></i><span>${{minProdPrice}}</span>
+                        </h2>
+                        <p class="m-b-0">{{'date' | translate}}<span class="f-right">{{minProdDate | date}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="mainContainer">
+
+
+
+
+        <form>
+            <div class="row">
+                <mat-form-field appearance="legacy"style="width: 25%;">
+                    <mat-label>{{'searchBarcode' | translate}}</mat-label>
+                    <input matInput #keyword>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="legacy" style="width: 25%; margin-left: 20px;">
+                    <mat-label>{{'searchKeyword' | translate}}</mat-label>
+                    <input matInput #barcode>
+                </mat-form-field>
+
+                <div class="example-button-row" style="height: 80px;vertical-align: center; margin-left: 20px;">
+                    <button class="btn btn-secondary btn-lg text-center d-block mt-2 mr-4"
+                        style="vertical-align: center" (click)="onGetFullProductList(keyword.value, barcode.value)">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        {{'filter' | translate}}</button>
+                </div>
+
+            </div>
+
+
+        </form>
+
+
+
+
+        <!--     
+
+  <mat-form-field style="width: 25%;">
+    <mat-label>{{'filter' | translate}}</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Siyou">
+  </mat-form-field>
+  
+
+   -->
+
+        <table mat-table [dataSource]="data" class="mat-elevation-z8" multiTemplateDataRows matSort>
+
+            <!-- Order Date Column -->
+            <ng-container matColumnDef="product_image_url">
+                <th mat-header-cell *matHeaderCellDef> {{'prod_imgg' | translate}} </th>
+                <td mat-cell *matCellDef="let order">
+                    <img [src]="order.product_image_url" alt="" class="item-img">
+                </td>
+            </ng-container>
+
+            <!-- Order Price Column -->
+            <ng-container matColumnDef="product_name">
+                <th mat-header-cell *matHeaderCellDef> {{'prod_namee' | translate}} </th>
+                <td mat-cell *matCellDef="let order"> {{ order.product_name }} </td>
+            </ng-container>
+
+            <!-- Supplier Column -->
+            <ng-container matColumnDef="product_description">
+                <th mat-header-cell *matHeaderCellDef> {{'prod_descc' | translate}} </th>
+                <td mat-cell *matCellDef="let order"> {{ order.product_description }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brand_name">
+                <th mat-header-cell *matHeaderCellDef> {{'brand_name' | translate}} </th>
+
+                <td mat-cell *matCellDef="let order"> {{ order.brand.brand_name }}
+
+
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="category_name">
+                <th mat-header-cell *matHeaderCellDef> {{'categ_namee' | translate}} </th>
+
+                <td mat-cell *matCellDef="let order"> {{ order.category.category_name }}
+
+
+                </td>
+            </ng-container>
+
+
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef style="padding-left: 40px;">{{'actions' | translate}}</th>
+                <td mat-cell style="padding-left: 30px;" *matCellDef="let row">
+
+                    <button mat-icon-button matTooltip="Show product items">
+                        <i class="material-icons icon-green" style="color: darkcyan;">expand_more</i>
+                    </button>
+                    <!-- 
+                <button matTooltip="Show product full details"  mat-icon-button><i
+                        class="material-icons icon-green" style="color: darkcyan;">
+                        view_headline
+                    </i>
+                </button> -->
+
+                    <button (click)="openDeleteProductBase(row)" matTooltip="Delete this product" mat-icon-button><i
+                            class="material-icons icon-green" style="color: darkcyan;">
+                            delete_forever
+                        </i>
+                    </button>
+
+                    <!-- <button matTooltip="Validate order" (click)="validateOrder(row.id)" mat-icon-button><i
+                    class="material-icons icon-green" style="color: darkcyan;">
+                    offline_pin
+
+                </i>
+            </button>    -->
+
+
+                </td>
+            </ng-container>
+
+
+
+
+            <ng-container matColumnDef="expandedDetail">
+
+
+
+                <td mat-cell *matCellDef="let order" [attr.colspan]="orderDisplayedColumns.length">
+
+
+
+                    <div class="example-element-detail"
+                        [@detailExpand]="order == expandedElement ? 'expanded' : 'collapsed'">
+
+                        <div class="orderProducts">
+
+
+
+
+
+
+                            <table class="mat-elevation-z8">
+
+
+
+                                <tr>
+                                    <th style="margin-right: 35px; padding: 10px;">{{'Product image' | translate}}</th>
+                                    <th style="margin-right: 15px; padding: 10px;">{{'Product-Barcode'| translate}}</th>
+                                    <th style="margin-left: 15px; padding: 10px;">{{'Product-quantity' | translate}}</th>
+                                    <th style="margin-left: 15px; padding: 10px;">{{'Product-onlineprice' | translate}}</th>
+                                    <th style="margin-left: 15px; padding: 10px;">{{'Product-offlineprice' | translate}}</th>
+                                    <th style="margin-left: 15px; padding: 10px;">{{'product-discountprice' | translate}}</th>
+
+                                    <th style="margin-left: 15px; padding: 10px;">{{'Actions' | translate}}</th>
+
+                                </tr>
+
+                                <tr *ngFor="let prod_item of order.items">
+
+
+                                    <td style="margin-right: 15px; padding: 10px;">
+
+                                        <div *ngFor="let img of prod_item.images | slice:0:1">
+
+                                            <img [src]="img.image_url" alt="" class="item-img">
+
+                                           
+
+
+                                        </div>
+
+                                    </td>
+                                    <td style="margin-right: 15px; padding: 10px;">{{prod_item.item_barcode}}</td>
+                                    <td style="margin-left: 15px; padding: 10px;">{{prod_item.item_quantity }}</td>
+                                    <td style="margin-left: 15px; padding: 10px; color: red;">
+                                        {{prod_item.item_online_price | currency:'EUR':'symbol'}}</td>
+                                    <td style="margin-left: 15px; padding: 10px; color: red;">
+                                        {{prod_item.item_offline_price  | currency:'EUR':'symbol'}}</td>
+                                    <td style="margin-left: 15px; padding: 10px; color: red;">
+                                        {{prod_item.item_discount_price  | currency:'EUR':'symbol'}}</td>
+                                    <td style="margin-left: 15px; padding: 10px;">
+
+                                        <button routerLink="/dashboard/product-details/{{prod_item.id}}" title=""
+                                            matTooltip="Show product item full details" mat-icon-button><i
+                                                class="material-icons icon-green" style="color: darkcyan;">
+                                                view_headline
+                                            </i>
+                                        </button>
+
+
+                                        <button routerLink="/dashboard/update-product-item/{{prod_item.id}}"
+                                        matTooltip="Update this product item" mat-icon-button><i
+                                            class="material-icons icon-green" style="color: darkcyan;">
+                                            create
+                                        </i>
+                                    </button>
+                                    
+
+
+
+                                        <button (click)="openDeleteItemModalComponent(prod_item)"
+                                            matTooltip="Delete this product item" mat-icon-button><i
+                                                class="material-icons icon-green" style="color: darkcyan;">
+                                                delete_forever
+                                            </i>
+                                        </button>
+
+
+
+                                    </td>
+
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="orderDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let order; columns: orderDisplayedColumns;" class="example-element-row"
+                [class.example-expanded-row]="expandedElement === order"
+                (click)="expandedElement = expandedElement === order ? null : order"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+    </section>
+
+</div>

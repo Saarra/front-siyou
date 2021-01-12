@@ -1,0 +1,30 @@
+
+table {
+    width: 100%;
+th,td{
+  width: 8%;
+}
+  }
+  .green-svg {
+    fill: #6dd400;
+  }
+  .red-svg {
+    fill: red;
+  }
+  .my-card
+  {
+      position:absolute;
+      left:40%;
+      top:-20px;
+      border-radius:50%;
+  }
+
+
+  .mainContainer{
+      
+    background-color: white;
+  }
+  .mat-raised-button{
+    padding: 12px 12px 12px 12px ;
+    color : white;
+  }

@@ -1,0 +1,106 @@
+<div class="mainContainer rounded pb-8"> 
+  <div>
+
+
+      <mat-form-field class="filterclass" style="width: 25%;">
+          <mat-label>{{'Filter' | translate}}</mat-label>
+          <input matInput (keyup)="applyFilter($event.target.value)">
+        </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="table1 " matSort multiTemplateDataRows matSort>
+
+
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="image_url">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Image-Url' | translate}} </th>
+        <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+        <td mat-cell *matCellDef="let element"> 
+          <div   *ngFor="let img of element.images | slice:0:1">
+            <img [src]="img.image_url" alt="" class="imgtable1"> 
+  
+          </div>
+          
+        
+        </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+  
+      
+      <ng-container matColumnDef="product_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Product-Name' | translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.product.product_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="item_barcode">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'Barcode' | translate}}  </th>
+          <td mat-cell *matCellDef="let element" > {{element.item_barcode }} </td>
+        </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="item_offline_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'Online-Price' | translate}} </th>
+        <td mat-cell *matCellDef="let element" class="pricetable1"> {{element.item_offline_price |currency}} </td>
+      </ng-container>
+  
+  
+       <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+       <ng-container matColumnDef="item_online_price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'Offline-Price' | translate}} </th>
+       <td mat-cell *matCellDef="let element" class="pricetable1"> 
+         
+         
+          {{element.item_online_price |currency}}
+          
+        
+        </td>
+      </ng-container>
+  
+       <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+     
+  
+       <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+       <ng-container matColumnDef="item_quantity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'Quantity' | translate}}</th>
+       <td mat-cell *matCellDef="let element"> 
+         {{element.item_quantity}}
+          
+        
+        </td>
+      </ng-container>
+  
+  
+       <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+   
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{'More-details' | translate}} </th>
+        <td mat-cell *matCellDef="let element"> 
+  
+          
+          <button routerLink="/shop/shop-product-details/{{element.id}}" title=""  matTooltip="Show product item full details" mat-icon-button><i
+            class="material-icons icon-green" style="color: darkcyan;">
+            view_headline
+        </i>
+         </button>
+  
+  
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+
+  </div>
+  
+  
+  
+  
+  
+
+</div>

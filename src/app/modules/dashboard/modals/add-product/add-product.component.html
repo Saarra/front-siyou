@@ -1,0 +1,98 @@
+<h2 mat-dialog-title>Add Product</h2>
+<div class="dialog-container supplier-dashboard">
+    <section class="formContainer">
+        <!-- <span>fill the form to Add a product</span> -->
+        <!-- enctype="multipart/form-data" -->
+        <form [formGroup]="form" novalidate>
+            <section class="generalInfos">
+                <span class="infoDetail">General Informations</span>
+                <section class="inputsContainer">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput name="product_name" formControlName="product_name">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Barcode</mat-label>
+                        <input matInput type="number" name="product_barcode" formControlName="product_barcode">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+
+                        <mat-label>Choose Category</mat-label>
+                        <mat-select formControlName="category_id">
+                            <mat-option value="">-- None --</mat-option>
+                            <mat-optgroup *ngFor="let category of categoriesList" [label]="category.category_name">
+                                <mat-option *ngFor="let subcat of category.sub_categories" [value]="subcat.id">
+                                    {{ subcat.category_name }}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+                        <!-- <mat-label>Choose a category</mat-label>
+            <mat-select formControlName="mainCategory">
+                <mat-option *ngFor="let category of categoriesList" [value]="category.id">
+                    {{ category.name }}
+                </mat-option>
+            </mat-select> -->
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Quantity</mat-label>
+                        <input matInput type="number" name="quantity" formControlName="quantity">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Price</mat-label>
+                        <input matInput type="number" name="product_price" formControlName="product_price">
+                    </mat-form-field>
+                    <div class="uploadImage">
+                        <label id="imageBtn">
+                            <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+                            <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}" (click)="fileInputImg.click()">
+                                <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+                            </section>
+                            <!-- </button> -->
+                        </label>
+                        <input class="none" #fileInputImg type="file" (change)="getFileChange($event)"
+                            style="display: none;" />
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Product Image</mat-label>
+                            <input matInput type="text" #resultInput readonly>
+                        </mat-form-field>
+                    </div>
+                </section>
+            </section>
+            <section class="additionalInfos">
+                <span class="infoDetail">Additional Informations</span>
+                <section class="inputsContainer">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Product Description</mat-label>
+                        <input matInput name="product_description" formControlName="product_description">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Product Color</mat-label>
+                        <input matInput name="product_color" formControlName="product_color">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Weight</mat-label>
+                        <input matInput type="number" name="product_weight" formControlName="product_weight">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Size</mat-label>
+                        <input matInput type="number" name="product_size" formControlName="product_size">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Package</mat-label>
+                        <input matInput type="number" name="product_package" formControlName="product_package">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Box</mat-label>
+                        <input matInput type="number" name="product_box" formControlName="product_box">
+                    </mat-form-field>
+                </section>
+            </section>
+        </form>
+        <!-- <span>New world</span> -->
+    </section>
+    <section mat-dialog-actions class="buttomActionContainer supplier-dashboard">
+        <button mat-raised-button color="primary" (click)="onSubmit()" [ngStyle]="{'color': 'white'}">Confirm</button>
+        <button mat-dialog-close mat-stroked-button color="primary" class="closeButton">Close</button>
+        <mat-spinner [ngStyle]="{'display':'none'}" [diameter]="25" id="loadingSpinner" #loadingSpinner></mat-spinner>
+    </section>
+</div>

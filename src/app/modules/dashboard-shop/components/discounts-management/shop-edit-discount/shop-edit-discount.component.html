@@ -1,0 +1,26 @@
+<div class="mainContainer p-3 mb-5 bg-white rounded pb-8">
+
+    <div>
+      <div style="padding: 10px">
+  
+        <form novalidate class="form">
+        
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'Choose-astartdate' | translate}}</mat-label>
+            <input matInput type="date" [value] = "currentDis.start_date" #start_date>
+          </mat-form-field>
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'Choose-anenddate' | translate}}</mat-label>
+            <input matInput type="date" [value] = "currentDis.finish_date"#end_date>
+          </mat-form-field>
+        
+           <button mat-flat-button  color="primary" style="margin-right: 1%;"
+            (click)="onUpdateDiscount(start_date.value,end_date.value)">
+            {{"Submit"| translate}} </button> 
+          <button mat-stroked-button routerLink="/shop/offline-discounts-list">
+            {{'Back' | translate}}</button>
+  
+        </form>
+      </div>
+    </div>
+  </div>

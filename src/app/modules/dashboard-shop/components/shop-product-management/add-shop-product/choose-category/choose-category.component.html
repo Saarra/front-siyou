@@ -1,0 +1,55 @@
+<div class="mainContainer  p-3 mb-5  rounded pb-8" style="background-color: white; padding: 40px;">
+    <div class="row">
+        <div class="col">
+            <button mat-raised-button style="background-color: #003366;float:right ;"(click)="cancel()">{{'Cancel'|translate}}</button>
+            <button mat-raised-button style="background-color: #730E33;float:right;margin-right:10px;" (click)="confirm()">{{'Validate'|translate}}</button>
+        </div>
+    </div>
+    <div style="padding: 10px;">
+        <div class="example-container">
+            <mat-form-field>
+                <mat-label>{{'Search'|translate}}</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="{{'Search'|translate}}" #input>
+              </mat-form-field>
+            <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+                <ng-container matColumnDef="choose">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"Select-Category" | translate}} </th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-radio-button  class="example-margin" (click)="onSelect(element)"></mat-radio-button>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="category_image">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'category-image' | translate}} </th>
+                    <td mat-cell *matCellDef="let element">
+                        <img [src]="element.img_url" alt="" class="prod-img">
+                    </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="category_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'categ_namee' | translate}} </th>
+                    <td mat-cell *matCellDef="let element">
+                        <p *ngIf="translate.currentLang === 'English'">{{element.category_name }}</p>
+                        <p *ngIf="translate.currentLang === 'Chinese'">{{element.category_cn }}</p>
+                        <p *ngIf="translate.currentLang === 'Italian'">{{element.category_it }}</p>
+                        <p *ngIf="translate.currentLang === 'Français'">{{element.category_fr }}</p>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="sub_categories">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Sub-category' |translate}}</th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button>
+                            <i class="material-icons icon-green" style="color: rgb(107, 107, 107);">expand_more</i>
+                        </button>
+
+                    </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </table>
+        </div>
+    </div>
+</div>

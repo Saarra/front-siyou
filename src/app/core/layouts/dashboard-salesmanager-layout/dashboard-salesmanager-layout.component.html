@@ -1,0 +1,35 @@
+<div class="example-container salesmanager-dashboard" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #snav color="primary" [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [opened]="mobileQuery.matches ? 'false' : 'true'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="0">
+            <div class="logoContainer">
+                <mat-icon svgIcon="logo_supplier" style="width: 500px;"></mat-icon>
+            </div>
+            <mat-nav-list>
+        
+
+                <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <mat-toolbar color="primary" class="example-toolbar">
+                <button mat-icon-button aria-label="Menu" (click)="snav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span></span>
+                <section class="actionsContainer" [ngStyle]="{'margin-right':  snav.opened ? '260px' : ''}">
+                    <mat-icon [ngStyle]="{'color': mobileQuery.matches ? 'unset' : 'unset', 'font-size': mobileQuery.matches ? '24px' : '32px'}" class="toolbarIcons" [matMenuTriggerFor]="menu">person</mat-icon>
+                </section>
+            </mat-toolbar>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Settings</button>
+                <button mat-menu-item (click)="logoutUser()">Logout</button>
+            </mat-menu>
+            <section class="content" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+                <router-outlet></router-outlet>
+            </section>
+         
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,28 @@
+<div class="container" style="min-width: 350px;">
+    <form>
+        <h5>{{'barcode_gen' | translate }}</h5>
+
+        <hr>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>{{'sel_num_bar_gen' | translate}}</mat-label>
+                <input type="number" matInput placeholder="{{'sel_num_bar_gen' | translate}}" #num>
+
+
+            </mat-form-field>
+
+        </p>
+
+
+        <p style="margin-top: 20px;">
+
+            <button class="btn btn-success" (click)="onExportBarcode(num.value)"
+            style="margin-right: 10px; background-color: #303842; color: white;" type="submit">{{'Submit' | translate}}</button>
+            <button mat-dialog-close class="btn btn-secondary" >{{'Close' | translate}}</button>
+          
+        </p>
+
+
+
+    </form>
+</div>

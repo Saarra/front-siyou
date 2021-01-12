@@ -1,0 +1,52 @@
+<div class="mainContainer">
+    <h3 class="sales-manager-title"> Sales manager informations</h3>
+    <form class="add-sales-manager" [formGroup]="form" autocomplete="off">
+        <p>
+            <mat-form-field appearance="outline" class="add-sales-manager" disabled>
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" formControlName="first_name" cols="4" rowHeight="100px"
+                    #first_name>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" class="add-sales-manager">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Sale's Manager Name" formControlName="last_name" cols="4" rowHeight="100px"
+                    #last_name>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" class="add-sales-manager">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Email" formControlName="email" cols="4" rowHeight="100px"
+                    #email>
+            </mat-form-field>
+        </p>
+        <p>
+            <!-- <mat-form-field appearance="outline" class="add-sales-manager">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput placeholder="Password" [value]="currentSalesmanager.password"
+                    cols="4" rowHeight="100px" #password>
+                </mat-form-field> -->
+        </p>
+        <p>
+            <!-- <mat-form-field appearance="outline" class="add-sales-manager">
+                    <mat-label>Confirm Password</mat-label>
+                    <input type="password" matInput placeholder="Confirm Password" cols="4" rowHeight="100px">
+                </mat-form-field> -->
+            <mat-form-field appearance="outline" class="add-sales-manager">
+                <mat-label>Commission Percentage</mat-label>
+                <input matInput type="number" placeholder="Commission Percentage" formControlName="commission_amount" cols="4" rowHeight="100px">
+                <mat-error *ngIf="form.get('commission_amount').hasError('max')">
+                    Value must be between 0 and 100
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <div class="example-button-row show-on-mobile">
+            <button
+                (click)="updateSalesManagerCommission()"
+                mat-raised-button color="primary">Validate</button>
+            <button mat-dialog-close mat-raised-button color="warn" class="boutton-cancel">Cancel</button>
+        </div>
+    </form>
+</div>

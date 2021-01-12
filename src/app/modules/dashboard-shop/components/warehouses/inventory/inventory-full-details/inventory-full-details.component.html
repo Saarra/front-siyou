@@ -1,0 +1,94 @@
+<div class="container shadow-lg p-3 mb bg-white rounded main_container">
+        <h4 class="font-weight-bold mb-4 ">{{'Inventory-details' | translate}}  <button mat-icon-button matTooltip="Edit" (click)="updateInv()">
+            <i class="material-icons" style="color: rgb(9, 135, 253);">edit</i>
+        </button>
+        <button mat-icon-button matTooltip="Delete">
+            <i class="material-icons"
+                style="color: rgb(248, 0, 0);">delete_forever
+            </i>
+            <button mat-icon-button matTooltip="Export" (click)="onexportAsExcelFile()">
+                <i class="material-icons"
+                    style="color: rgb(107, 107, 107);">vertical_align_bottom
+                </i>
+            </button>
+        </button>   </h4> 
+       
+
+    <!-- <mat-divider></mat-divider> -->
+    <div>
+
+        <div class="my-2">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="row p-5">
+                                <div class="col-md-9">
+                                    <p class="mb-1 text-capitalize "> <span
+                                            class="border-0 text-uppercase small font-weight-bold">{{'Batch-number' | translate}}  :
+                                        </span><span>{{currentData.batch_number}} </span> </p>
+                                    <p class="mb-1 text-capitalize "> <span
+                                            class="border-0 text-uppercase small font-weight-bold">{{'Supplier' | translate}} :
+                                        </span><span>{{currentData.suppliers.supplier_name}} </span> </p>
+                                    <p class="mb-1 text-capitalize "> <span
+                                            class="border-0 text-uppercase small font-weight-bold">{{'Status' | translate}} :
+                                        </span><span>{{currentData.inventory_status}} </span> </p>
+                                    <p class="mb-1 text-capitalize "> <span
+                                            class="border-0 text-uppercase small font-weight-bold"> {{'Date' | translate}} :
+                                        </span><span>{{currentData.created_at}} </span> </p>
+                                    <p class="mb-1 text-capitalize "> <span
+                                            class="border-0 text-uppercase small font-weight-bold">{{'warehouse' | translate}}:
+                                        </span><span>{{currentData.warehouse.name}} </span> </p>
+                                    
+                                </div>
+                            </div>
+                                <table class="table table-bordered" style=" margin-left: 50px ;margin-right: 0;margin-bottom: 10px;width: 90%;">
+                             
+                                    <tr>
+                                        <th> {{'Product-image' | translate}} </th>
+                                        <th> {{'Product-Name' | translate}}</th>
+                                        <th>{{'Barcode' | translate}} </th>
+                                        <th> {{'Arrived-Quantity' | translate}}</th>
+                                        <th>{{'Total-Quantity' | translate}}</th>
+                                    </tr>
+                                    <tr *ngFor="let prod_item of currentData.products">
+
+                                        <td>
+                                            <img [src]="prod_item.product_image" class="prod-img" alt="">
+                                        </td>
+                                        <td>
+                                            {{prod_item.product_name}}
+                                        </td>
+                                        <td>
+                                            {{prod_item.product_barcode}}
+                                        </td>
+                                        <td>
+                                            {{prod_item.pivot.arrived_quantity}}
+                                        </td>
+                                        <td>
+                                            {{prod_item.pivot.total_quantity}}
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+    </div>

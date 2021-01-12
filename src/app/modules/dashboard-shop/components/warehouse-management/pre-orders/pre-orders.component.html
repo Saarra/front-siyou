@@ -1,0 +1,57 @@
+  <div><h4>{{"new-pre-order"| translate}}</h4>
+  <a href="assets/downloads/Inventory_excel.xlsx" download>
+    {{"download-Excel-template"| translate}}
+</a>
+  <form  [formGroup]="form" novalidate >
+<!-- 
+  <mat-form-field appearance="legacy"  style="margin-right: 15px;">
+    <mat-label>Order Price</mat-label>
+    <input matInput #order_price formControlName="order_price">
+  </mat-form-field>
+  <mat-form-field appearance="legacy" style="margin-right: 15px">
+    <mat-label>Status </mat-label>
+    <mat-select #statut_id formControlName="statut_id">
+        <mat-option value=0 selected>None</mat-option>
+        <mat-option *ngFor="let status of statusList" [value]="status.id">
+            {{status.statut_name}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="legacy">
+  <mat-label>Supplier</mat-label>
+  <mat-select #supplier_id formControlName="supplier_id">
+      <mat-option value=0 selected>None</mat-option>
+      <mat-option *ngFor="let supp of suppliersData" [value]="supp.id">
+          {{supp.supplier_name}}
+      </mat-option>
+  </mat-select>
+</mat-form-field> -->
+<br/>
+<br/>
+  <div class="form-group" style="width: 100%">
+    <label for="file">{{"products-file"| translate}}</label> <br/>
+    <input #fileInput type="file" name="products" (change)="getFileChange($event);onFileChange($event)" />
+ <section (click)="fileInput.click()" style="margin-bottom: 1.5rem;"></section>
+ <input matInput type="text" #resultInput readonly style="display: none;">
+ <!-- <table class="sjs-table">
+	<tbody>
+		<tr *ngFor="let row of dataa">
+			<td *ngFor="let val of row">
+				{{val}}
+			</td>
+		</tr>
+	</tbody>
+</table> -->
+  </div>
+
+  <button type="button" class="btn btn-success btn-sm" style="margin-right: 5px; width: 200px" (click)="onUploadFile()">
+    {{ "Save" | translate }}
+  </button>
+  <button type="button" class="btn btn-secondary btn-sm" style="margin-right: 5px; width: 200px" (click)="clickCancel()">
+    {{ "Cancel" | translate }}
+  </button>
+
+
+
+</form>
+</div>

@@ -1,0 +1,23 @@
+
+.uploadImage {
+    #imageBtn {
+      margin-top: 15px;
+      margin-left: 8px;
+      .uploadIconContainer {
+        display: flex;
+        justify-content: center;
+        border-radius: 50%;
+        padding: 8px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .example-container {
+    width: 500px;
+    position:relative;
+  }
+  mat-form-field{
+    width: 100%;
+}

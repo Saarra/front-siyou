@@ -1,0 +1,63 @@
+
+<div class=" mainContainer shadow-lg p-3 mb-5 bg-white rounded">
+  <div class=" my-2 mx-2">
+    <form [formGroup]="form">
+      <div>
+        <p style="size: 50px;"> {{ "User-information" | translate }}</p>
+        <mat-divider style="margin-bottom: 30px;"></mat-divider>
+      </div>
+        <mat-form-field appearance="fill"  style="width: 47%; margin-right:5% ;">
+          <mat-icon matSuffix>storefront</mat-icon>
+          <mat-label>{{"First-Name" | translate}}</mat-label>
+          <input type="text" matInput [value]="user.first_name" formControlName="firstName" #first_name >
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 47%;">
+          <mat-icon matSuffix>storefront</mat-icon>
+          <mat-label>{{"Last-Name" | translate}}</mat-label>
+          <input type="text" matInput [value]="user.last_name" formControlName="lastName" #last_name >
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-label>{{"Email-address"| translate}}</mat-label>
+          <input type="text" matInput [value]="user.email" formControlName="userEmail" #email readonly>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-label>{{"Contact"| translate}}</mat-label>
+          <input type="text" matInput [value]="user.contact" formControlName="contact" #contact >
+        </mat-form-field>
+      
+        <mat-form-field appearance="fill" class="form-element" >
+          <mat-icon matSuffix>add_location</mat-icon>
+          <mat-label>{{"Address"| translate}}</mat-label>
+          <input type="text" matInput [value]="user.billing_address_1" formControlName="address" #billing_address_1>
+        </mat-form-field>
+       
+        <mat-form-field appearance="fill" class="form-element" style="width: 30%;margin-right:5%">
+          <mat-icon matSuffix>map</mat-icon>
+          <mat-label>{{"Country"| translate}}</mat-label>
+          <input type="text" matInput [value]="user.billing_country" formControlName="country" #billing_country>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-element" style="width: 30%; margin-right:5% ;">
+          <mat-icon matSuffix>map</mat-icon>
+          <mat-label>{{"City"| translate}}</mat-label>
+          <input type="text" matInput [value]="user.billing_city" formControlName="city" #billing_city>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-element" style="width: 30% ;">
+          <mat-icon matSuffix>map</mat-icon>
+          <mat-label>{{"Postal-code"| translate}}</mat-label>
+          <input type="text" matInput [value]="user.billing_postal_code" formControlName="postalCode" #billing_postal_code>
+          </mat-form-field>
+          <button mat-button (click)="
+          updateUser(first_name.value,last_name.value,
+                    contact.value,
+                    billing_address_1.value,
+                    billing_country.value,
+                    billing_city.value,
+                    billing_postal_code.value)" style="margin-right: 5px;" class="btn btn-success btn-sm">
+            {{'Submit' | translate}}</button>
+          <button mat-button routerLink="/shop/useraccount" class="btn btn-secondary btn-sm">
+            {{'Back' | translate}}</button>
+          </form>
+          </div>
+          </div>

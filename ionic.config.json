@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "SiyouB2B": {
+      "name": "app",
+      "integrations": {},
+      "type": "angular",
+      "root": "./"
+    }
+  }
+}

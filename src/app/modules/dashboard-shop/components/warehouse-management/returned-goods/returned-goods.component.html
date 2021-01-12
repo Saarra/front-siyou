@@ -1,0 +1,172 @@
+<div class="rounded bgc" style="padding: 40px;">
+    <div class="row" style="float: right;">
+        <button mat-raised-button style=" background-color:#730E33; " (click)="onAddReturnProduct()">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          {{'New Product' |translate}}</button>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+
+    <div>
+        <form>
+
+            <mat-form-field appearance="standard" style="width :  26% ; margin-right:2% ;">
+                <mat-label>{{'Select-Chain'| translate}}</mat-label>
+                <mat-select #chain_id>
+
+                    <mat-option value=0>{{'None'|translate}}</mat-option>
+                    <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+                    </mat-option>
+
+
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="standard" style="width :  26% ; margin-right:2% ;">
+                <mat-label>{{'Select-Supplier'| translate}}</mat-label>
+                <mat-select #supplier_id>
+                    <mat-option value=0 >{{'None'|translate}}</mat-option>
+                    <mat-option *ngFor="let supp of suppliersData" [value]="supp.id">{{supp.supplier_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="standard" style="width :  26% ; margin-right:2% ;">
+                <input matInput [placeholder]="'Search-bybarcode'| translate" #barcode >
+            </mat-form-field>
+     
+
+
+            <button mat-raised-button style="background-color:#003366; width : 10%; "
+                (click)="onGetProdsListS2C(chain_id.value,supplier_id.value,barcode.value)">
+                <i class="fa fa-search" aria-hidden="true"></i>
+
+                {{'Filter' | translate}}</button>
+                
+            <button mat-icon-button matTooltip="Export" (click)="onexportAsExcelFile()">
+                <i class="material-icons" style="color: rgb(0, 119, 255); width : 6%; ">vertical_align_bottom
+                </i>
+            </button>
+            
+
+        </form>
+    </div>
+<div>
+
+    <table mat-table [dataSource]="dataSource"  class="table1" matSort>
+
+
+        <ng-container matColumnDef="range_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'goods-shelf-No.'| translate}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.range_id }} </td>
+        </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="product_image">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Image'| translate}}</th>
+            <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+            <td mat-cell *matCellDef="let element">
+
+                <img [src]="element.img_url" alt="" class="imgtable1">
+
+            </td>
+        </ng-container>
+
+        <!-- Name Column -->
+
+
+        <ng-container matColumnDef="product_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Product-Name'| translate}}</th>
+            <td mat-cell *matCellDef="let element"> {{element.product_name}} </td>
+        </ng-container>
+
+
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="product_barcode">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Barcode'| translate}} </th>
+            <td mat-cell *matCellDef="let element"> {{element.product_barcode}} </td>
+        </ng-container>
+        <ng-container matColumnDef="supplier">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Supplier'| translate}} </th>
+            <td mat-cell *matCellDef="let element">  {{element.supplier.supplier_name}} </td>
+        </ng-container>
+
+        <!-- {{element.supplier.supplier_name}} -->
+        <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+        <ng-container matColumnDef="unit_price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Unit-Price'| translate}} </th>
+            <td mat-cell *matCellDef="let element" class="pricetable1">
+
+
+                {{element.unit_price |currency}}
+
+
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="cost_price" *ngIf="cost_price == '0'">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Cost-Price'| translate}} </th>
+            <td mat-cell *matCellDef="let element" >
+
+
+                {{element.cost_price |currency}}
+
+
+            </td>
+        </ng-container>
+     
+
+        <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+
+
+        <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+        <ng-container matColumnDef="product_quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Product-quantity'| translate}} </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.product_quantity}}
+
+
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="return_quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{"return_quantity"| translate}}</th>
+            <td mat-cell *matCellDef="let element" class="pricetable1">
+                {{element.item_return}}
+
+
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Actions'| translate}}  </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button routerLink="/shop/edit-returned-goods/{{element.id}}" *ngIf="cost_price == '0'"><i class="material-icons icon-green" style="color:#003366;">edit
+                </i>
+              </button>
+              <button mat-icon-button><i class="material-icons icon-green" (click)="onDelete(element.chain_id,element.product_barcode)"style="color:#730E33;">delete
+                </i>
+              </button>
+            </td>
+      
+          </ng-container>
+    
+       
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+
+
+    </table>
+
+
+
+
+
+    <br/>
+</div>
+
+
+
+
+
+</div>

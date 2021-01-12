@@ -1,0 +1,43 @@
+<section class="mainContainer">
+    <span id="prodTitle">Products List</span>
+    <mdc-image-list *ngIf="productList.length" masonry class="masonry-image-list productsContainer">
+        <mdc-image-list-item *ngFor="let product of productList">
+            <mat-card>
+                <div class="imageContainer"
+                    [ngStyle]="{'background': 'url(' + product.product_image + ')', 'background-position': 'center', 'background-size': 'contain', 'background-repeat': 'no-repeat'}">
+                    <!-- <img mdcImageListImage class="img" [src]="product.product_image"> -->
+                    <!-- <mat-icon style="color: coral;" matTooltip="add to favorite">favorite_border</mat-icon> -->
+                    <!-- <mat-icon>shopping_basket</mat-icon> -->
+
+                    <!-- <mat-icon matTooltip="add to Basket" (click)="addProductToBasket(product)" style="color: #41a8c5;"> -->
+                        <!-- add_circle</mat-icon> -->
+                    <!-- <mat-icon matTooltip="add to Basket" (click)="addProductToBasket(product)">add</mat-icon> -->
+                </div>
+                <mat-card-content>
+                    <div class="product_name" style="color: #41a8c5;">
+                        {{ product.product_name}}
+                    </div>
+                    <div class="product_name">
+                        Barcode: {{ product.product_barcode }}
+                    </div>
+                    <div class="description">
+                        {{ product.product_description.length > 50 ? ((product.product_description | slice: 0:50 ) + '...') : product.product_description }}
+                    </div>
+                    <div class="containerInfos">
+                        <div class="quantity">
+                            Packet: {{ product.product_box }}/{{ product.product_package }}  Stock: {{ product.quantity }}
+                        </div>
+                        <div class="product_price" style="color: #ff0000;">
+                            {{ product.product_price | currency:'EUR':'symbol' }}
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mdc-image-list-item>
+    </mdc-image-list>
+
+    <section class="noDataFoundSection" *ngIf="!productList.length">
+        <mat-icon width="unset" height="unset" id="noDataImage" svgIcon="noData"></mat-icon>
+        <span>No Data Found</span>
+    </section>
+</section>

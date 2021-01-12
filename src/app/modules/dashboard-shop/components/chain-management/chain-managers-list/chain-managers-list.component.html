@@ -1,0 +1,84 @@
+<div class="rounded">
+    <div class="row">
+        <div class=" col card-container" *ngIf="!data.manager && !data.manager2 && !data.manager3">
+
+            <h1> No Manager</h1>
+
+
+            <div class="buttons">
+                <button class="primary" routerLink="/shop/add-shopmanager">
+                    Add Manager
+                </button>
+                <button class="primary ghost" routerLink="/shop/shopmanagers-list">
+                    Manager List
+                </button>
+            </div>
+
+        </div>
+        <div class=" col card-container" *ngIf="data.manager">
+            <!-- <span class="pro">
+
+                <i (click)="onEditManager(data.manager.id)" class="material-icons icon-green"
+                    style="color: #003366;">edit
+                </i>
+
+            </span> -->
+            <img class="round" [src]="data.manager.profile_img_url? data.manager.profile_img_url : image" alt="user" />
+            <h3>{{data.manager.first_name}}</h3>
+            <h6>{{data.manager.contact}}</h6>
+            <p>{{data.manager.email}}</p>
+
+            <div class="buttons">
+                <div class="btn" (click)="onEditManager(data.manager.id)"> Edit</div>
+                <div class="btn" (click)="onBlock(data.manager.id)"> Block</div>
+<!-- 
+                <button class="primary" (click)="onBlock(data.manager.id)">
+                    Block
+                </button>
+                <button class="primary ghost" (click)="onEditManager(data.manager.id)">
+                    Edit
+                </button> -->
+            </div>
+
+        </div>
+
+        <div class="col card-container" *ngIf="data.manager2">
+            <!-- <span class="pro">
+                <i (click)="onEditManager(data.manager2.id)" class="material-icons icon-green"
+                    style="color: #003366;">edit
+                </i>
+
+            </span> -->
+            <img class="round" [src]="data.manager2.profile_img_url? data.manager2.profile_img_url : image"
+                alt="user" />
+            <h3>{{data.manager2.first_name}}</h3>
+            <h6>{{data.manager2.contact}}</h6>
+            <p>{{data.manager2.email}}</p>
+
+            <div class="buttons">
+                <div class="btn" (click)="onEditManager(data.manager.id)"> Edit</div>
+                <div class="btn" (click)="onBlock(data.manager.id)"> Block</div>
+            </div>
+
+        </div>
+        <div class=" col card-container" *ngIf="data.manager3">
+            <!-- <span class="pro">
+                <i (click)="onEditManager(data.manager3.id)" class="material-icons icon-green"
+                    style="color: #003366;">edit
+                </i>
+
+            </span> -->
+            <img class="round" [src]="data.manager3.profile_img_url? data.manager3.profile_img_url : image"
+                alt="user" />
+            <h3>{{data.manager3.first_name}}</h3>
+            <h6>{{data.manager3.contact}}</h6>
+            <p>{{data.manager3.email}}</p>
+
+            <div class="buttons">
+                <div class="btn" (click)="onEditManager(data.manager.id)"> Edit</div>
+                <div class="btn" (click)="onBlock(data.manager.id)"> Block</div>
+            </div>
+
+        </div>
+    </div>
+</div>

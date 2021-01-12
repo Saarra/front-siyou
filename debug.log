@@ -1,0 +1,17 @@
+[1003/005626.284:ERROR:process_reader_win.cc(123)] NtOpenThread: {Accès refusé} Un processus a demandé l’accès a un objet, mais il ne bénéficie pas des autorisations nécessaires. (0xc0000022)
+[1003/005626.287:ERROR:process_reader_win.cc(123)] NtOpenThread: {Accès refusé} Un processus a demandé l’accès a un objet, mais il ne bénéficie pas des autorisations nécessaires. (0xc0000022)
+[1003/005626.291:ERROR:process_reader_win.cc(123)] NtOpenThread: {Accès refusé} Un processus a demandé l’accès a un objet, mais il ne bénéficie pas des autorisations nécessaires. (0xc0000022)
+[1003/005626.333:ERROR:process_reader_win.cc(123)] NtOpenThread: {Accès refusé} Un processus a demandé l’accès a un objet, mais il ne bénéficie pas des autorisations nécessaires. (0xc0000022)
+[1003/005626.495:ERROR:exception_snapshot_win.cc(99)] thread ID 12396 not found in process
+[1003/005626.495:ERROR:exception_snapshot_win.cc(99)] thread ID 13600 not found in process
+[1003/005626.573:ERROR:exception_snapshot_win.cc(99)] thread ID 13220 not found in process
+[1003/005626.558:ERROR:process_info.cc(329)] VirtualQueryEx: Accès refusé. (0x5)
+[1003/005626.573:ERROR:process_info.cc(556)] ReadMemoryInfo failed
+[1003/005626.495:ERROR:exception_snapshot_win.cc(99)] thread ID 14100 not found in process
+[1003/005626.573:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Tentative d’accès à un processus en cours d’arrêt. (0xc000010a)
+[1003/005626.573:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Tentative d’accès à un processus en cours d’arrêt. (0xc000010a)
+[1003/005626.573:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Tentative d’accès à un processus en cours d’arrêt. (0xc000010a)
+[1003/005626.573:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Tentative d’accès à un processus en cours d’arrêt. (0xc000010a)
+[1003/005626.573:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Tentative d’accès à un processus en cours d’arrêt. (0xc000010a)
+[1109/230050.089:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)
+[0109/160342.900:ERROR:directory_reader_win.cc(43)] FindFirstFile: Le chemin d’accès spécifié est introuvable. (0x3)

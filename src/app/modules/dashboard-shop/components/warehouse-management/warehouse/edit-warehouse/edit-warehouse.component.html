@@ -1,0 +1,87 @@
+
+<div class="container">
+
+  <div class="form-group" style="margin-top: 70px;">
+    <h3>{{'Edit-warehouse'| translate}}</h3>
+    <hr>
+</div>
+  <form action="" [formGroup]="form" novalidate>
+      <p>
+      <mat-form-field appearance="legacy" class="form-element" style ="margin-right: 5% ; width:47%;">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-label>  {{'Name'| translate}}</mat-label>
+        <input matInput formControlName="name" #name [value]="warehousedata.name">
+
+      </mat-form-field>
+  
+      <mat-form-field appearance="legacy" class="form-element" style ="width:48%;">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-label>{{'Description'| translate}}</mat-label>
+        <input matInput  formControlName="description" #description [value]="warehousedata.description">
+
+      </mat-form-field>
+
+       </p>
+   <p>
+      <mat-form-field appearance="legacy" class="form-element">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-label> {{"First responsible"| translate}}</mat-label>
+        <input matInput  formControlName="first_responsible" #first_responsible [value]="warehousedata.first_responsible">
+
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-label> {{"Second responsible"| translate}}</mat-label>
+        <input matInput formControlName="second_responsible" #second_responsible [value]="warehousedata.second_responsible">
+
+      </mat-form-field>
+    </p>
+
+
+    <p style="display: none;">
+      <mat-form-field appearance="fill" class="form-element">
+        <mat-label>Chain</mat-label>
+        <input matInput placeholder="Enter Latitude" #chain_id formControlName="chain_id" [value]="warehousedata.chain_id">
+
+      </mat-form-field>
+    </p>
+      <p style="display: none;">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>add_location</mat-icon>
+          <mat-label>Latitude</mat-label>
+          <input matInput placeholder="Enter Latitude" formControlName="latitude" [value]="warehousedata.latitude">
+  
+        </mat-form-field>
+      </p>
+  
+      <p style="display: none;">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>add_location</mat-icon>
+          <mat-label>Longitude</mat-label>
+          <input matInput placeholder="Enter Longitude" formControlName="longitude" [value]="warehousedata.longitude">
+  
+        </mat-form-field>
+      </p>
+  
+   <agm-map style="margin-top: 1.5rem;" [latitude]="lat" [longitude]="lng"
+                      (mapClick)="onChoseLocation($event)">
+                      <agm-marker [latitude]="latitude" [longitude]="longitude" *ngIf="locationChosen">
+                      </agm-marker>
+                  </agm-map>
+
+
+
+
+
+    <button class="btn-submit"(click)="onSubmit(name.value,description.value,first_responsible.value,second_responsible.value,chain_id.value)" mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;">{{'Submit'| translate}}</button>
+    <button mat-raised-button="warn">{{'Back'| translate}}</button>
+    
+   
+    
+  </form>
+</div>
+
+
+

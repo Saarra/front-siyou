@@ -1,0 +1,214 @@
+<div class=" mainContainer shadow-lg p-3 mb-5 bg-white rounded">
+
+  <div class=" my-2 mx-2">
+
+
+    <form autocomplete="off">
+
+      <div>
+        <p style="size: 50px;">{{'Add-a-newmember' | translate}} </p>
+        <mat-divider style="margin-bottom: 30px;"></mat-divider>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>credit_card</mat-icon>
+            <mat-label> <span style="color: red;">*</span>{{'membership-cardnumber' | translate}}</mat-label>
+            <input matInput placeholder="credit_card" [value]="currentMember.card_num" #card_num>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>phone_enabled</mat-icon>
+            <mat-label><span style="color: red;">*</span> {{'mobile-phonenumber' | translate}}</mat-label>
+            <input matInput placeholder="Mobile Phone Number" #contact [value]="currentMember.contact">
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+
+
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <mat-label> <span style="color: red;">*</span>{{'member-firstname' | translate}}</mat-label>
+            <input matInput placeholder="Member First Name" #first_name #contact [value]="currentMember.first_name">
+
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <mat-label><span style="color: red;">*</span>{{'member-lastname' | translate}}</mat-label>
+            <input matInput placeholder="Member Last Name" #last_name [value]="currentMember.last_name">
+
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-label>{{'member-birthday' | translate}} </mat-label>
+            <input matInput [matDatepicker]="picker" #birthday [value]="currentMember.birthday">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-label>{{'Gender' | translate}} </mat-label>
+            <input matInput #gender [value]="currentMember.gender" readonly>
+
+          </mat-form-field>
+        </div>
+        <div class="col">
+
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-label> <span style="color: red;">*</span> {{'select-membershiplevel' | translate}}</mat-label>
+            <mat-select #level_id [value]="currentMember.level_id">
+              <mat-option *ngFor="let level of levelData" [value]="level.id">{{level.level}}</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+
+
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>recent_actors</mat-icon>
+            <mat-label> {{'ID-card' | translate}}</mat-label>
+            <input matInput placeholder="ID Card" #id_card [value]="currentMember.id_card">
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix> email </mat-icon>
+            <mat-label>{{'mailbox' | translate}}</mat-label>
+            <input matInput placeholder="Mailbox" #email [value]="currentMember.email">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>home</mat-icon>
+            <mat-label>{{'Address' | translate}}</mat-label>
+            <input matInput placeholder="{{'Address' | translate}}" #adress [value]="currentMember.adress">
+
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>qr_code</mat-icon>
+            <mat-label>{{'Inviter-Barcode' | translate}}</mat-label>
+            <input matInput placeholder="{{'Inviter-Barcode' | translate}}" #card_barcode
+              [value]="currentMember.card_barcode">
+
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>sticky_note_2</mat-icon>
+            <mat-label> {{'Remarks' | translate}}</mat-label>
+            <input matInput placeholder="Remarks" #remarks [value]="currentMember.remarks">
+
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+            <mat-icon matSuffix>exposure_plus_1</mat-icon>
+            <mat-label>{{'Increase-Points' | translate}}</mat-label>
+            <input matInput placeholder="Increase Points" #points [value]="currentMember.points">
+
+          </mat-form-field>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+
+            <mat-label>{{'Select' | translate}}</mat-label>
+
+            <mat-select #is_active [value]="currentMember.is_active">
+              <mat-option [value]="0">{{'Activate' | translate }}</mat-option>
+              <mat-option [value]="1">{{'Deactivate' | translate }}</mat-option>
+            </mat-select>
+
+
+
+
+          </mat-form-field>
+
+
+        </div>
+        <div class="col">
+          <mat-form-field appearance="fill" class="form-element">
+
+            <mat-label> {{'Membership-Validity' | translate}}</mat-label>
+            <input matInput [matDatepicker]="picker1" #expiration_date [value]="currentMember.expiration_date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+
+        </div>
+
+      </div>
+
+      <div class="row" class="btnGroup">
+        <button
+          (click)="submit(card_num.value, contact.value, first_name.value, last_name.value, birthday.value, level_id.value, id_card.value, email.value, adress.value, card_barcode.value, remarks.value, points.value, expiration_date.value,gender.value , is_active.value )"
+          type="button" mat-raised-button style=" background-color:#730E33;margin-right: 10px;">
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          {{'Submit' | translate}}</button>
+        <button type="button" mat-raised-button style=" background-color:#003366;margin-right: 10px;"
+          routerLink="/shop/membership-management">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          {{'Cancel' | translate}}</button>
+      </div>
+
+
+
+
+
+
+
+    </form>
+  </div>
+
+</div>

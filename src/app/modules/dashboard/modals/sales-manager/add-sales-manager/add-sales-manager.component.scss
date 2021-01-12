@@ -1,0 +1,50 @@
+.searchContent {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  .informInput {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: italic;
+  }
+  form {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    mat-form-field {
+      width: 45%;
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+    mat-spinner {
+      margin-left: 5px;
+      align-self: center;
+    }
+  }
+  .resultContainer {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    span {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    table {
+      margin-top: 10px;
+      .actionsContainer {
+        mat-icon {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+.buttomActionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}

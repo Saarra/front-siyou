@@ -1,0 +1,173 @@
+<div class="container mainContainer rounded pb-8"
+        style=" padding: 40px; margin-top: 80px; margin-bottom: 30px;">
+    <!-- <nav aria-label="breadcrumb" style= "background-color: white;">
+     <ol class="breadcrumb" style= "background-color: white;">
+      <li li class="breadcrumb-item active" aria-current="page"><a href="#">Inventory</a></li>
+      <li class="breadcrumb-item" >New Inventory</li>
+    </ol>
+  </nav> -->
+    <div>
+        <div style="padding: 10px;">
+                <div>
+                    <mat-form-field appearance="legacy" style="margin-right: 3%; width: 17%;">
+                        <mat-label style= "font-size: 12px;">{{"search-by-batch-number" |translate}}</mat-label>
+                        <input matInput #batch (keydown.enter)="onGetInventoryByBatch(warehouse_id.value,batch.value)">
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="legacy" style="margin-right: 3%;width: 17%;">
+                        <mat-label style= "font-size: 12px;">{{'Warehouse' | translate}}</mat-label>
+                        <mat-select #warehouse_id (selectionChange)="onGetInventoriesList(warehouse_id.value)">
+                            <mat-option value=0 selected>None</mat-option>
+                            <mat-option *ngFor="let warehouse of warehousesData" [value]="warehouse.id">
+                                {{warehouse.name}}
+                            </mat-option>
+                        </mat-select>
+
+                    </mat-form-field>
+                    <mat-form-field appearance="legacy" style="margin-right: 3%; width: 17%;">
+                        <mat-label style= "font-size: 12px;">{{'Supplier' | translate}}</mat-label>
+                        <mat-select #supplier_id (selectionChange)="onGetWarehousesesListbysupplier(warehouse_id.value,supplier_id.value)">
+                            <mat-option value=0 selected>None</mat-option>
+                            <mat-option *ngFor="let supplier of supp" [value]="supplier.id">
+                              {{supplier.first_name}}{{supplier.last_name}}
+
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="legacy" style="margin-right: 3%;width: 17%;">
+                        <mat-label style= "font-size: 12px;">{{'Status' | translate}}</mat-label>
+                        <mat-select #verifier_status>
+                            <mat-option value=0 selected>None</mat-option>
+                            <mat-option *ngFor="let status of statusList" [value]="status.id">
+                                {{status.statut_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                   
+                    <button mat-raised-button style="width: 20%; background-color:#3F51B5;" routerLink="/inventory/add-inventory" >
+                        {{"new-inventory" | translate}}</button>
+                </div>
+            <div>
+                <table mat-table [dataSource]="dataSource"  multiTemplateDataRows matSort>
+
+                    <ng-container matColumnDef="batch_number">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Batch-number' | translate}} </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.batch_number }}
+                        </td>
+                    </ng-container>
+                  
+                    <ng-container matColumnDef="suppliers">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Supplier' | translate}} </th>
+                        <td mat-cell *matCellDef="let element">
+                            <!-- {{element.suppliers.supplier_name }} -->
+                        </td>
+                    </ng-container>
+                   
+                   
+
+                    <ng-container matColumnDef="operator_status">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Status' | translate}} </th>
+                        <td mat-cell *matCellDef="let element">
+                             <p style="color: red" *ngIf="element.inventory_status == 'pending'"> 
+                                <svg height="14" width="14"style="color:black">
+                                <circle cx="7" cy="7" r="7" class="red-svg" />
+                              </svg></p>
+                            <p style="color: green" *ngIf="element.inventory_status == 'complete'"><svg height="14" width="14"style="color:black">
+                                <circle cx="7" cy="7" r="7" class="green-svg" />
+                              </svg> </p>
+                        </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Date' | translate}} </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.created_at | date }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="products">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Products' | translate}}</th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button matTooltip="Show products">
+                                <i class="material-icons icon-green" style="color: rgb(107, 107, 107);">expand_more</i>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Actions' | translate}}</th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-icon-button matTooltip="Details"
+                                (click)="openInventoryFullDetails(row.id)">
+                                <i class="material-icons" style="color: rgb(107, 107, 107);">view_headline</i>
+                            </button>
+                            <button mat-icon-button matTooltip="Edit" (click)="updateInv(row.id)">
+                                <i class="material-icons" style="color: rgb(107, 107, 107);">edit</i>
+                            </button>
+
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="expandedDetail">
+                        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                            <!-- <button mat-raised-button color="primary">Add New Unit</button> -->
+                            <div class="example-element-detail"
+                                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                                <div class="showProducts" style="width: 100%;">
+                                    <table class="mat-elevation-z8" style="width: 100%;">
+                                        <tr>
+                                            <th style="margin-right: 35px; padding: 10px;">{{'Product-Name' | translate}} </th>
+                                            <th style="margin-right: 35px; padding: 10px;"> {{'Barcode' | translate}}</th>
+                                            <th style="margin-right: 35px; padding: 10px;"> {{'Product-Quantity' | translate}} </th>
+                                            <th style="margin-right: 35px; padding: 10px;"> {{"Arrived-Quantity" | translate}} </th>
+                                            <th style="margin-right: 35px; padding: 10px;"> Verified Quantity </th>
+                                            <th style="margin-right: 35px; padding: 10px;"> Unverified Quantity </th>
+
+                                            <th style="margin-right: 35px; padding: 10px;"> {{"Status" | translate}} </th>
+
+
+
+
+                                        </tr>
+                                        <tr *ngFor="let prod_item of element.products">
+
+                                            <td style="margin-right: 15px; padding: 10px;">
+                                                {{prod_item.product_name}}
+                                            </td>
+                                            <td style="margin-right: 15px; padding: 10px;">
+                                                {{prod_item.product_barcode}}
+                                            </td>
+                                            <td style="margin-right: 15px; padding: 10px;">
+                                                {{prod_item.pivot.total_quantity}}
+                                            </td>
+                                            <td style="margin-right: 15px; padding: 10px;">
+                                                {{prod_item.pivot.arrived_quantity}}
+                                            </td>
+                                            <td style="margin-right: 15px; padding: 10px;color: green;">
+                                                {{prod_item.pivot.verified_quantity}}
+                                            </td>
+                                            <td style="margin-right: 15px; padding: 10px;color: red;">
+                                                {{prod_item.pivot.unverified_quantity}}
+                                            </td>
+                                            <td style="margin-right: 15px; padding: 10px;">
+                                                <p style="color: red" *ngIf="prod_item.pivot.product_status == 2"> Pending</p>
+                                                <p style="color: green" *ngIf="prod_item.pivot.product_status == 3"> Passed </p>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+                        [class.example-expanded-row]="expandedElement === element"
+                        (click)="expandedElement = expandedElement === element ? null : element"></tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

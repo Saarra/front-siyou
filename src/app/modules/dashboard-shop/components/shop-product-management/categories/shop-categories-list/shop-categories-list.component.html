@@ -1,0 +1,43 @@
+ <div class=" mainContainer">
+
+  <div class="row" style="float: left;margin-left: 2%;">
+    <button mat-raised-button style="background-color: #730E33;float:right ; margin-bottom:10px; margin-right: 5px;"
+      routerLink="/shop/affect-categories"> {{ "Categories-Management" | translate}}
+    </button>
+ 
+  </div>
+  <img *ngIf="categoryData.length == 0" src = "assets/images/empty.jpg " style=" display: block;
+  margin: 0 auto;">
+  <br>
+  <br>
+  <br>
+
+  <div class="box" *ngIf="categoryData.length != 0 ">
+   
+      <div class="card" *ngFor="let cat of categoryData">
+        <div class="imgBx">
+            <img [src]="cat.img_url" alt="Siyou Categories">
+            <div style="float: right;text-align: right;">
+            <button mat-icon-button (click)="onDeleteCategory(cat.id)"><i class="material-icons icon-green"
+              style="color: #730E33 ;">delete
+            </i>
+          </button>
+          <button mat-icon-button routerLink="/shop/edit-category/{{cat.id}}/1"><i class="material-icons icon-green"
+            style="color: #730E33">edit
+          </i>
+        </button>
+        </div>
+        </div>
+        <div class="details">
+            <h2>{{cat.category_name}}</h2>
+            
+        </div>
+       
+      </div>
+    
+     
+    
+  </div>
+</div> 
+ 
+ 

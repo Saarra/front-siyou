@@ -1,0 +1,119 @@
+<div class="mainContainer">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-card class="bg-white rounded-lg p-5 ">
+                <h5> {{'Sales Funds'| translate }}</h5>
+                <form action="" novalidate>
+                    <mat-form-field appearance="standard" style="width: 18%; margin-right: 2%">
+                        <mat-label>{{'Start-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker" #from />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 18%; margin-right: 2%">
+                        <mat-label>{{'End-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker2" #to />
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 18%;margin-right: 2%;">
+                        <mat-label>{{'Select-Chain' | translate}}</mat-label>
+                        <mat-select #chain>
+
+                            <mat-option value=0>--{{'None'|translate}}--</mat-option>
+                            <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+                            </mat-option>
+
+
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" style="width: 18%;margin-right: 2%;">
+                        <mat-label>{{"Period"|translate}}</mat-label>
+                        <mat-select #show>
+
+                            <mat-option value="month">{{"Month"|translate}}</mat-option>
+                            <mat-option value="day">{{"Day"|translate}}</mat-option>
+
+
+
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-raised-button style="background-color: #730E33; color: white ; width: 12%;"
+                        (click)="onGetfunds(chain.value,from.value,to.value,show.value)">{{'Validate'|translate}}</button>
+
+                </form>
+             
+                <div id="chart">
+                    <apx-chart
+                      [series]="chartOptions.series"
+                      [chart]="chartOptions.chart"
+                      [dataLabels]="chartOptions.dataLabels"
+                      [plotOptions]="chartOptions.plotOptions"
+                      [xaxis]="chartOptions.xaxis"
+                      [stroke]="chartOptions.stroke"
+                    ></apx-chart>
+                  </div>
+                
+            </mat-card>
+        </div>
+     
+        <div class="col-md-6">
+            <mat-card class="bg-white rounded-lg p-5 ">
+                <h5>{{'Purchased Funds'| translate }}</h5>
+                <form action="" novalidate>
+                    <mat-form-field appearance="standard" style="width: 18%; margin-right: 2%">
+                        <mat-label>{{'Start-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker3" #fromD />
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 18%; margin-right: 2%">
+                        <mat-label>{{'End-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker4" #toD />
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 18%;margin-right: 2%;">
+                        <mat-label>{{'Select-Chain' | translate}}</mat-label>
+                        <mat-select #chain_id>
+
+                            <mat-option value=0>--{{'None'|translate}}--</mat-option>
+                            <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+                            </mat-option>
+
+
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="standard" style="width: 18%;margin-right: 2%;">
+                        <mat-label>{{"Period"|translate}}</mat-label>
+                        <mat-select #type>
+
+                            <mat-option value="chain">{{'Chain'|translate}} </mat-option>
+                            <mat-option value="supplier">{{'Supplier'|translate}}</mat-option>
+
+
+
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-raised-button style="background-color: #730E33; color: white ; width: 12%;"
+                        (click)="onGetfundsPurchased(chain_id.value,fromD.value,toD.value,type.value)">{{'Validate'|translate}}</button>
+
+                </form>
+             
+                <div id="chart2">
+                    <apx-chart [series]="chart2Options.series" [chart]="chart2Options.chart"
+                        [dataLabels]="chart2Options.dataLabels" [plotOptions]="chart2Options.plotOptions"
+                        [yaxis]="chart2Options.yaxis" [xaxis]="chart2Options.xaxis" [fill]="chart2Options.fill"
+                        [title]="chart2Options.title"></apx-chart>
+                    
+                </div>
+                  
+                
+            </mat-card>
+        </div>
+    </div>
+</div>

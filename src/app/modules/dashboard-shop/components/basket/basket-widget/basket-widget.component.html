@@ -1,0 +1,31 @@
+<section class="basketContainer">
+
+    <span style="border-bottom: 1px solid #eee; color: #333;">My Basket</span>
+    <div class="basketItems">
+        <cdk-virtual-scroll-viewport *ngIf="basketItems.length" [ngStyle]="{'padding': '20px'}" itemSize="50" class="example-viewport">
+            <!-- <mat-card *ngFor="let item of basketItems; let index= index" class="basketCards">
+                <mat-icon matTooltip="remove item from basket" (click)="removeItem(index)" style="grid-column: span 2; margin-left: auto;">close</mat-icon>
+                <div class="product_image"
+                    [ngStyle]="{'background': 'url(' + item.product.product_image + ')', 'background-position': 'center', 'background-size': 'contain', 'background-repeat': 'no-repeat'}">
+                </div>
+                <section class="itemData">
+                    <span class="product_name">{{ item.product.product_name }}</span>
+                    <span class="product_price"><span>Price:</span> {{ getPrice(item) |currency:'EUR':'symbol' }}</span>
+                    <div class="quantity">
+                        <span>Quantity</span>
+                        <div class="quantityContainer">
+                            <mat-icon style="color: #e3e3e3" (click)="removeQte(item, index)">remove_circle</mat-icon>
+                            <span>{{ getQuantity(item) }}</span>
+                            <mat-icon style="color: #303842;" (click)="addQte(item, index)">add_circle</mat-icon>
+                        </div>
+                    </div>
+                </section>
+            </mat-card> -->
+
+
+            HIIIIIIIIIIIIIIIIII
+            HIIIIIIIIIIIIIIIIIIII
+        </cdk-virtual-scroll-viewport>
+        <span id="basketMsg" *ngIf="!basketItems.length">No Items in the Basket</span>
+    </div>
+</section>

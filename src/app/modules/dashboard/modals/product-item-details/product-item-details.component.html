@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Item Details</h1>
+<mat-dialog-content>
+    <section class="imageSection">
+        <span>Image List</span>
+        <section class="imageList">
+            <div *ngFor="let image of item.images" class="slide">
+                <img class="img" width="200px" height="150px" [src]="image.image_url">
+            </div>
+        </section>
+    </section>
+
+    <section class="criteriaSection">
+        <span>Criteria List</span>
+        <section class="criteraList">
+            <div class="criteriaItem" *ngFor="let criteria of item.criteria_base">
+                <span class="criteriaName">{{ criteria.name }}</span>
+                <span class="criteriaValue">{{ criteria.pivot.criteria_value }}</span>
+                <div *ngIf="criteria.name === 'color'"
+                    [ngStyle]="{'background-color': criteria.pivot.criteria_value, 'width': '25px', 'height': '25px', 'border-radius': '10px'}">
+                </div>
+            </div>
+        </section>
+    </section>
+</mat-dialog-content>

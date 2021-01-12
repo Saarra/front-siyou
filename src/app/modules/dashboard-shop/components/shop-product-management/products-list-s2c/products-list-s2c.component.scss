@@ -1,0 +1,88 @@
+
+
+.bgc{
+      margin-top: 120px; margin-bottom: 30px;
+     margin-left: 20px;
+     margin-right: 20px;
+    
+
+.imgtable1{
+    max-width: 50px;
+    max-height: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.pricetable1{
+    color: red;
+}
+
+    .card-box {
+        position: relative;
+        color: #fff;
+        padding: 20px 20px 20px 20px;
+        background-color: #ececec; 
+    }  
+    .card-box p {
+        font-size: 15px;
+    }
+    
+
+    .bg-green {
+		background-color: #003366;
+		height: 130px;
+
+    }
+   
+.mat-raised-button{
+    padding: 8px 8px 8px 8px ;
+    color : white;
+  }
+
+  
+  .mat-table {
+    width: 100%;
+    &.resizing {
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: col-resize;
+    }
+    .mat-cell {
+      span {       
+        display: block; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .mat-header-cell {
+      background-color: #003366;
+      color: white;
+      font-style: bold;
+      position: relative;
+      height: 30px;  
+      font-size: 14px;
+      border-right: 2px solid rgba(201, 201, 201, 0.048);    
+      &:not(:last-child) {
+        .resize-holder {
+          cursor: col-resize;
+          width: 20px;
+          height: 100%;
+          position: absolute;
+          right: -10px;
+          top: 0;
+          z-index: 1;
+        }
+      }
+    }
+    .mat-cell{
+      width : 8rem;
+    }
+
+    .mat-cell,
+    .mat-header-cell {
+      &:not(:nth-child(1)) {
+        padding: 0 10px;
+      }
+    }
+}
+}

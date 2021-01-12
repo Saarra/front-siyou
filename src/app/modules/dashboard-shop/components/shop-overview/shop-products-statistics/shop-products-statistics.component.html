@@ -1,0 +1,170 @@
+<div class="mainContainer">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-card class="bg-white rounded-lg p-5 ">
+                <h5> {{"Top products" | translate }}</h5>
+                <form action="" novalidate>
+                    <mat-form-field appearance="standard" style="width: 20%; margin-right: 2%">
+                        <mat-label>{{'Start-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker3" #fromD />
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 20%; margin-right: 2%">
+                        <mat-label>{{'End-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker4" #toD />
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 20%;margin-right: 2%;">
+                        <mat-label>{{'Select-Chain' | translate}}</mat-label>
+                        <mat-select #chain_id>
+
+                            <mat-option value=0>--None--</mat-option>
+                            <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+                            </mat-option>
+
+
+                        </mat-select>
+                    </mat-form-field>
+                <mat-form-field style="width: 12%;margin-right: 2%;">
+                    <input matInput #top [placeholder]="'Top 5'| translate">
+            </mat-form-field>
+
+
+                    <button mat-raised-button style=" background-color: #730E33; color: white"
+                        (click)="onGettopproducts(chain_id.value,fromD.value,toD.value,top.value)">{{'Validate'|translate}}</button>
+
+                </form>
+                    <div id="chart4">
+                        <apx-chart [series]="chart4Options.series" [chart]="chart4Options.chart"
+                            [dataLabels]="chart4Options.dataLabels" [plotOptions]="chart4Options.plotOptions"
+                            [yaxis]="chart4Options.yaxis" [xaxis]="chart4Options.xaxis" [fill]="chart4Options.fill"
+                            [title]="chart4Options.title"></apx-chart>
+                        
+                    </div>
+            
+               
+            </mat-card>
+        </div>
+        <div class="col-md-6">
+            <mat-card class="bg-white rounded-lg p-5 ">
+                <h5> {{'Top Categories'| translate }} </h5>
+
+                <form action="" novalidate>
+                    <mat-form-field appearance="standard" style="width: 20%; margin-right: 2%">
+                        <mat-label>{{'Start-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker5" #fromDa />
+                        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                        <mat-datepicker #picker5></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 20%; margin-right: 2%">
+                        <mat-label>{{'End-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker6" #toDa />
+                        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                        <mat-datepicker #picker6></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 20%;margin-right: 2%;">
+                        <mat-label>{{'Select-Chain' | translate}}</mat-label>
+                        <mat-select #chainTop>
+
+                            <mat-option value=0>--None--</mat-option>
+                            <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+                            </mat-option>
+
+
+                        </mat-select>
+                    </mat-form-field>
+                <mat-form-field style="width: 12%;margin-right: 2%;">
+                    <input matInput #topCa [placeholder]="'Top 5'| translate">
+            </mat-form-field>
+
+
+                    <button mat-raised-button style=" background-color: #730E33; color: white"
+                        (click)="onGettopproductsCat(chainTop.value,fromDa.value,toDa.value,topCa.value)">{{'Validate'|translate}}</button>
+
+                </form>
+                    <div id="chart5">
+                        <apx-chart [series]="chart5Options.series" [chart]="chart5Options.chart"
+                            [dataLabels]="chart5Options.dataLabels" [plotOptions]="chart5Options.plotOptions"
+                            [yaxis]="chart5Options.yaxis" [xaxis]="chart5Options.xaxis" [fill]="chart5Options.fill"
+                            [title]="chart5Options.title"></apx-chart>
+                        
+                    </div>
+            
+               
+            </mat-card>
+        </div>
+        
+    </div>
+    <br/> <br/> <br/>
+    <div class="row">
+        <div class="col-md-6">
+            <mat-card class="bg-white rounded-lg p-5 ">
+                <h5> {{"Product-quantity" | translate }}</h5>
+
+                <form action="" novalidate>
+                    <mat-form-field appearance="standard" style="width: 20%; margin-right: 2%">
+                        <mat-label>{{'Start-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker" #from />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 20%; margin-right: 2%">
+                        <mat-label>{{'End-date' | translate }}</mat-label>
+                        <input matInput [matDatepicker]="picker2" #to />
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="standard" style="width: 20%;margin-right: 2%;">
+                        <mat-label>{{'Select-Chain' | translate}}</mat-label>
+                        <mat-select #chain>
+
+                            <mat-option value=0>--None--</mat-option>
+                            <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+                            </mat-option>
+
+
+                        </mat-select>
+                    </mat-form-field>
+
+                    <button mat-raised-button style="background-color: #730E33; color: white"
+                        (click)="onGetQuantproducts(chain.value,from.value,to.value)">{{'Validate'|translate}}</button>
+
+                </form>
+                <div *ngIf="linechart">
+                    <div id="chart2">
+                        <apx-chart [series]="chart2Options.series" [chart]="chart2Options.chart"
+                            [xaxis]="chart2Options.xaxis" [dataLabels]="chart2Options.dataLabels"
+                            [grid]="chart2Options.grid" [stroke]="chart2Options.stroke" [title]="chart2Options.title">
+                        </apx-chart>
+                    </div>
+                </div>
+                <div *ngIf="barchart">
+                    <div id="chart">
+                        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                            [dataLabels]="chartOptions.dataLabels" [plotOptions]="chartOptions.plotOptions"
+                            [yaxis]="chartOptions.yaxis" [xaxis]="chartOptions.xaxis" [fill]="chartOptions.fill"
+                            [title]="chartOptions.title"></apx-chart>
+                            
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button mat-button color="primary" (click)="lineChart()">{{'Line chart'|translate}}
+                        <mat-icon> show_chart</mat-icon>
+                    </button>
+                    <button mat-button color="accent" (click)="barChart()">{{'Bar chart'|translate}}
+                        <mat-icon> bar_chart</mat-icon>
+                    </button>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

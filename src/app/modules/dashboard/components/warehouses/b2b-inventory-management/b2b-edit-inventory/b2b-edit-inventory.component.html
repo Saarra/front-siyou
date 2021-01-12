@@ -1,0 +1,91 @@
+<div class="container mainContainer shadow-lg p-3 mb-5 bg-white rounded pb-8"
+    style="background-color: white; padding: 40px; margin-top: 150px; margin-bottom: 30px;">
+    <!-- <nav aria-label="breadcrumb" style= "background-color: white;">
+     <ol class="breadcrumb" style= "background-color: white;">
+      <li li class="breadcrumb-item active" aria-current="page"><a href="#">Inventory</a></li>
+      <li class="breadcrumb-item" >New Inventory</li>
+    </ol>
+  </nav> -->
+    <div class="form-group">
+        <div class="mat-elevation-z8" style="padding: 10px;background-color: #f0f0f0">
+            <ng-container *ngIf = " (create===update) ; then x else y"></ng-container >
+            <ng-template #x>Created at {{currentData.created_at}}</ng-template>
+            <ng-template #y>Updated at {{currentData.updated_at}}</ng-template>
+     
+            <form class="row mt-4 ml-3">
+                <div>
+                    <mat-form-field appearance="legacy" style="margin-right: 10px;">
+                        <mat-label>Batch Number</mat-label>
+                        <input matInput readonly="true" [value]="currentData.batch_number" #batch_number>
+                    </mat-form-field>
+                    <mat-form-field appearance="legacy" style="margin-right: 10px;">
+                        <mat-label>Warehouse</mat-label>
+                        <input matInput readonly="true" [value]="currentData.warehouse.name" #warehouse>
+                    </mat-form-field>
+                    <!--   <mat-form-field appearance="legacy" style="margin-right: 10px;">
+                        <mat-label>Supplier</mat-label>
+                        <input matInput readonly="true" [value]="currentData.suppliers.first_name" #supplier>
+                    </mat-form-field> -->
+                    <mat-form-field appearance="legacy" style="margin-right: 10px;">
+                        <mat-label>Date</mat-label>
+                        <input matInput readonly="true" [value]="currentData.created_at" #date>
+                    </mat-form-field>
+                    <button type="button" class="btn btn-success btn-sm" (click)="onUpdateInventory()"
+                    style="margin-right: 5px;">Update</button>
+                </div>
+            </form>
+            <div>
+                <table mat-table [dataSource]="dataSource" matSort>
+
+                    <ng-container matColumnDef="product_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Batch-number' | translate}} </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.product_name }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="product_barcode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Barcode </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.product_barcode }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="unit_price">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Unit Price </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.unit_price }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="product_quantity">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Quantity </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.pivot.total_quantity }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="warehouse_quantity">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Arrived Quantity </th>
+                        <td mat-cell *matCellDef="let element">
+                            
+                            <mat-form-field class="example-full-width">
+                                <input matInput [value]="element.pivot.arrived_quantity" #warehouse_quantity (change)="changeQty(element.pivot.total_quantity,element.product_barcode,warehouse_quantity.value);checkStatus()">
+                                <mat-icon matSuffix>mode_edit</mat-icon>
+                              </mat-form-field>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="verified_quantity">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Verified Quantity </th>
+                        <td mat-cell *matCellDef="let element">
+                            
+                            <mat-form-field class="example-full-width">
+                                <input matInput [value]="element.pivot.verified_quantity" #verified_quantity (change)="changeVer(element.pivot.total_quantity,element.product_barcode,element.pivot.arrived_quantity,verified_quantity.value);checkStatus();">
+                                <mat-icon matSuffix>mode_edit</mat-icon>
+                              </mat-form-field>
+                        </td>
+                    </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="mainContainer  p-3 mb-5 bg-white rounded">
+
+  <div class=" my-2 mx-2">
+    <form action="" [formGroup]="form">
+
+
+      <div>
+        <p style="size: 50px;">{{'Add-a-newShopManager' | translate}}</p>
+        <mat-divider style="margin-bottom: 30px;"></mat-divider>
+      </div>
+
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-label> {{'First-Name' | translate}} </mat-label>
+          <input type="text" matInput placeholder="First Name" #first_name formControlName="first_name">
+
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-label>{{'Last-Name' | translate}} </mat-label>
+          <input type="text" matInput placeholder="Last Name" #last_name formControlName="last_name">
+
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-label> {{'Contact' | translate}}</mat-label>
+          <input type="number" matInput placeholder="Contact" #contact formControlName="contact">
+
+
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-label>{{'Email' | translate}}</mat-label>
+          <input type="email" matInput placeholder="Email" #email formControlName="email" autocomplete="new-email">
+
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>security </mat-icon>
+          <mat-label>{{'Password' | translate}} </mat-label>
+          <input type="password" matInput placeholder="Password" #password formControlName="password" autocomplete="new-password">
+
+        </mat-form-field>
+      </div>
+      <div class="uploadImage">
+        <label id="imageBtn">
+          <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+          <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}"
+            (click)="fileInputImg.click()">
+            <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+          </section>
+          <!-- </button> -->
+        </label>
+        <input class="none" #fileInputImg type="file" (change)="getFileChange($event)" style="display: none;" />
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label> {{"manager-Image" | translate}} </mat-label>
+          <input matInput type="text" #resultInput readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-label> {{"cashier-code" | translate}}</mat-label>
+          <input type="text" matInput placeholder="cachier_code" #cachier_code formControlName="cachier_code">
+
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>storefront</mat-icon>
+          <mat-label>{{'Chose-a-chain' | translate}}</mat-label>
+          <mat-select #chain_id formControlName="chain_id">
+            <mat-option *ngFor="let chain of chainData" [value]="chain.id"> {{chain.chain_name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <div>
+          <button mat-icon-button 
+              (click)="openAccess()"><i
+                  class="material-icons icon-green" style="background-color:#003366;color:white;">add
+              </i></button> {{ "Access Rights" | translate}}
+          <!-- <div class="row">
+            <div class="col-sm">
+              <mat-slide-toggle formControlName="B2S">{{"B2S Access" | translate}}</mat-slide-toggle>
+
+
+        
+            </div>
+            <div class="col-sm">
+              <mat-slide-toggle formControlName="s2c">{{"S2C Access" | translate}} </mat-slide-toggle>
+
+             
+            </div>
+            <div class="col-sm">
+              <mat-slide-toggle formControlName="warehouse">{{"Warehouse Access" | translate}}</mat-slide-toggle>
+
+              
+            </div>
+            <div class="col-sm">
+              <mat-slide-toggle formControlName="statistics">{{"Statistic Access" | translate}}</mat-slide-toggle>
+
+             
+            </div>
+            <div class="col-sm">
+              <mat-slide-toggle formControlName="add_discount">{{"Discount Access" | translate}}</mat-slide-toggle>
+            </div>
+          </div> -->
+        </div>
+
+
+
+      </div>
+
+
+      <button (click)="onAddShopmanager(chain_id.value)" type="submit" class="btn btn-primary  mt-2 mb-5"
+        style="background-color: #303842; border-color: #303842;"><i class="fa fa-check" aria-hidden="true"></i>
+        {{'Submit' | translate}}</button>
+      <button routerLink="/shop/shopmanagers-list" class="btn btn-secondary ml-2  mt-2 mb-5">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        {{'Back' | translate}}</button>
+      <!-- </div> -->
+    </form>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+.basketContainer {
+  span {
+    font-family: Roboto;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .basketItems {
+    display: flex;
+    flex-direction: column;
+    .example-viewport {
+      height: 350px;
+      width: 450px;
+    }
+    span {
+      &#basketMsg {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+    }
+    margin-top: 10px;
+    overflow: hidden;
+    mat-card {
+      display: grid;
+      grid-template-columns: 150px auto;
+      gap: 0.3em;
+      width: 450px;
+      margin: 10px 0px 10px 0px;
+      &.basketCards {
+        padding: 10px;
+        .itemData {
+          display: flex;
+          flex-direction: column;
+          .product_name {
+            max-width: 100%;
+            font-family: Roboto;
+            font-weight: 500;
+            font-size: 18px;
+            white-space: pre-line;
+            &::before {
+              white-space: pre;
+            }
+          }
+          .product_price {
+            flex: 1;
+            font-family: Roboto;
+            font-size: 18px;
+            font-weight: 500;
+            span {
+              font-family: Roboto;
+              font-size: 15px;
+              font-weight: 300;
+            }
+          }
+          .quantity {
+            display: flex;
+            flex-direction: row;
+            span {
+              font-size: 15px;
+              font-family: Roboto;
+              flex: 1;
+              color: #41a8c5;
+            }
+            .quantityContainer {
+              display: flex;
+              flex-direction: row;
+              align-self: center;
+              justify-content: space-evenly;
+              mat-icon {
+                align-self: center;
+              }
+            }
+          }
+        }
+      }
+      .product_image {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  }
+}

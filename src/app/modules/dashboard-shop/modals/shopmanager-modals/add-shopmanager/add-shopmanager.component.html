@@ -1,0 +1,78 @@
+<div class="mainContainer">
+    <h3 class="sales-manager-title"> Add a new shop manager</h3>
+    <form class="add-sales-manager" autocomplete="off">
+        <p>
+            <mat-form-field appearance="outline" class="add-sales-manager">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="First Name" cols="4" rowHeight="100px" #first_name>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" class="add-sales-manager">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Sale's Manager Name" cols="4" rowHeight="100px" #last_name>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" class="add-sales-manager">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Email" cols="4" rowHeight="100px" #email>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" class="add-sales-manager">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput placeholder="Password" cols="4" rowHeight="100px" #password>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline" class="add-sales-manager">
+                <mat-label>Confirm Password</mat-label>
+                <input type="password" matInput placeholder="Confirm Password" cols="4" rowHeight="100px">
+            </mat-form-field>
+        </p>
+
+        <mat-form-field>
+            <mat-label>Select a Shop</mat-label>
+
+            <div class="dropboxShop" id="cont1">
+                <mat-select id="sel1" #fontSize value="Shop1"  multiple>
+                    <mat-option value="Shop 2">SHOP 2</mat-option>
+                    <mat-option value="Shop 3">SHOP 3</mat-option>
+                    <mat-option value="Shop 4">SHOP 4</mat-option>
+                    <mat-option value="Shop 5">SHOP 5</mat-option>
+
+                </mat-select>
+
+            </div>
+
+        </mat-form-field>
+
+        <label id="selitems" value="sel1" placeholder="cont1"> </label>
+
+
+        <script>
+            $(function () {
+
+                $('#sel1').on('click', function (e) {
+
+                    if ($(this).is(':selected')) {
+                        $('<input value="' + $(this).val() + '" />').appendTo('#sel1');
+                    }
+
+                });
+
+            });
+        </script>
+
+
+
+        <div class="example-button-row show-on-mobile">
+            <button (click)="addshopmanager(first_name.value, last_name.value, email.value, password.value)"
+                mat-raised-button color="primary">Validate</button>
+            <button mat-dialog-close mat-raised-button color="warn" class="boutton-cancel">Cancel</button>
+        </div>
+
+
+    </form>
+</div>

@@ -1,0 +1,172 @@
+<div class="container shadow-lg bg-white rounded"  style="background-color: white; padding: 40px; margin-top: 100px; margin-bottom: 30px;">
+
+
+
+<section class="mainContainer">
+    <!-- <span>List of invalid orders:</span> -->
+    <!-- <button color="primary" class="topbuttons" style=" float:right; margin-top: 10px;margin-bottom: 10px;" mat-raised-button
+    (click)="openAddCriteriaWithUnits()">+ Add New Criteria
+  </button> -->
+
+
+  
+  <mat-form-field style="width: 25%;">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Siyou">
+  </mat-form-field>
+  
+
+    <table mat-table [dataSource]="allOrdersCheckout" mat-sort class="mat-elevation-z8" multiTemplateDataRows>
+
+        <!-- Order Date Column -->
+        <ng-container matColumnDef="supplier">
+            <th mat-header-cell *matHeaderCellDef> Supplier Full Name </th>
+            <td mat-cell *matCellDef="let order">{{ order.first_name}} {{ order.last_name}}</td>
+        </ng-container>
+
+        <!-- Order Price Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let order" > {{ order.email }} </td>
+        </ng-container>
+
+        <!-- Supplier Column -->
+        <ng-container matColumnDef="phone_num1">
+            <th mat-header-cell *matHeaderCellDef>  Phone Number </th>
+            <td mat-cell *matCellDef="let order"> {{ order.phone_num1 }} 
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="order_total_price">
+            <th mat-header-cell *matHeaderCellDef> Order Total Price </th>
+
+            <td mat-cell *matCellDef="let order" class="price1">
+            {{ order.order_total_price | currency:'EUR':'symbol' }}
+
+            </td>
+        </ng-container>
+
+    
+
+
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="padding-left: 40px;">Actions</th>
+            <td mat-cell style="padding-left: 30px;" *matCellDef="let row">
+
+                <button mat-icon-button  matTooltip="Show order products">
+                    <i class="material-icons icon-green" style="color: darkcyan;">expand_more</i>
+                </button>
+                <!-- <button  title="Add this Criteria" (click)="openAddCriteriaModal(row)" mat-icon-button ><i class="material-icons icon-green" style="color: darkcyan;">
+                    create
+                </i>
+              </button>                  -->
+                <button matTooltip="Validate this order"  (click)="openValidateOrderModal(row)" class="btn btn-success" style="margin: 10px;">
+                    <!-- <i
+                        class="material-icons icon-green" style="color: darkcyan;">
+                        add_shopping_cart
+                    </i> -->
+
+
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+
+                    
+                    Validate Order
+                </button>
+
+                
+
+                
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+
+
+
+            <td mat-cell *matCellDef="let order" [attr.colspan]="orderDisplayedColumns.length">
+                <!-- <button   class="btn btn-primary btn-sm"  color="primary">Add New Unit</button> -->
+               
+               
+
+                <div class="example-element-detail"
+                    [@detailExpand]="order == expandedElement ? 'expanded' : 'collapsed'">
+
+                    <div class="orderProducts">
+                       
+
+                      
+
+
+                            
+                        <table class="mat-elevation-z8">
+                           
+
+
+                            <tr>
+                                <th style="margin-right: 35px; padding: 10px;">Product image</th>
+                                <th style="margin-right: 15px; padding: 10px;">Product Name</th>
+                                <th style="margin-left: 15px; padding: 10px;">Product quantity</th>
+                                <!-- <th style="margin-left: 15px; padding: 10px;">Product Price</th> -->
+                                <th style="margin-left: 15px; padding: 10px;">Actions</th>
+
+                            </tr>
+
+                            <tr *ngFor="let prod_item of order.order_products_list">
+                                <!-- <td style="margin-right: 15px; padding: 10px;">{{prod_item.images.image_url}}</td> -->
+                                <td style="margin-right: 15px; padding: 10px;">
+                                     <img  [src]="prod_item.product_image_url" class="prod-img" alt="">
+                                </td>
+                                <td style="margin-right: 15px; padding: 10px;">{{prod_item.product_name}}</td>
+                                <td style="margin-left: 15px; padding: 10px;">{{prod_item.item_quantity}}</td>
+                                <!-- <td style="margin-left: 15px; padding: 10px; color:red" class="price1">{{prod_item.item_offline_price |currency}}</td> -->
+                                <td style="margin-left: 15px; padding: 10px;">
+
+                                    <button mat-icon-button matTooltip="View full details"><i
+                                            class="material-icons icon-green" style="color: darkcyan;" routerLink="/shop/shop-product-details/{{prod_item.item_id}}">
+                                            view_headline
+                                        </i>
+                                    </button>
+
+                                  
+                                </td>
+
+
+
+
+                            </tr>
+
+                           
+                        </table>
+
+                        <!-- <div>
+                            <br>
+                <button class="btn btn-success" style="display: block;">Primary</button>
+                            
+                        </div> -->
+    
+
+
+
+
+                    </div>
+                  
+                </div>
+
+            </td>
+
+
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="orderDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let order; columns: orderDisplayedColumns;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === order"
+            (click)="expandedElement = expandedElement === order ? null : order"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+</section>
+
+
+
+</div>

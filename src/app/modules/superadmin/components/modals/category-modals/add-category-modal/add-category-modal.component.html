@@ -1,0 +1,55 @@
+<div style="min-width: 350px;">
+  <h3>Add a new category:</h3>
+<hr>
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name (English):</mat-label>
+    <input matInput placeholder="Enter Category Name in English" #category_name>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name (Italian):</mat-label>
+    <input matInput placeholder="Enter Category Name in Italian" #category_it>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name (Chinese):</mat-label>
+    <input matInput placeholder="Enter Category Name in Chinese" #category_cn>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name (French):</mat-label>
+    <input matInput placeholder="Enter Category Name in French" #category_fr>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+  </mat-form-field>
+</p>
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Parent Category</mat-label >
+  <mat-select #parent_category_id>
+    <mat-option [value]="getNullValue()">None</mat-option>
+    <mat-option *ngFor="let cat of categoryList"  [value]="cat.id" >{{cat.category_name}}</mat-option>
+  </mat-select>
+  <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+</mat-form-field>
+<br>
+
+<button mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;"
+(click)="onaddCategory(category_name.value,category_it.value,category_cn.value,category_fr.value,parent_category_id.value)">Submit</button>
+<button mat-raised-button mat-dialog-close>Close</button>
+
+</div>

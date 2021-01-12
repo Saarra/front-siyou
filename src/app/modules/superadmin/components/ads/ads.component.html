@@ -1,0 +1,105 @@
+<div class="mainContainer">
+    <div class="main">
+     <h3  style="float: left">{{ "Secondary Screen" | translate }}</h3>
+     <a class="myButton" style="background-color: gray;font-size: 24px;float: right" (click)="openImages()"> {{"Show Image"| translate }} </a>
+   
+   </div> 
+     <hr style="width: 100%;  border-top: 1px solid black;">
+   
+     <div class="row">
+         
+       <div class="col-md-5">
+         <!-- <img [src]="imgURL" *ngIf="imgURL" style="width: 30%; height:300px;">
+         <img src="assets/images/pc.png"  style="width: 60%; height:300px;"> -->
+   
+         <img [src]="imgURL" *ngIf="imgURL" class="pc" id="pc">
+         <img src="assets/images/pc.png" class="top" id="top">
+       </div>
+   
+       <div class="col-md-7">
+         <form [formGroup]="form">
+           <div class="row">
+             <div class="col-sm">
+               <h4> {{'Display Mode' | translate }} </h4>
+             </div>
+             <div class="col-sm">
+               <mat-radio-button class="example-margin" (click)="onSelectCashmode()" style="padding : 5% 5% 5% 5%;">{{'Ad mode' | translate }}
+               </mat-radio-button> &nbsp;
+   
+   
+             </div>
+             <div class="col-sm">
+               <mat-radio-button class="example-margin" (click)="onSelectAdmode()"  style="padding : 5% 5% 5% 5%;">{{'Cash
+                 mode'| translate }}</mat-radio-button>
+   
+   
+             </div>
+   
+           </div>
+           <br>
+           <br>
+   
+   
+           <div class="row">
+             <div class="col-sm">
+               <h4> {{"Upload image" | translate}} </h4>
+             </div>
+             <div class="col-sm">
+   
+   
+               <a (click)="fileInputImg.click()" class="myButton"> {{ "chose_img" | translate}}</a>
+               <input accept='image/*' class="none" #fileInputImg type="file" (change)="getFileChange($event)"
+                 style="display: none;" />
+               <mat-form-field class="example-full-width" appearance="outline" style="display: none;">
+                 <mat-label>{{"Upload image" | translate}}</mat-label>
+                 <input matInput type="text" #resultInput readonly>
+               </mat-form-field>
+   
+             </div>
+             <div class="col-sm">
+   
+             </div>
+   
+           </div>
+           <br>
+           <br>
+           <div class="row">
+             <div class="col-md-4">
+               <h4> {{'Play time' | translate}}</h4>
+             </div>
+   
+   
+             <div class="col-md-8">
+   
+               <mat-form-field appearance="outline" style="width: 100%;">
+                 <mat-label>{{'Seconds'| translate}}</mat-label>
+                 <input matInput type="number" formControlName="timer" #timer>
+                 <mat-hint style="color: red;">{{"Advice: picture resolution is 1280*640, max 9 pics"| translate}}</mat-hint>
+               </mat-form-field>
+             </div>
+   
+   
+           </div>
+           <br>
+           <div class="row">
+             <div class="col-md-12" style="text-align: center;">
+               <a (click)="onAddImage(timer.value)" class="myButton"
+                 style="background-color: red;margin-right:2%;"> {{'Save' | translate}}</a>
+   
+               <a class="myButton"  style="background-color: gray;margin-right:2%;">
+                 {{'Cancel' | translate}}</a>
+   
+             </div>
+   
+   
+           </div>
+         </form>
+       </div>
+   
+     </div>
+     <div class="row">
+       <div class="col-md-4">
+         <h4></h4>
+       </div>
+     </div>
+   </div>

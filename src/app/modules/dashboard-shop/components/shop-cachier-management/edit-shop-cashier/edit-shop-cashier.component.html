@@ -1,0 +1,92 @@
+
+
+
+
+
+
+<div class="mainContainer shadow-lg p-3 mb-5 bg-white rounded">
+
+    <div class=" my-2 mx-2">
+      <form action="" novalidate>
+      
+      
+          <div>
+            <p style="size: 50px;">{{"add-new-cashier"| translate}}</p>
+            <mat-divider style="margin-bottom: 30px;"></mat-divider>
+          </div>
+  
+  
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-label> {{'First-Name' | translate}} </mat-label>
+              <input [value]="currentCashier.first_name" matInput placeholder="First Name" #first_name>
+      
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-label>{{'Last-Name' | translate}} </mat-label>
+              <input [value]="currentCashier.last_name" matInput placeholder="Last Name" #last_name >
+      
+            </mat-form-field>
+          </div>
+
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-label> {{'Contact' | translate}}</mat-label>
+              <input type="number" [value]="currentCashier.contact" matInput placeholder="Contact" #contact >
+      
+  
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-label> {{'Password' | translate}}</mat-label>
+              <input type="number" [value]="currentCashier.password" matInput placeholder="Password" #password >
+      
+  
+            </mat-form-field>
+          </div>
+  
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>storefront</mat-icon>
+              <mat-label>{{'Chose-a-chain' | translate}}</mat-label>
+              <mat-select #chain_id [value]="currentCashier.chain_id" >
+                <mat-option *ngFor="let chain of chainData" [value]="chain.id"> {{chain.chain_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+   
+   
+          
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-label>{{"activated-account"| translate}}</mat-label>
+              <mat-select #is_active [value]="currentCashier.is_active">
+                <mat-option [value]="1"> Yes</mat-option>
+                <mat-option [value]="0"> No</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+      
+      
+      
+      
+          <button
+            (click)="onUpdateCashier(first_name.value,last_name.value,contact.value,is_active.value,chain_id.value,password.value)"
+            type="submit" class="btn btn-primary  mt-2 mb-5" style="background-color: #303842; border-color: #303842;"><i class="fa fa-check" aria-hidden="true"></i>
+            {{'Submit' | translate}}</button>
+          <button routerLink="/shop/cashiers-list" class="btn btn-secondary ml-2  mt-2 mb-5">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+  {{'Back' | translate}}</button>
+          <!-- </div> -->
+        </form>
+      </div>
+  </div>

@@ -1,0 +1,74 @@
+<div class="container">
+
+  <!-- <div class="row"> -->
+
+  
+  <button color="primary" class="topbuttons" style=" float:right;" class="btn btn-add-category"
+    (click)="openAddCategoryModal()">+ Add New Category
+  </button>
+  <h4> Category Management:</h4>
+
+
+  <!-- </div> -->
+  <hr style="margin-bottom: 40px;">
+
+
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let category of categoryData">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          
+         
+          {{ category.category_name}}
+         
+        </mat-panel-title>
+       
+        <mat-panel-description>
+       
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+
+
+      <table class="mat-elevation-z8" style="width: 100%;">
+        <tr>
+          <th style="margin-right: 35px; padding: 10px;">Category Name</th>
+          <th style="margin-right: 15px; padding: 10px;">Created At</th>
+          <th style="margin-left: 15px; padding: 10px;">Updated At</th>
+          <th style="margin-left: 15px; padding: 10px;">Actions</th>
+
+        </tr>
+
+        <tr *ngFor="let subcat of category.sub_categories">
+          <td style="margin-right: 15px; padding: 10px;">{{subcat.category_name}}</td>
+          <td style="margin-right: 15px; padding: 10px;">{{subcat.created_at}}</td>
+          <td style="margin-left: 15px; padding: 10px;">{{subcat.updated_at}}</td>
+          <td style="margin-left: 15px; padding: 10px;">
+
+            <button title="Edit this Category" (click)="openEditCategoryModal(subcat)" mat-icon-button><i
+                class="material-icons icon-green" style="color: darkcyan;">
+                create
+              </i>
+            </button>
+
+            <button title="Delete this Category" (click)="openDeleteCategoryModal(subcat)" mat-icon-button color="warn"><i
+                class="material-icons">
+                delete_forever
+              </i></button>
+
+          </td>
+
+        </tr>
+      </table>
+
+      <mat-action-row>
+        <button mat-button color="primary" title="Edit this Parent Category" (click)="openEditCategoryModal(category)" >Edit</button>
+
+        <button mat-button color="warn" title="Delete this Parent Category" (click)="openDeleteCategoryModal(category)">Delete</button>
+      </mat-action-row>
+
+    </mat-expansion-panel>
+    
+  </mat-accordion>
+

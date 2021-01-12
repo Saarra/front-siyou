@@ -1,0 +1,131 @@
+<div
+  class="shadow-lg bg-white rounded mainContainer"
+  style="background-color: white; padding: 40px;"
+>
+
+  <form>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>{{ "Select-Chain" | translate }}</mat-label>
+            <mat-select #chain_id>
+              <mat-option value="0">{{ "none" | translate }}</mat-option>
+              <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{
+                chain.chain_name
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>{{ "date" | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" #date />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <div class="example-button-row ml-3">
+            <button
+              class="btn btn-secondary text-center d-block mt-2 mr-4"
+              style="vertical-align: center;"
+              (click)="ongetFundsCheck(chain_id.value, date.value)"
+            >
+              <i class="fa fa-search" aria-hidden="true"></i>
+              {{ "Filter" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="created_at">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "created_date" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.created_at | date }}</td>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "price" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row" class="price">
+          {{ row.price |currency:'EUR':'symbol'}}
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="member_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "member_price" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row" class="price">
+          {{ row.member_price |currency:'EUR':'symbol' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="payment_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "payment" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">{{ row.payment_method.name }}</td>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="payment_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "payment_date" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.payment_method.created_at | date }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="full_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "cachier_full_name" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.cachier.full_name }}
+        </td>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact</th>
+            <td mat-cell *matCellDef="let row"> 
+             {{row.cachier.contact}}
+             </td>
+          </ng-container> -->
+
+      <!-- <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Details' | translate}} </th>
+            <td mat-cell *matCellDef="let row"> 
+    
+                <button matTooltip="Show full Order Details" (click)="openFundsFullDetails(row.id)" mat-icon-button><i
+                    class="material-icons icon-green" style="color: darkcyan;">
+                    view_headline
+                </i>
+            </button>
+            </td>
+          </ng-container>
+     -->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

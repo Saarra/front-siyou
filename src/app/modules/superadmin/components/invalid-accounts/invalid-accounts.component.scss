@@ -1,0 +1,27 @@
+  
+table {
+    width: 100%;
+  }
+  .my-card
+  {
+      position:absolute;
+      left:40%;
+      top:-20px;
+      border-radius:50%;
+  }
+  i.icon-green{
+      color: green;
+  }
+
+  .background-red{
+    background-color: rgb(153, 50, 50);
+ }
+
+ ::ng-deep snack-bar-container.custom-class {
+    background: yellow;
+  }
+  
+  ::ng-deep .custom-class .mat-simple-snackbar {
+    color: green;
+  }
+    

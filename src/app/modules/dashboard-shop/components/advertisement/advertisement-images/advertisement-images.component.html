@@ -1,0 +1,33 @@
+<div class="rounded bgc">
+    <div class="rounded ">
+
+
+<mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>{{'Select-Chain'| translate}}</mat-label>
+    <mat-select #chain_id>
+
+        <mat-option value=0>None</mat-option>
+        <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+        </mat-option>
+
+
+    </mat-select>
+</mat-form-field>
+<a (click)="onGetImages(chain_id.value)" class="myButton"
+              style="background-color: red;margin-right:2%;"> {{"Show image" | translate}}</a>
+              <a (click)="cancel()" class="myButton"
+              style="background-color: gray;"> {{"Cancel" | translate}}</a>
+<br/>
+<br/>
+<br/>
+<div class="row">
+    <div class="img col-md-3" *ngFor="let item of imgData">
+        <a class="remove-image" (click)="onDelete(item.id,chain_id.value)" style="display: inline;">&#215;</a>
+
+
+        <img src={{item.img_url}}>
+        <span>{{item.width}}px * {{item.height}}px</span>
+    </div>
+
+</div>
+</div></div>

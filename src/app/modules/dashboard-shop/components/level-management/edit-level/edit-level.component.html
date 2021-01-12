@@ -1,0 +1,47 @@
+<form class="forma">
+    <h3>{{'Edit-thisLevel' | translate}} :</h3>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>{{'Level-Name' | translate}}:</mat-label>
+                <input  type="text" matInput placeholder="{{currentLevel.level}}" #level required>
+    
+                
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>{{'Start-Point-Level' | translate}} :</mat-label>
+                <input matInput type="number" placeholder="{{currentLevel.start_point}}" #start_point required>
+                
+            </mat-form-field>
+        </p>
+        
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label> {{'End-Point-Level' | translate}} :</mat-label>
+                <input matInput  type="number" placeholder="{{currentLevel.end_point}}" #end_point required>
+                
+            </mat-form-field>
+        </p>
+    
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label> {{'Level-Description' | translate}} :</mat-label>
+                <input matInput type="text" placeholder="{{currentLevel.description}}" #description required>
+                
+            </mat-form-field>
+        </p>
+    
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label> {{'Increment-Point' | translate}} Increment Point Level :</mat-label>
+                <input matInput type="number" placeholder="{{currentLevel.increment_point}}" #increment_point required>
+                
+            </mat-form-field>
+        </p>
+    
+        <p style="margin-top: 40px;">
+            <button style="margin-right: 10px; background-color: #303842; color: white;" type="submit" mat-raised-button mat-button color="primary" (click)="onEditLevel(currentLevel.id, level.value, start_point.value, end_point.value, description.value, increment_point.value)">Submit</button>
+            <button mat-dialog-close  mat-raised-button mat-button color="link" style="color: black;">{{'Close' | translate}}</button>
+        </p>
+    </form>

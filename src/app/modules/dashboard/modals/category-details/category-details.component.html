@@ -1,0 +1,27 @@
+<section class="mainContainer">
+    <h1>Electronics</h1>
+    <!-- <div class="productList"></div> -->
+    <div class="productsContainer">
+        <mat-card *ngFor="let prod of productList">
+            <div class="imageContainer">
+                <img class="img" [src]="prod.image">
+            </div>
+            <mat-card-content>
+                <div class="product_name">
+                    {{ prod.name}}
+                </div>
+                <div class="description">
+                    {{ prod.description }}
+                </div>
+                <!-- <div class="containerInfos">
+                    <div class="quantity">
+                        Quantity: {{ prod.quantity }}
+                    </div>
+                    <div class="product_price">
+                        {{ prod.product_price |currency }}
+                    </div>
+                </div> -->
+            </mat-card-content>
+        </mat-card>
+    </div>
+</section>

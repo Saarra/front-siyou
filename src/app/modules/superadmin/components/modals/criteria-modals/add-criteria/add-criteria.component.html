@@ -1,0 +1,31 @@
+<h3>Add a new Criteria:</h3>
+<hr>
+<p>
+    <mat-form-field appearance="outline">
+        <mat-label>Criteria Name:</mat-label>
+        <input type="text" matInput placeholder="Enter Criteria Name" #criteria_name>
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <!-- <mat-hint>Hint</mat-hint> -->
+    </mat-form-field>
+</p>
+<p>
+    <mat-form-field appearance="outline">
+        <mat-label>Criteria Unit Name:</mat-label>
+        <input type="text" matInput placeholder="Enter Unit Name" #unit>
+
+
+
+    </mat-form-field>
+    <p>
+        <button style="align-items: right;" title="Add New Criteria Unit" (click)="PushUnit(unit.value)"
+            mat-icon-button color="primary"><i class="material-icons">
+                add_box
+            </i>Add New Criteria Unit</button>
+</p>
+           
+<p *ngFor="let unit of units">{{unit}}</p>
+<br>
+
+<button mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;"
+    (click)="onAddCriteriasWithUnits(criteria_name.value, units)">Submit</button>
+<button mat-raised-button mat-dialog-close>Close</button>

@@ -1,0 +1,57 @@
+  
+.form-element{
+    width: 100%;
+}
+agm-map {
+  height: 400px !important;
+  width: 100%;  
+}
+.hr{
+    width:"70%"
+}
+@media only screen and (max-width: 600px) {
+    .form-element{
+        width: 100%;
+    }
+    .hr{
+        width:"100%";
+    }
+  }
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+  .label-element{
+      margin-right: 16px;
+  }
+  .example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+button{
+    height: 40px;
+}
+agm-map {
+  height: 400px !important;
+  width: 100%;  
+}
+.uploadImage {
+    #imageBtn {
+      margin-top: 15px;
+      margin-left: 8px;
+      margin-right: 8px;
+      .uploadIconContainer {
+        display: flex;
+        justify-content: center;
+        border-radius: 50%;
+        padding: 8px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    display: flex;
+  }
+  .btn-submit{
+    color: white;
+  }
+  

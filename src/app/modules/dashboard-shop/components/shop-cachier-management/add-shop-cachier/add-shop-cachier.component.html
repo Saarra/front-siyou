@@ -1,0 +1,105 @@
+
+
+
+
+
+
+<div class=" mainContainer p-3 mb-5 bg-white rounded">
+
+    <div>
+      <form action="" [formGroup]="form">
+      
+      
+          <div>
+            <p style="size: 50px;">{{"add-new-cashier"| translate}}</p>
+            <mat-divider style="margin-bottom: 30px;"></mat-divider>
+          </div>
+  
+  
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-label> {{'First-Name' | translate}} </mat-label>
+              <input type="text"  matInput placeholder="First Name" formControlName="first_name" #first_name>
+      
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-label>{{'Last-Name' | translate}} </mat-label>
+              <input type="text"  matInput placeholder="Last Name" #last_name formControlName="last_name">
+      
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-label> {{'Contact' | translate}}</mat-label>
+              <input type="number"  matInput placeholder="Contact" #contact formControlName="contact">
+      
+  
+            </mat-form-field>
+          </div>
+  
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>storefront</mat-icon>
+              <mat-label>{{'Chose-a-chain' | translate}}</mat-label>
+              <mat-select #chain_id formControlName="chain_id">
+                <mat-option *ngFor="let chain of chainData" [value]="chain.id"> {{chain.chain_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+   
+   
+      
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>security </mat-icon>
+              <mat-label>{{'Password' | translate}}  </mat-label>
+              <input type="password" matInput placeholder="Password" formControlName="password" #password autocomplete="new-password"> 
+      
+            </mat-form-field>
+          </div>
+          <div class="uploadImage">
+            <label id="imageBtn">
+                <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+                <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}" (click)="fileInputImg.click()">
+                    <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+                </section>
+                <!-- </button> -->
+            </label>
+            <input class="none" #fileInputImg type="file" (change)="getFileChange($event)"
+                style="display: none;" />
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>{{"cashier-image"| translate}}</mat-label>
+                <input matInput type="text" #resultInput readonly>
+            </mat-form-field>
+        </div>
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-label>{{"activated-account"| translate}}</mat-label>
+              <mat-select #is_active formControlName="is_active">
+                <mat-option [value]="1"> Yes</mat-option>
+                <mat-option [value]="0"> No</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+      
+      
+      
+      
+          <button
+            (click)="onAddcachier()"
+            type="submit" class="btn btn-primary  mt-2 mb-5" style="background-color: #303842; border-color: #303842;"><i class="fa fa-check" aria-hidden="true"></i>
+            {{'Submit' | translate}}</button>
+          <button routerLink="/shop/cashiers-list" class="btn btn-secondary ml-2  mt-2 mb-5">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+  {{'Back' | translate}}</button>
+          <!-- </div> -->
+        </form>
+      </div>
+  </div>

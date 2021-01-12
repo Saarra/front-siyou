@@ -1,0 +1,138 @@
+
+
+.bgc{
+  padding: 40px; margin-top: 80px; margin-bottom: 30px;
+}
+.table1{
+    // margin-top: 100px;
+
+    width: 100%;
+    
+
+}
+.mat-raised-button{
+    padding: 12px 12px 12px 12px ;
+    color : white;
+  }
+
+.imgtable1{
+    max-width: 50px;
+    max-height: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.pricetable1{
+    color: red;
+}
+
+.distype{
+    text-transform: capitalize;
+}
+.disprice{
+    text-decoration: line-through;
+
+}
+
+.filterclass{
+
+    margin-top: 100px;
+    margin-right: 30px;
+    margin-left: 30px;
+    width: 90%;
+
+}
+
+.pagclass{
+    margin-right: 30px;
+    margin-left: 30px;
+    width: 90%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  // cards CSS
+
+
+  body{
+    margin-top:20px;
+    background:#FAFAFA;
+}
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#4099ff,#73b4ff);
+}
+
+.bg-c-green {
+    background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#FFB64D,#ffcb80);
+}
+
+.bg-c-pink {
+    background: linear-gradient(45deg,#FF5370,#ff869a);
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+input[type=checkbox] {
+    display: none;
+  }
+  
+  .container img {
+    width: 150px;
+    height: 100px;
+    transition: transform 0.25s ease;
+    cursor: zoom-in;
+  }
+  
+  input[type=checkbox]:checked ~ label > img {
+    transform: scale(6);
+    cursor: zoom-out;
+margin-left: 350px;  }

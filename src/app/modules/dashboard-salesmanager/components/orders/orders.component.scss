@@ -1,0 +1,18 @@
+.mainContainer {
+    display: flex;
+    padding: 12px;
+    flex-direction: column;
+    span {
+        font-family: Roboto;
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .tableSection {
+        display: flex;
+        flex-direction: column;
+        table {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+}

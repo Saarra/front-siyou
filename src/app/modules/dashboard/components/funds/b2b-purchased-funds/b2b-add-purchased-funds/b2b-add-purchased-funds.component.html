@@ -1,0 +1,63 @@
+<div class="example-container">
+    <form action="" [formGroup]="form" style="width: 600px;">
+    <mat-form-field appearance="outline" style="width:250px" >
+        <mat-label>{{"amount" | translate}}</mat-label>
+        <input matInput type="number" #amount formControlName="amount">
+    </mat-form-field>
+    <br/>
+    <mat-form-field appearance="outline" style="width:250px">
+        <mat-label>{{"Suppliers" | translate}}</mat-label>
+        <mat-select #supplier_id formControlName="supplier_id">
+            <mat-option value=0 selected>None</mat-option>
+            <mat-option *ngFor="let supp of suppliersList" [value]="supp.id">
+                {{supp.first_name}}{{supp.last_name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+   
+    <br>
+    <mat-form-field appearance="outline" style="width:250px">
+        <mat-label>{{'Payment-method'| translate}}</mat-label>
+        <mat-select #payment_method_id formControlName="payment_method_id">
+            <mat-option value=0>--None--</mat-option>
+            <mat-option *ngFor="let pay of payments" [value]="pay.id">{{pay.name}} - {{pay.days}} Days
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" style="width:250px" >
+        <mat-label>{{"Start-date"| translate}}
+        </mat-label>
+        <input matInput #start_date type="date" formControlName="start_date">
+    </mat-form-field>   
+     <br>
+    <div class="uploadImage">
+        <label id="imageBtn">
+            <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}"
+                (click)="fileInputImg.click()">
+                <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+            </section>
+        </label>
+        <input class="none" #fileInputImg type="file" (change)="getFileChange($event)" style="display: none;" />
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{"upload image" | translate}}</mat-label>
+            <input matInput type="text" #resultInput readonly>
+        </mat-form-field>
+    </div>
+    <br>
+    <mat-form-field appearance="outline" style="width:250px" >
+        <mat-label>{{"Status" | translate}}</mat-label>
+        <mat-select #status formControlName="status">
+            <mat-option value="paid">Paid</mat-option>
+            <mat-option value="not paid">Not Paid</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <button class="btn btn-primary" 
+              (click)="onAddFunds()" style="margin-right:20px">{{'Submit' | translate}}</button>
+              <button class="btn btn-secondary"  (click)="cancel()">
+                {{'Back' | translate}}</button>
+</form>
+
+</div>

@@ -1,0 +1,114 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> -->
+
+<div class="row">
+  <div class="col-md-6 ">
+    <div class="container text-left">
+      <img src="../../../../../assets/images/siyou.png" width="70%" class="img-responsive mx-auto">
+      <br />
+      <p style="font-family: Helvetica Neue;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 44px;
+                            color: rgba(0,0,0,1);">The day of life starts Siyou </p>
+      <p style=" font-family: Helvetica Neue;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 26px;
+                            color: rgba(153,153,153,1);"> Enjoy your journey of management</p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item bg">
+            <a class="nav-link" routerLink="/home">
+              {{ "Home" | translate}}
+            </a>
+          </li>
+          <li class="nav-item bg">
+            <a class="nav-link">
+              {{"Products"| translate}}
+            </a>
+          </li>
+          <li class="nav-item bg">
+            <a class="nav-link">
+              {{"Help"| translate}}
+            </a>
+          </li>
+          <li class="nav-item bg">
+            <a class="nav-link">
+              {{"Contact us"| translate}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="login-container">
+      <form class="form-login" [formGroup]="form">
+        <nav mat-tab-nav-bar mat-align-tabs="center">
+          <a mat-tab-link *ngFor="let link of links" (click)="activeLink = link" [active]="activeLink == link"
+            style="color:#003cb4; opacity:1; font-size:18px;">
+            {{link | translate}}
+          </a>
+        </nav>
+
+        <!-- Email Login  -->
+        <div *ngIf="activeLink == 'Email Login' || activeLink =='邮箱登陆' " class="email">
+          <label for="login-input-user" class="login__label">{{'email' | translate}}</label>
+          <input id="login-input-user" class="login__input" type="email" formControlName="email"
+            [placeholder]="'email' | translate" />
+          <label for="login-input-password" class="login__label">{{'password' | translate}}</label>
+
+          <div class="text-field-position">
+            <input id="try-different-email" type="password" formControlName="password"
+              [placeholder]="'password' | translate" onfocus="this.value=''" matInput
+              [type]="hide ? 'password' : 'text'" class="email-input" (keydown.enter)="signIn()"><span>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button></span></div>
+
+          <button class="login__submit" (click)="signIn()"> {{'sign-in' | translate}}
+            <mat-spinner [ngStyle]="{'display':'none'}" [diameter]="30" id="loadingSpinner" #loadingSpinner
+              style="color: white;">
+            </mat-spinner></button>
+          <button class="login__submit_si" routerLink="/signup">{{'sign-up' | translate}}</button>
+
+        </div>
+
+
+
+        <!-- Phone Login -->
+        <div *ngIf="activeLink == 'Phone Login' || activeLink =='手机登陆' " class="phone">
+          <label for="login-input-user" class="login__label"> {{'phone' | translate}} </label>
+          <input id="login-input-user" class="login__input" formControlName="email"
+            [placeholder]="'phone-number' | translate" />
+          <label for="login-input-password" class="login__label">
+            {{'password' | translate}}
+          </label>
+          <div class="text-field-position">
+            <input id="try-different-email" type="password" formControlName="password"
+              [placeholder]="'password' | translate" onfocus="this.value=''" matInput
+              [type]="hide ? 'password' : 'text'" class="email-input"><span>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button></span></div>
+          <button class="login__submit" (click)="signIn()">{{'sign-in' | translate}}</button>
+          <button class="login__submit_si" routerLink="/signup">{{'sign-up' | translate}}
+            <mat-spinner [ngStyle]="{'display':'none'}" [diameter]="20" id="loadingSpinner" #loadingSpinner
+              style="color: white;">
+            </mat-spinner></button>
+
+        </div>
+      </form>
+      <a class="login__forgot" routerLink="/reset-password-link">{{'forgot-password' | translate}}?</a>
+    </div>
+  </div>
+</div>

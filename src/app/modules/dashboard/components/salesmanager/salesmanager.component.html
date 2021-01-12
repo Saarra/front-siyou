@@ -1,0 +1,107 @@
+<div class="containerTabOrder ">
+  <h3>{{ "Sales-Manager-List" | translate }}</h3>
+  <button
+    (click)="openAddSalesManagerModal()"
+    mat-raised-button
+    color="primary" style="color: white; background-color: #3489eb;"
+  >
+    {{ "Add-SalesManager" | translate }}
+  </button>
+
+  <section class="tableSection" *ngIf="salesmanagerList.length">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8"matSort >
+      <!-- First Name Column -->
+      <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "First-Name" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let salesmanager">
+          {{ salesmanager.first_name }}
+        </td>
+      </ng-container>
+
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef>{{ "Last-Name" | translate }}</th>
+        <td mat-cell *matCellDef="let salesmanager">
+          {{ salesmanager.last_name }}
+        </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>{{ "Email" | translate }}</th>
+        <td mat-cell *matCellDef="let salesmanager">
+          {{ salesmanager.email }}
+        </td>
+      </ng-container>
+
+      <!-- Shop Column -->
+      <ng-container matColumnDef="shop">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "Affected-Shop-Email" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let salesmanager; let index = index">
+          <div class="shopContainer">
+            <span *ngIf="salesmanager.shop_owners.length"
+              >{{ salesmanager.shop_owners[0].email }}
+            </span>
+            <mat-icon
+              matTooltip="Affect Shop to Sales Manager"
+              (click)="affectSalesManagerToShop(index)"
+              *ngIf="!salesmanager.shop_owners.length"
+              >{{ "add" | translate }}</mat-icon
+            >
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Commission Value Column -->
+      <ng-container matColumnDef="commission_value">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "Commission-Value" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let salesmanager">
+          {{
+            salesmanager.commission_amount
+              ? salesmanager.commission_amount + "%"
+              : "0%"
+          }}
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>{{ "Actions" | translate }}</th>
+        <td mat-cell *matCellDef="let salesmanager">
+          <div class="actionsContainer">
+            <mat-icon
+              matTooltip="See details"
+              (click)="openEditSalesManagerModal(salesmanager)"
+              >toc</mat-icon
+            >
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns; let element"
+      ></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </section>
+
+  <section class="noDataFoundSection" *ngIf="!salesmanagerList.length">
+    <mat-icon
+      width="unset"
+      height="unset"
+      id="noDataImage"
+      svgIcon="noData"
+    ></mat-icon>
+    <span>{{ "No-Data-Found" | translate }}</span>
+  </section>
+</div>
+
+<!-- <hr class="line"> -->

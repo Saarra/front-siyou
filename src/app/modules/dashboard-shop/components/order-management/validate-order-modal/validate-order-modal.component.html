@@ -1,0 +1,52 @@
+<div class="container">
+    <form >
+        <h3>Validate Order:</h3>
+        <hr>
+        <mat-form-field appearance="standard">
+            <mat-label>Select Payment Type</mat-label>
+            <mat-select class="payment" #payment_method_id>
+
+                <!-- <mat-option value=0>--None--</mat-option> -->
+                <mat-option  *ngFor="let pay_type of paymentList" [value]="pay_type.id" >{{pay_type.name}}</mat-option>
+
+
+            </mat-select>
+        </mat-form-field>
+
+        <br>
+
+          <mat-form-field>
+            <mat-label>Required Date</mat-label>
+            <input matInput [matDatepicker]="picker" #required_date>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field *ngIf="currentOrder.logistic_service==1" appearance="standard">
+            <mat-label>Select Logistic Company</mat-label>
+            <mat-select class="payment" #logistic_company_id>
+
+                <!-- <mat-option value=0>--None--</mat-option> -->
+                <mat-option  *ngFor="let company of companiesList" [value]="company.id" >{{company.name}}</mat-option>
+
+
+            </mat-select>
+        </mat-form-field>
+
+        <h4 *ngIf="currentOrder.logistic_service==0 || !currentOrder.logistic_service" style="color: red;">Logistic Service is disabled <br> for this supplier</h4>
+
+
+        <br>
+
+          
+          <div style="margin-top: 30px;">
+            <button mat-raised-button color="primary" style="margin-right:10px" (click)="onValidatePurchaseOrder(payment_method_id.value, required_date.value)">Submit</button>
+            <button mat-raised-button mat-dialog-close>Close</button>
+    
+        </div>
+
+
+    </form>
+</div>

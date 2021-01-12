@@ -1,0 +1,78 @@
+
+
+.bgc{
+ padding: 40px; margin-top: 150px; margin-bottom: 30px;
+}
+.table1{
+th,td{
+  width: 10%;
+}}
+.mat-raised-button{
+    padding: 12px 12px 12px 12px ;
+    color : white;
+  }
+
+.table2{
+  overflow: scroll;
+  th,td{
+    width: 10%;
+    vertical-align: center;
+  }
+}
+
+.dis-card{
+    // height: 300px;
+    margin-top: 50px;
+}
+
+.form-container{
+    margin-top: 500px;
+    height: 500px;
+    background-color: white;
+    padding : 40px 40px 40px 40px
+}
+
+.mat-raised-button{
+    padding: 12px 12px 12px 12px ;
+    color : white;
+  }
+
+
+// .select_field{
+//     width: 200px;
+//     text-align: center;
+//     padding-top: 40px;
+// }
+
+@media only screen and (max-width: 600px) {
+    .table2{
+        margin-top: 40px;
+    }
+  }
+
+
+  .imgtable1{
+      max-width: 50px;
+      max-height: 50px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+  }
+
+
+  .pricetable1{
+      color:red;
+  }
+  
+  mat-form-field {
+     
+    width: 100%;
+  }
+  
+
+  .select_field{
+      margin-top: 30px;
+  }
+
+  mat-option{
+      text-transform: capitalize;
+  }

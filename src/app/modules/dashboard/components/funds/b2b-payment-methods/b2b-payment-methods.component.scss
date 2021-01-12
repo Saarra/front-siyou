@@ -1,0 +1,27 @@
+  
+table {
+    width: 100%;
+    th, td {
+      overflow: hidden;
+      width: 150px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .my-card
+  {
+      position:absolute;
+      left:40%;
+      top:-20px;
+      border-radius:50%;
+  }
+
+  .mat-raised-button{
+    padding: 12px 12px 12px 12px ;
+    color : white;
+  }
+  .mainContainer{
+      
+    background-color: white;
+  }
+ 

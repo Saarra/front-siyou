@@ -1,0 +1,61 @@
+<div class=" mainContainer shadow-lg p-3 mb-5 bg-white rounded">
+    <div class=" my-2 mx-2">
+        <form>
+            <mat-form-field appearance="fill" class="form-element">
+                <mat-icon matSuffix>storefront</mat-icon>
+                <mat-label>{{"Shop-Owner" | translate}}</mat-label>
+                <mat-select #shop [value]="currentLic.id">
+                    <mat-option value=0 selected>None</mat-option>
+                    <mat-option *ngFor="let shop of shopData" [value]="shop.id">
+                        {{shop.first_name}}{{shop.last_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width:20%; margin-right:5% ;">
+                <mat-icon matSuffix>storefront</mat-icon>
+                <mat-label>{{"managers" | translate}}</mat-label>
+                <input type="number" matInput #managers [value]="currentLic.max_managers">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width:20%; margin-right:5% ;">
+                <mat-icon matSuffix>storefront</mat-icon>
+                <mat-label>{{"Cashiers" | translate}}</mat-label>
+                <input type="number" matInput #cashiers [value]="currentLic.max_cachiers">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width:20%;margin-right:5% ;">
+                <mat-icon matSuffix>storefront</mat-icon>
+                <mat-label>{{ "Operator" | translate}}</mat-label>
+                <input type="number" matInput #operators [value]="currentLic.max_operators">
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width:25%; ;">
+                <mat-icon matSuffix>storefront</mat-icon>
+                <mat-label>{{ "Chains" | translate}}</mat-label>
+                <input type="number" matInput #max_chain [value]="currentLic.max_chains">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width:45%; margin-right:5%;">
+                <mat-label>{{'Start-date' | translate }}</mat-label>
+                <input matInput [matDatepicker]="picker" #start_date  [value]="currentLic.start_date" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width:50%;">
+                <mat-label>{{'End-date' | translate }}</mat-label>
+                <input matInput [matDatepicker]="picker2" #finish_date [value]="currentLic.finish_date"/>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+
+
+            <button mat-button (click)="
+            editLicense(shop.value, managers.value ,cashiers.value,operators.value,max_chain.value,start_date.value,finish_date.value)" style="margin-right: 5px;"
+                class="btn btn-success btn-sm">
+                {{'Submit' | translate}}</button>
+            <button mat-button routerLink="/shop/useraccount" class="btn btn-secondary btn-sm">
+                {{'Back' | translate}}</button>
+        </form>
+    </div>
+</div>

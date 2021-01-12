@@ -1,0 +1,26 @@
+<div><h4>{{"new-pre-order"| translate}}</h4>
+  <a href="assets/downloads/Inventory_excel.xlsx" download>
+    {{"download-Excel-template"| translate}}
+</a>
+  <form  [formGroup]="form" novalidate >
+<br/>
+<br/>
+  <div class="form-group" style="width: 100%">
+    <label for="file">{{"products-file"| translate}}</label> <br/>
+    <input #fileInput type="file" name="products" (change)="getFileChange($event);onFileChange($event)" />
+ <section (click)="fileInput.click()" style="margin-bottom: 1.5rem;"></section>
+ <input matInput type="text" #resultInput readonly style="display: none;">
+
+  </div>
+
+  <button type="button" class="btn btn-success btn-sm" style="margin-right: 5px; width: 200px" (click)="onUploadFile()">
+    {{ "Save" | translate }}
+  </button>
+  <button type="button" class="btn btn-secondary btn-sm" style="margin-right: 5px; width: 200px" (click)="clickCancel()">
+    {{ "Cancel" | translate }}
+  </button>
+
+
+
+</form>
+</div>

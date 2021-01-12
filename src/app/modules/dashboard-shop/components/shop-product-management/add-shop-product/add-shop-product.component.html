@@ -1,0 +1,181 @@
+<div class=" mainContainer p-3 mb-5 bg-white rounded">
+
+  <div>
+    <form action="" [formGroup]="form">
+
+
+      <div>
+        <p style="size: 50px;">{{'Add-a-newProduct' | translate}} </p>
+        <mat-divider style="margin-bottom: 30px;"></mat-divider>
+      </div>
+
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>add_shopping_cart</mat-icon>
+          <mat-label>{{'Product-Name' | translate}}<span style="color: red;">*</span></mat-label>
+          <input type="text" matInput placeholder="Product Name" #product_name formControlName="product_name" >
+
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>add_shopping_cart</mat-icon>
+          <mat-label>{{'goods-shelf-No.'| translate}}</mat-label>
+          <input type="text" matInput placeholder="'goods-shelf-No.'| translate" #range_id formControlName="range_id">
+
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+
+
+        <mat-form-field appearance="fill" class="form-element" style="width: 80%;">
+          <mat-icon matSuffix>qr_code</mat-icon>
+          <mat-label>{{"Product-barcode" | translate}}<span style="color: red;">*</span> </mat-label>
+
+
+
+
+          <input type="text" #barcode [value]="barC" matInput placeholder="BarCode Product" formControlName="barcode">
+
+
+        </mat-form-field>
+
+        <button mat-raised-button style="background-color: #003366; float: right; vertical-align: center;"
+          (click)="onGenerateBarcode()">
+          <i class="fa fa-barcode" aria-hidden="true"></i>
+
+          {{'generate_barcode' | translate}}
+        </button>
+
+
+
+
+
+
+
+      </div>
+
+
+
+      <div class="uploadImage">
+        <label id="imageBtn">
+          <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+          <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}" (click)="fileInput.click()">
+            <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+          </section>
+          <!-- </button> -->
+        </label>
+        <input class="none" #fileInput type="file" name="product_image" (change)="getFileChange($event)"
+          style="display: none;" />
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{'Product-image' | translate}}</mat-label>
+          <input matInput type="text" #resultInput readonly>
+        </mat-form-field>
+      </div>
+
+
+
+
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>attach_money</mat-icon>
+          <mat-label>{{'Cost-PriceProduct' | translate}}<span style="color: red;">*</span></mat-label>
+          <input type="text" matInput placeholder="Cost Price Product" #cost_price formControlName="cost_price">
+
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>attach_money</mat-icon>
+          <mat-label> {{'Unit-PriceProduct' | translate}}<span style="color: red;">*</span></mat-label>
+          <input type="text" matInput placeholder="Unit Price Product" #unit_price formControlName="unit_price">
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix> swap_horiz </mat-icon>
+          <mat-label>{{'Taxe-RateProduct' | translate}}<span style="color: red;">*</span></mat-label>
+          <input matInput placeholder="{{'Tax rate' | translate}}" #tax_rate formControlName="tax_rate">
+
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix> swap_horiz </mat-icon>
+          <mat-label>{{'warn_quant' | translate}}<span style="color: red;">*</span></mat-label>
+          <input matInput placeholder="Warning Quantity" #warn_quantity formControlName="warn_quantity">
+
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix> plus_one</mat-icon>
+          <mat-label> {{'Product-Quantity' | translate}}<span style="color: red;">*</span> </mat-label>
+          <input matInput placeholder="Product" #product_quantity formControlName="product_quantity">
+
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-label>{{'Supplier' | translate}}</mat-label>
+          <mat-select #supplier_id formControlName="supplier_id">
+            <input matInput style="padding: 8px 8px 8px 8px;"type="search" #supp (input)="onSearchChange($event.target.value)">
+            <mat-option *ngFor="let supp of suppliers" [value]="supp.id"> {{supp.supplier_name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+
+        <mat-form-field class="example-full-width" appearance="outline" style="width: 85%;">
+          <mat-label>{{'Category' | translate}} <span style="color: red;">*</span></mat-label>
+          <input matInput #category_id [value]="categoryname" readonly>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline" style="display: none;">
+          <input matInput #category_id [value]="categoryId" formControlName="category_id" readonly>
+        </mat-form-field>
+        <button mat-raised-button style="background-color: #003366;float: right; vertical-align: center; margin-top: 4px;padding: 10px 10px 10px 10px;"
+          (click)="openChooseCategory()">
+          {{  "Choose-Category" | translate}}
+        </button>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>storefront</mat-icon>
+          <mat-label>{{'Chose-a-chain' | translate}}</mat-label>
+          <mat-select #chain_id formControlName="chain_id">
+            <mat-option *ngFor="let chain of chainData" [value]="chain.id"> {{chain.chain_name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          
+          <mat-label>{{'Expired date' | translate}}</mat-label>
+          <input matInput [matDatepicker]="dp" placeholder="{{'Expired date'|translate}}" #expired_date
+            >
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+
+      <button (click)="onAddProduct(expired_date.value)" type="submit" mat-raised-button
+        style="background-color: #730E33; margin-right: 10px;"> <i class="fa fa-check" aria-hidden="true"></i>
+
+        {{'Submit'| translate}}</button>
+      <button routerLink="/shop/products-list-s2c" mat-raised-button style="background-color: #003366;"><i
+          class="fa fa-arrow-left" aria-hidden="true"></i>
+        {{'Back' | translate}}</button>
+      <!-- </div> -->
+    </form>
+  </div>
+</div>

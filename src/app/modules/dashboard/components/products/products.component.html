@@ -1,0 +1,171 @@
+
+
+<section class="mainContainer mb-4">
+   
+
+
+<div class="container shadow-lg bg-white rounded" style="background-color: white; min-height: 600px; margin-top: 45px;">
+    
+
+<p style=" margin-top: 20px; font-size: larger;">{{'rec_added' | translate}}</p>
+
+
+<mat-divider></mat-divider>
+
+<div class="carouselContainer">
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" style="margin-top:250px">
+    
+        <div ngxSlickItem *ngFor="let prod of lastAddedProducts"  class="card mx-4 shadow p-3 mb-5 bg-white rounded car_card" style=" height: 320px;" routerLink="/dashboard/product-details/{{prod.id}}">
+            <img *ngFor="let mainimg of prod.images | slice:0:1" class="card-img-top" [src]="mainimg.image_url" alt="Card image cap">
+            <div class="card-body">
+                <hr>
+
+                <div class="nameContainer">
+                     <h6 class="card-title meduim text-capitalize">{{ prod.product.product_name | slice:0:20}}...</h6>
+                </div>
+
+                <div class="descContainer  mt-4">
+                    <p class="card-text small">{{ prod.product.product_description | slice:0:80}}...</p>
+                </div>
+
+                <div class="btnContainer mt-4">
+                    <div>
+                    <a class="btn btn-primary">{{prod.item_online_price |currency:'EUR':'symbol'}}</a>
+                </div>
+                </div>
+            </div>
+          </div>
+
+
+
+
+
+    </ngx-slick-carousel>
+
+
+
+    
+</div>
+
+</div>
+
+
+<div class="container shadow-lg bg-white rounded" style="background-color: white; min-height: 600px; margin-top: 100px;">
+
+
+<div style="margin-top: 20px; margin-bottom: -300px;">
+    <p style="font-size: larger;">{{'best_sell' | translate}} </p>
+
+    <hr>
+    
+</div>
+
+<div class="carouselContainer" >
+
+
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" style="margin-top:840px">
+    
+        <div ngxSlickItem *ngFor="let prod of BestSellersProducts"  class="card mx-4 shadow p-3 mb-5 bg-white rounded car_card" style=" height: 320px;" routerLink="/dashboard/product-details/{{prod.id}}">
+            <img *ngFor="let mainimg of prod.images | slice:0:1" class="card-img-top" [src]="mainimg.image_url" alt="Card image cap">
+            <div class="card-body">
+                <hr>
+
+                <div class="nameContainer">
+                     <h6 class="card-title meduim text-capitalize">{{ prod.product.product_name | slice:0:20}}...</h6>
+                </div>
+
+                <div class="descContainer  mt-4">
+                    <p class="card-text small">{{ prod.product.product_description | slice:0:80}}...</p>
+                </div>
+
+                <div class="btnContainer mt-4">
+                    <a class="btn btn-primary">{{prod.item_online_price |currency:'EUR':'symbol'}}</a>
+                </div>
+            </div>
+          </div>
+
+
+
+
+
+    </ngx-slick-carousel>
+
+
+
+    
+</div>
+
+</div>
+
+
+
+<div class="container shadow-lg bg-white rounded" style="background-color: white; min-height: 600px; margin-top: 100px;">
+
+
+
+<div >
+    <p style="margin-top: 20px; font-size: larger;">{{'disc_prod' | translate}} </p>
+    <hr>
+
+</div>
+
+<div class="carouselContainer mb-4">
+
+
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" style="margin-top:250px; margin-bottom: 30px;" >
+        <div ngxSlickItem *ngFor="let prod of ProductsByDiscount"  class="card mx-4 shadow p-3 mb-5 bg-white rounded car_card" style=" height: 320px;"  routerLink="/dashboard/product-details/{{prod.id}}">
+            <img *ngFor="let mainimg of prod.images | slice:0:1" class="card-img-top" [src]="mainimg.image_url" alt="Card image cap">
+            <div class="card-body">
+                <hr>
+
+                <div class="nameContainer">
+                     <h6 class="card-title meduim text-capitalize">{{ prod.product.product_name | slice:0:20}}...</h6>
+                </div>
+
+                <div class="descContainer  mt-4">
+                    <p class="card-text small">{{ prod.product.product_description | slice:0:80}}...</p>
+                </div>
+
+                <div class="btnContainer mt-4">
+                    <a class="btn btn-primary">{{prod.item_online_price |currency:'EUR':'symbol'}}</a>
+                </div>
+            </div>
+          </div>
+
+
+
+
+
+
+    </ngx-slick-carousel>
+
+
+
+    
+</div>
+
+</div>
+
+
+
+ <!-- 
+    <h1>List of Products</h1>
+    
+    <mdc-image-list masonry textProtection="true" class="masonry-image-list" #imageList>
+        <mdc-image-list-item *ngFor="let item of masonryImages; let index = index">
+            <img mdcImageListImage (click)="openCategoryDetailsModal(index)" src="{{item.image}}" />
+            <mdc-image-list-supporting>
+                <span mdcImageListLabel>Category {{ index + 1 }}</span>
+            </mdc-image-list-supporting>
+        </mdc-image-list-item>
+    </mdc-image-list> -->
+
+
+  
+
+</section>
+
+
+
+
+

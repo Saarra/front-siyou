@@ -1,0 +1,465 @@
+<div>
+
+
+  <div class="form-group" style="margin-top: 70px;">
+    <h3>New Supplier</h3>
+    <hr >
+</div>
+  <form action="" [formGroup]="form" novalidate>
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="Supplier First Name" formControlName="first_name">
+
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="Supplier Last Name" formControlName="last_name">
+
+      </mat-form-field>
+    </p>
+
+
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="john@exemple.com" formControlName="email">
+
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+
+
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-label>Confirm your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-icon matSuffix>description</mat-icon>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+
+      </mat-form-field>
+    </p>
+    <div class="uploadImage">
+      <label id="imageBtn">
+          <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+          <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}" (click)="fileInputImg.click()">
+              <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+          </section>
+          <!-- </button> -->
+      </label>
+      <input class="none" #fileInputImg type="file" name="profil_img" (change)="getFileChange($event)"
+          style="display: none;" />
+      <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Profil Image</mat-label>
+          <input matInput type="text" #resultInput readonly>
+      </mat-form-field>
+  </div>
+  <p>
+    <mat-form-field appearance="legacy" class="form-element">
+      <mat-icon matSuffix>contacts</mat-icon>
+      <mat-label>Tax Number:</mat-label>
+      <input type="number" matInput placeholder="Enter Tax Number" formControlName="tax_number">
+      <mat-hint>Include area code</mat-hint>
+
+    </mat-form-field>
+  </p>
+
+
+
+  <p>
+    <mat-form-field appearance="legacy" class="form-element">
+      <mat-icon matSuffix>account_circle</mat-icon>
+      <mat-label>Responsable Full Name</mat-label>
+      <input matInput placeholder="Enter Responsable Full Name" formControlName="first_resp_name">
+
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="legacy" class="form-element">
+      <mat-icon matSuffix>home</mat-icon>
+      <mat-label>Address</mat-label>
+      <input type="text" matInput placeholder="Enter Responsable Full Name" formControlName="adress">
+
+    </mat-form-field>
+  </p>
+
+<p>
+    <mat-form-field appearance="legacy" class="form-element">
+      <mat-label>Country</mat-label>
+      <mat-select id="country" name="country" formControlName="country">
+        <!-- <mat-option value="option">Option</mat-option> -->
+          <mat-option value="Afganistan">Afghanistan</mat-option>
+          <mat-option value="Albania">Albania</mat-option>
+          <mat-option value="Algeria">Algeria</mat-option>
+          <mat-option value="American Samoa">American Samoa</mat-option>
+          <mat-option value="Andorra">Andorra</mat-option>
+          <mat-option value="Angola">Angola</mat-option>
+          <mat-option value="Anguilla">Anguilla</mat-option>
+          <mat-option value="Antigua & Barbuda">Antigua & Barbuda</mat-option>
+          <mat-option value="Argentina">Argentina</mat-option>
+          <mat-option value="Armenia">Armenia</mat-option>
+          <mat-option value="Aruba">Aruba</mat-option>
+          <mat-option value="Australia">Australia</mat-option>
+          <mat-option value="Austria">Austria</mat-option>
+          <mat-option value="Azerbaijan">Azerbaijan</mat-option>
+          <mat-option value="Bahamas">Bahamas</mat-option>
+          <mat-option value="Bahrain">Bahrain</mat-option>
+          <mat-option value="Bangladesh">Bangladesh</mat-option>
+          <mat-option value="Barbados">Barbados</mat-option>
+          <mat-option value="Belarus">Belarus</mat-option>
+          <mat-option value="Belgium">Belgium</mat-option>
+          <mat-option value="Belize">Belize</mat-option>
+          <mat-option value="Benin">Benin</mat-option>
+          <mat-option value="Bermuda">Bermuda</mat-option>
+          <mat-option value="Bhutan">Bhutan</mat-option>
+          <mat-option value="Bolivia">Bolivia</mat-option>
+          <mat-option value="Bonaire">Bonaire</mat-option>
+          <mat-option value="Bosnia & Herzegovina">Bosnia & Herzegovina</mat-option>
+          <mat-option value="Botswana">Botswana</mat-option>
+          <mat-option value="Brazil">Brazil</mat-option>
+          <mat-option value="British Indian Ocean Ter">British Indian Ocean Ter</mat-option>
+          <mat-option value="Brunei">Brunei</mat-option>
+          <mat-option value="Bulgaria">Bulgaria</mat-option>
+          <mat-option value="Burkina Faso">Burkina Faso</mat-option>
+          <mat-option value="Burundi">Burundi</mat-option>
+          <mat-option value="Cambodia">Cambodia</mat-option>
+          <mat-option value="Cameroon">Cameroon</mat-option>
+          <mat-option value="Canada">Canada</mat-option>
+          <mat-option value="Canary Islands">Canary Islands</mat-option>
+          <mat-option value="Cape Verde">Cape Verde</mat-option>
+          <mat-option value="Cayman Islands">Cayman Islands</mat-option>
+          <mat-option value="Central African Republic">Central African Republic</mat-option>
+          <mat-option value="Chad">Chad</mat-option>
+          <mat-option value="Channel Islands">Channel Islands</mat-option>
+          <mat-option value="Chile">Chile</mat-option>
+          <mat-option value="China">China</mat-option>
+          <mat-option value="Christmas Island">Christmas Island</mat-option>
+          <mat-option value="Cocos Island">Cocos Island</mat-option>
+          <mat-option value="Colombia">Colombia</mat-option>
+          <mat-option value="Comoros">Comoros</mat-option>
+          <mat-option value="Congo">Congo</mat-option>
+          <mat-option value="Cook Islands">Cook Islands</mat-option>
+          <mat-option value="Costa Rica">Costa Rica</mat-option>
+          <mat-option value="Cote DIvoire">Cote DIvoire</mat-option>
+          <mat-option value="Croatia">Croatia</mat-option>
+          <mat-option value="Cuba">Cuba</mat-option>
+          <mat-option value="Curaco">Curacao</mat-option>
+          <mat-option value="Cyprus">Cyprus</mat-option>
+          <mat-option value="Czech Republic">Czech Republic</mat-option>
+          <mat-option value="Denmark">Denmark</mat-option>
+          <mat-option value="Djibouti">Djibouti</mat-option>
+          <mat-option value="Dominica">Dominica</mat-option>
+          <mat-option value="Dominican Republic">Dominican Republic</mat-option>
+          <mat-option value="East Timor">East Timor</mat-option>
+          <mat-option value="Ecuador">Ecuador</mat-option>
+          <mat-option value="Egypt">Egypt</mat-option>
+          <mat-option value="El Salvador">El Salvador</mat-option>
+          <mat-option value="Equatorial Guinea">Equatorial Guinea</mat-option>
+          <mat-option value="Eritrea">Eritrea</mat-option>
+          <mat-option value="Estonia">Estonia</mat-option>
+          <mat-option value="Ethiopia">Ethiopia</mat-option>
+          <mat-option value="Falkland Islands">Falkland Islands</mat-option>
+          <mat-option value="Faroe Islands">Faroe Islands</mat-option>
+          <mat-option value="Fiji">Fiji</mat-option>
+          <mat-option value="Finland">Finland</mat-option>
+          <mat-option value="France">France</mat-option>
+          <mat-option value="French Guiana">French Guiana</mat-option>
+          <mat-option value="French Polynesia">French Polynesia</mat-option>
+          <mat-option value="French Southern Ter">French Southern Ter</mat-option>
+          <mat-option value="Gabon">Gabon</mat-option>
+          <mat-option value="Gambia">Gambia</mat-option>
+          <mat-option value="Georgia">Georgia</mat-option>
+          <mat-option value="Germany">Germany</mat-option>
+          <mat-option value="Ghana">Ghana</mat-option>
+          <mat-option value="Gibraltar">Gibraltar</mat-option>
+          <mat-option value="Great Britain">Great Britain</mat-option>
+          <mat-option value="Greece">Greece</mat-option>
+          <mat-option value="Greenland">Greenland</mat-option>
+          <mat-option value="Grenada">Grenada</mat-option>
+          <mat-option value="Guadeloupe">Guadeloupe</mat-option>
+          <mat-option value="Guam">Guam</mat-option>
+          <mat-option value="Guatemala">Guatemala</mat-option>
+          <mat-option value="Guinea">Guinea</mat-option>
+          <mat-option value="Guyana">Guyana</mat-option>
+          <mat-option value="Haiti">Haiti</mat-option>
+          <mat-option value="Hawaii">Hawaii</mat-option>
+          <mat-option value="Honduras">Honduras</mat-option>
+          <mat-option value="Hong Kong">Hong Kong</mat-option>
+          <mat-option value="Hungary">Hungary</mat-option>
+          <mat-option value="Iceland">Iceland</mat-option>
+          <mat-option value="Indonesia">Indonesia</mat-option>
+          <mat-option value="India">India</mat-option>
+          <mat-option value="Iran">Iran</mat-option>
+          <mat-option value="Iraq">Iraq</mat-option>
+          <mat-option value="Ireland">Ireland</mat-option>
+          <mat-option value="Isle of Man">Isle of Man</mat-option>
+          <mat-option value="Israel">Israel</mat-option>
+          <mat-option value="Italy">Italy</mat-option>
+          <mat-option value="Jamaica">Jamaica</mat-option>
+          <mat-option value="Japan">Japan</mat-option>
+          <mat-option value="Jordan">Jordan</mat-option>
+          <mat-option value="Kazakhstan">Kazakhstan</mat-option>
+          <mat-option value="Kenya">Kenya</mat-option>
+          <mat-option value="Kiribati">Kiribati</mat-option>
+          <mat-option value="Korea North">Korea North</mat-option>
+          <mat-option value="Korea Sout">Korea South</mat-option>
+          <mat-option value="Kuwait">Kuwait</mat-option>
+          <mat-option value="Kyrgyzstan">Kyrgyzstan</mat-option>
+          <mat-option value="Laos">Laos</mat-option>
+          <mat-option value="Latvia">Latvia</mat-option>
+          <mat-option value="Lebanon">Lebanon</mat-option>
+          <mat-option value="Lesotho">Lesotho</mat-option>
+          <mat-option value="Liberia">Liberia</mat-option>
+          <mat-option value="Libya">Libya</mat-option>
+          <mat-option value="Liechtenstein">Liechtenstein</mat-option>
+          <mat-option value="Lithuania">Lithuania</mat-option>
+          <mat-option value="Luxembourg">Luxembourg</mat-option>
+          <mat-option value="Macau">Macau</mat-option>
+          <mat-option value="Macedonia">Macedonia</mat-option>
+          <mat-option value="Madagascar">Madagascar</mat-option>
+          <mat-option value="Malaysia">Malaysia</mat-option>
+          <mat-option value="Malawi">Malawi</mat-option>
+          <mat-option value="Maldives">Maldives</mat-option>
+          <mat-option value="Mali">Mali</mat-option>
+          <mat-option value="Malta">Malta</mat-option>
+          <mat-option value="Marshall Islands">Marshall Islands</mat-option>
+          <mat-option value="Martinique">Martinique</mat-option>
+          <mat-option value="Mauritania">Mauritania</mat-option>
+          <mat-option value="Mauritius">Mauritius</mat-option>
+          <mat-option value="Mayotte">Mayotte</mat-option>
+          <mat-option value="Mexico">Mexico</mat-option>
+          <mat-option value="Midway Islands">Midway Islands</mat-option>
+          <mat-option value="Moldova">Moldova</mat-option>
+          <mat-option value="Monaco">Monaco</mat-option>
+          <mat-option value="Mongolia">Mongolia</mat-option>
+          <mat-option value="Montserrat">Montserrat</mat-option>
+          <mat-option value="Morocco">Morocco</mat-option>
+          <mat-option value="Mozambique">Mozambique</mat-option>
+          <mat-option value="Myanmar">Myanmar</mat-option>
+          <mat-option value="Nambia">Nambia</mat-option>
+          <mat-option value="Nauru">Nauru</mat-option>
+          <mat-option value="Nepal">Nepal</mat-option>
+          <mat-option value="Netherland Antilles">Netherland Antilles</mat-option>
+          <mat-option value="Netherlands">Netherlands (Holland, Europe)</mat-option>
+          <mat-option value="Nevis">Nevis</mat-option>
+          <mat-option value="New Caledonia">New Caledonia</mat-option>
+          <mat-option value="New Zealand">New Zealand</mat-option>
+          <mat-option value="Nicaragua">Nicaragua</mat-option>
+          <mat-option value="Niger">Niger</mat-option>
+          <mat-option value="Nigeria">Nigeria</mat-option>
+          <mat-option value="Niue">Niue</mat-option>
+          <mat-option value="Norfolk Island">Norfolk Island</mat-option>
+          <mat-option value="Norway">Norway</mat-option>
+          <mat-option value="Oman">Oman</mat-option>
+          <mat-option value="Pakistan">Pakistan</mat-option>
+          <mat-option value="Palau Island">Palau Island</mat-option>
+          <mat-option value="Palestine">Palestine</mat-option>
+          <mat-option value="Panama">Panama</mat-option>
+          <mat-option value="Papua New Guinea">Papua New Guinea</mat-option>
+          <mat-option value="Paraguay">Paraguay</mat-option>
+          <mat-option value="Peru">Peru</mat-option>
+          <mat-option value="Phillipines">Philippines</mat-option>
+          <mat-option value="Pitcairn Island">Pitcairn Island</mat-option>
+          <mat-option value="Poland">Poland</mat-option>
+          <mat-option value="Portugal">Portugal</mat-option>
+          <mat-option value="Puerto Rico">Puerto Rico</mat-option>
+          <mat-option value="Qatar">Qatar</mat-option>
+          <mat-option value="Republic of Montenegro">Republic of Montenegro</mat-option>
+          <mat-option value="Republic of Serbia">Republic of Serbia</mat-option>
+          <mat-option value="Reunion">Reunion</mat-option>
+          <mat-option value="Romania">Romania</mat-option>
+          <mat-option value="Russia">Russia</mat-option>
+          <mat-option value="Rwanda">Rwanda</mat-option>
+          <mat-option value="St Barthelemy">St Barthelemy</mat-option>
+          <mat-option value="St Eustatius">St Eustatius</mat-option>
+          <mat-option value="St Helena">St Helena</mat-option>
+          <mat-option value="St Kitts-Nevis">St Kitts-Nevis</mat-option>
+          <mat-option value="St Lucia">St Lucia</mat-option>
+          <mat-option value="St Maarten">St Maarten</mat-option>
+          <mat-option value="St Pierre & Miquelon">St Pierre & Miquelon</mat-option>
+          <mat-option value="St Vincent & Grenadines">St Vincent & Grenadines</mat-option>
+          <mat-option value="Saipan">Saipan</mat-option>
+          <mat-option value="Samoa">Samoa</mat-option>
+          <mat-option value="Samoa American">Samoa American</mat-option>
+          <mat-option value="San Marino">San Marino</mat-option>
+          <mat-option value="Sao Tome & Principe">Sao Tome & Principe</mat-option>
+          <mat-option value="Saudi Arabia">Saudi Arabia</mat-option>
+          <mat-option value="Senegal">Senegal</mat-option>
+          <mat-option value="Seychelles">Seychelles</mat-option>
+          <mat-option value="Sierra Leone">Sierra Leone</mat-option>
+          <mat-option value="Singapore">Singapore</mat-option>
+          <mat-option value="Slovakia">Slovakia</mat-option>
+          <mat-option value="Slovenia">Slovenia</mat-option>
+          <mat-option value="Solomon Islands">Solomon Islands</mat-option>
+          <mat-option value="Somalia">Somalia</mat-option>
+          <mat-option value="South Africa">South Africa</mat-option>
+          <mat-option value="Spain">Spain</mat-option>
+          <mat-option value="Sri Lanka">Sri Lanka</mat-option>
+          <mat-option value="Sudan">Sudan</mat-option>
+          <mat-option value="Suriname">Suriname</mat-option>
+          <mat-option value="Swaziland">Swaziland</mat-option>
+          <mat-option value="Sweden">Sweden</mat-option>
+          <mat-option value="Switzerland">Switzerland</mat-option>
+          <mat-option value="Syria">Syria</mat-option>
+          <mat-option value="Tahiti">Tahiti</mat-option>
+          <mat-option value="Taiwan">Taiwan</mat-option>
+          <mat-option value="Tajikistan">Tajikistan</mat-option>
+          <mat-option value="Tanzania">Tanzania</mat-option>
+          <mat-option value="Thailand">Thailand</mat-option>
+          <mat-option value="Togo">Togo</mat-option>
+          <mat-option value="Tokelau">Tokelau</mat-option>
+          <mat-option value="Tonga">Tonga</mat-option>
+          <mat-option value="Trinidad & Tobago">Trinidad & Tobago</mat-option>
+          <mat-option value="Tunisia">Tunisia</mat-option>
+          <mat-option value="Turkey">Turkey</mat-option>
+          <mat-option value="Turkmenistan">Turkmenistan</mat-option>
+          <mat-option value="Turks & Caicos Is">Turks & Caicos Is</mat-option>
+          <mat-option value="Tuvalu">Tuvalu</mat-option>
+          <mat-option value="Uganda">Uganda</mat-option>
+          <mat-option value="United Kingdom">United Kingdom</mat-option>
+          <mat-option value="Ukraine">Ukraine</mat-option>
+          <mat-option value="United Arab Erimates">United Arab Emirates</mat-option>
+          <mat-option value="United States of America">United States of America</mat-option>
+          <mat-option value="Uraguay">Uruguay</mat-option>
+          <mat-option value="Uzbekistan">Uzbekistan</mat-option>
+          <mat-option value="Vanuatu">Vanuatu</mat-option>
+          <mat-option value="Vatican City State">Vatican City State</mat-option>
+          <mat-option value="Venezuela">Venezuela</mat-option>
+          <mat-option value="Vietnam">Vietnam</mat-option>
+          <mat-option value="Virgin Islands (Brit)">Virgin Islands (Brit)</mat-option>
+          <mat-option value="Virgin Islands (USA)">Virgin Islands (USA)</mat-option>
+          <mat-option value="Wake Island">Wake Island</mat-option>
+          <mat-option value="Wallis & Futana Is">Wallis & Futana Is</mat-option>
+          <mat-option value="Yemen">Yemen</mat-option>
+          <mat-option value="Zaire">Zaire</mat-option>
+          <mat-option value="Zambia">Zambia</mat-option>
+          <mat-option value="Zimbabwe">Zimbabwe</mat-option>
+      </mat-select>
+      <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="legacy" class="form-element">
+      <mat-icon matSuffix>person_pin_circle</mat-icon>
+      <mat-label>Region</mat-label>
+      <input matInput placeholder="Enter Your Region" formControlName="region">
+
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field appearance="legacy" class="form-element">
+      <mat-icon matSuffix>pin_drop</mat-icon>
+      <mat-label>Postal Code</mat-label>
+      <input type="number" matInput placeholder="Enter Your Postal Code" formControlName="postal_code">
+
+    </mat-form-field>
+  </p>
+
+
+  <p style="display: none;">
+    <mat-form-field appearance="outline" class="form-element">
+      <mat-icon matSuffix>add_location</mat-icon>
+      <mat-label>Latitude</mat-label>
+      <input matInput placeholder="Enter Latitude" formControlName="lat">
+
+    </mat-form-field>
+  </p>
+
+  <p style="display: none;">
+    <mat-form-field appearance="legacy" class="form-element">
+      <mat-icon matSuffix>add_location</mat-icon>
+      <mat-label>Longitude</mat-label>
+      <input matInput placeholder="Enter Longitude" formControlName="lng">
+
+    </mat-form-field>
+  </p>
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-icon matSuffix>monetization_on</mat-icon>
+        <mat-label>Minimum Price</mat-label>
+        <input  type="number" matInput placeholder="Enter the Minimum Price" formControlName="min_price">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-label>Logistic Services:</mat-label>
+        <mat-select formControlName="logistic_service">
+          <mat-option value="1">Enable</mat-option>
+          <mat-option value="0">Disable</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-label>Product Visibility:</mat-label>
+        <mat-select formControlName="product_visibility">
+          <mat-option value="1">Enable</mat-option>
+          <mat-option value="0">Disable</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <agm-map [latitude]="lat" [longitude]="lng"
+    (mapClick)="onChoseLocation($event)">
+      <agm-marker [latitude]="lat" [longitude]="lng"
+      *ngIf="locationChosen">
+
+      </agm-marker>
+
+    </agm-map>
+
+
+
+    <button class="btn-submit"(click)="onSubmit()" mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;">Submit</button>
+    <button mat-raised-button="warn" routerLink="/suppliers-list">Back</button>
+      
+
+
+
+
+   
+    
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

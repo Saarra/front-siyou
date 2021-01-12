@@ -1,0 +1,264 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link
+rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"  
+/>
+<div class="jumbotron" style="margin-top: 60px;">
+  <div class=" mainContainer shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="mx-4 my-4">
+      <!-- <button class="btn btn-primary mr-2">
+        <i class="fa fa-plus" aria-hidden="true"></i> Activate Membership card
+      </button>
+      <button class="btn btn-success">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+        Export Barcode
+      </button> -->
+      <button
+        color="primary"
+        class="topbuttons"
+        style="float: right; background-color: #303842; border-color: #303842; margin-bottom: 20px;" 
+        class="btn btn-primary"
+        routerLink="../../shop/add-new-member"
+      >
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        {{ "New-Member" | translate }}</button
+      ><br />
+
+      <mat-divider class="my-4"></mat-divider>
+      <!-- <mat-form-field>
+
+        
+        <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+
+      </mat-form-field>
+     -->
+
+      <form style="margin-bottom: 20px;">
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{"Member-Number-Card"|translate}}</mat-label>
+              <input matInput #card_num/>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{"Member-Surname" | translate}}</mat-label>
+              <input matInput #first_name />
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{"MemberName" | translate}}</mat-label>
+              <input matInput #last_name />
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{"Member-Phone" | translate}}</mat-label>
+              <input matInput #contact />
+            </mat-form-field>
+          </div>
+
+
+
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{"Level" | translate}}</mat-label>
+              <mat-select #level_id>
+                <mat-option value="0">--None</mat-option>
+
+                <mat-option *ngFor="let level of levelData" [value]="level.id">{{level.level}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{"Gender" | translate}}</mat-label>
+              <mat-select #gender>
+                <mat-option value="0">--None</mat-option>
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        
+
+          <div class="col">
+            <mat-form-field appearance="fill">
+              <mat-label>{{"Referrer-CardNumber" | translate}} </mat-label>
+              <input matInput  #card_id/>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+
+          </div>
+
+
+
+        </div>
+
+        
+
+        <div class="row my-3">
+          <div class="col">
+          <button class="btn btn-success mr-2" (click)="filterMemberList(card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+          gender.value, card_id.value)"><i class="fa fa-search" aria-hidden="true"></i>
+            {{"Inquire" | translate}}</button>
+          <button (click)="ResetForm()" class="btn btn-warning" style="color: white;"><i class="fa fa-trash-o" aria-hidden="true"></i>
+            {{"Reset" | translate}}</button>
+        </div>
+
+      </div>
+      </form>
+
+      <mat-divider style="margin-bottom: 30px;"></mat-divider>
+
+
+
+
+
+      <div class="mat-elevation-z8" style="margin-bottom: 70px;">
+        <p class="mx-2 my-2" style="padding-top: 10px;">
+          {{ "List-of-Members" | translate }}
+        </p>
+
+        <mat-divider style="width: 95%; margin-left: 5px;"></mat-divider>
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="memberName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "MemberName" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member">
+              {{ member.first_name }} {{ member.last_name }}
+            </td>
+            <!-- <td mat-cell *ngFor="let level of levelData" [value]="level.id"> {{level.level}} </td> -->
+          </ng-container>
+          <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Gender" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member">{{ member.gender }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="card_num">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Member-Number-Card" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member">{{ member.card_num }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Email" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member">{{ member.email }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Contact" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member">{{ member.contact }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="points">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Member-Points" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member" style="color: red;">
+              {{ member.points }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "date" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member">{{ member.created_at | date }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Member-Level" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member">
+              <span *ngIf="member.level" style="font-weight: bold;">
+                {{ member.level.level }}
+              </span>
+              <span *ngIf="!member.level">
+                ---
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- <mat-form-field appearance="fill" class="form-element">
+            <mat-label>Level Membership</mat-label>
+            <mat-select #level_id>
+              <mat-option *ngFor="let level of levelData" [value]="level.id"> {{level.level}} </mat-option>
+            </mat-select>
+          </mat-form-field> -->
+
+          <ng-container matColumnDef="level_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Member-Level" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member" style="font-weight: bold;">{{ member.level_id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="activate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{'activate' | translate}}
+            </th>
+            <td mat-cell *matCellDef="let member">
+               <button (click)="onActivateMember(member.id)" class="btn btn-success" matTooltip="Activate Member">
+                   
+                       {{'activate' | translate}}
+               </button>
+            </td>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let row">
+            <button  title="Edit this level" (click)="openEditLevelModal(row)" mat-icon-button ><i class="material-icons icon-green" style="color: darkcyan;">
+                create
+            </i>
+          </button>
+
+          <button title="Delete this level" (click)="openDeleteLevelModal(row)" mat-icon-button color="warn"><i class="material-icons">
+            delete_forever
+            </i></button>
+           
+            
+
+              
+            
+        </td>
+
+       
+        
+      </ng-container> -->
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

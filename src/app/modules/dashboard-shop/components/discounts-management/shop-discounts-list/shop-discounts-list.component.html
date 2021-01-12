@@ -1,0 +1,157 @@
+<div class=" rounded" style=" padding: 40px; margin-top: 100px; margin-bottom: 30px;margin-left: 20px;
+margin-right: 20px;">
+
+  <div class="row" style="float:right;margin-right: 1%;">
+    <button mat-raised-button style=" background-color:#003366;float:right;"
+      routerLink="/shop/affect-discount">{{"add-discount" | translate}}</button>
+  </div>
+  <br/><br/>
+  <div class="row" style="width: 100%;">
+    <form style="width: 100%;">
+      <mat-form-field appearance="standard" style="width:20%; margin-right: 2%;">
+        <mat-label>{{'Select-Chain' | translate}}</mat-label>
+        <mat-select #chain_id>
+          <mat-option value=0>--None--</mat-option>
+          <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" style=" width:20%; margin-right: 2%;">
+        <input matInput [matDatepicker]="dp2" [placeholder]="'Start-date' | translate" #start_date>
+        <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+        <mat-datepicker #dp2></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="standard" style=" width:20%; margin-right: 2%;">
+        <input matInput [matDatepicker]="dp1" [placeholder]="'End-date' | translate" #end_date>
+        <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+        <mat-datepicker #dp1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="standard" style=" width:20%; margin-right: 2%;">
+        <mat-label>{{'Select-discounttype' | translate}}</mat-label>
+        <mat-select #discount>
+          <mat-option value="">{{'None' | translate}}</mat-option>
+          <mat-option value="1">{{'Discount-Percent' | translate}}</mat-option>
+          <mat-option value="3">{{'Discount-Amount' | translate}}</mat-option>
+          <mat-option value="4"> {{'Discount-Fix-Price' | translate}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button style="width:12%;background-color:#003366;vertical-align: center"
+        (click)="onGetShopDiscountedList(chain_id.value,start_date.value,end_date.value,discount.value)">{{'Filter' | translate}}</button>
+
+    </form>
+
+    <table mat-table [dataSource]="dataSource" class="table1 " matSort>
+
+
+
+
+
+      <!-- Name Column -->
+
+
+      <ng-container matColumnDef="product_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Product-Name' | translate}}</th>
+        <td mat-cell *matCellDef="let element"> {{element.product_name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="product_barcode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Barcode' | translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.product_barcode}} </td>
+      </ng-container>
+
+
+      <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+      <ng-container matColumnDef="unit_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Unit-Price' | translate}} </th>
+        <td mat-cell *matCellDef="let element" class="pricetable1 disprice">
+
+          {{element.unit_price |currency:'EUR':'symbol' }}
+
+
+
+
+        </td>
+      </ng-container>
+
+      <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+      <ng-container matColumnDef="discount_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Discounted-Price' | translate}} </th>
+        <td mat-cell *matCellDef="let element" class="pricetable1"> {{element.discount_price |currency:'EUR':'symbol'}}
+        </td>
+      </ng-container>
+
+      <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+      <ng-container matColumnDef="discount_type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Discount-Type' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.discount[0].type}}
+        </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="start_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Start-date' | translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.product_discount.start_date | date}}
+
+
+        </td>
+      </ng-container>
+
+
+
+
+      <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+      <ng-container matColumnDef="finish_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'End-date' | translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.product_discount.finish_date | date}}
+
+
+
+
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Actions'| translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button routerLink="/shop/edit-discount/{{element.product_discount.id}}"><i
+              class="material-icons icon-green" style="color: #003366;">edit
+            </i>
+          </button>
+          <button mat-icon-button (click)="onDeleteDiscount(element.product_discount.id)"><i
+            class="material-icons icon-green" style="color: #003366;">delete
+          </i>
+        </button>
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <!-- <ng-container matColumnDef="details">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> More details </th>
+                    <td mat-cell *matCellDef="let element"> 
+              
+                      
+                      <button routerLink="/dashboard/product-details/{{element.id}}" title=""  matTooltip="Show product item full details" mat-icon-button><i
+                        class="material-icons icon-green" style="color: darkcyan;">
+                        view_headline
+                    </i>
+                     </button>
+              
+              
+                    </td>
+                  </ng-container> -->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+    <mat-paginator style="width: 100%;" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+  </div>
+
+</div>

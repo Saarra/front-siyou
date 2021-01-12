@@ -1,0 +1,362 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+    <div class="container" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Orders Received</h6>
+                        <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>486</span></h2>
+                        <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Total Funds</h6>
+                        <h2 class="text-right"><i class="fa fa-eur f-left" aria-hidden="true"></i><span>372</span></h2>
+                        <p class="m-b-0">Highest Fund<span class="f-right">€340</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Total Product Items</h6>
+                        <h2 class="text-right"><i class="fa fa-archive f-left" aria-hidden="true"></i><span>420</span></h2>
+                        <p class="m-b-0">Total Product Bases<span class="f-right">280</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-pink order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Total Revenues</h6>
+                        <h2 class="text-right"><i  class="fa fa-money f-left" aria-hidden="true"></i><span>720 000</span></h2>
+                        <p class="m-b-0">Highest Paid Order<span class="f-right">351</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- First charts row  -->
+
+
+    
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-card id="barChart">
+                <div style="display: block">
+                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                        [legend]="barChartLegend" [chartType]="barChartType">
+                    </canvas>
+                </div>
+            </mat-card>
+        </div>
+
+        <div class="col-md-6">
+            <mat-card id="pieChart">
+                <div class="chart">
+                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                        [colors]="pieChartColors" [legend]="pieChartLegend">
+                    </canvas>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- second cards row container -->
+
+
+    
+
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-blue">
+                <div class="inner">
+                    <h3> 17 </h3>
+                    <p> Sales Managers </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-green">
+                <div class="inner">
+                    <h3> €185358 </h3>
+                    <p> Total Products Price </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-money" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-orange">
+                <div class="inner">
+                    <h3> 54 </h3>
+                    <p> Pending Orders </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-red">
+                <div class="inner">
+                    <h3> 72 </h3>
+                    <p> Valid Orders </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-users"></i>
+                </div>
+                <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+ 
+</div>
+
+
+
+<div class="container">
+
+
+    <div class="container py-5">
+        <div class="row">
+      
+      
+          <div class="col-xl-3 col-lg-6 mb-4">
+            <div class="bg-white rounded-lg p-5 shadow">
+              <h2 class="h6 font-weight-bold text-center mb-4">Sales Increase</h2>
+      
+              <!-- Progress bar 1 -->
+              <div class="progress mx-auto" data-value='80'>
+                <span class="progress-left">
+                              <span class="progress-bar border-primary"></span>
+                </span>
+                <span class="progress-right">
+                              <span class="progress-bar border-primary"></span>
+                </span>
+                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                  <div class="h2 font-weight-bold">80<sup class="small">%</sup></div>
+                </div>
+              </div>
+              <!-- END -->
+      
+              <!-- Demo info -->
+              <div class="row text-center mt-4">
+                <div class="col-6 border-right">
+                  <div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
+                </div>
+                <div class="col-6">
+                  <div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
+                </div>
+              </div>
+              <!-- END -->
+            </div>
+          </div>
+      
+          <div class="col-xl-3 col-lg-6 mb-4">
+            <div class="bg-white rounded-lg p-5 shadow">
+              <h2 class="h6 font-weight-bold text-center mb-4">Invalid Orders </h2>
+      
+              <!-- Progress bar 2 -->
+              <div class="progress mx-auto" data-value='25'>
+                <span class="progress-left">
+                              <span class="progress-bar border-danger"></span>
+                </span>
+                <span class="progress-right">
+                              <span class="progress-bar border-danger"></span>
+                </span>
+                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                  <div class="h2 font-weight-bold">25<sup class="small">%</sup></div>
+                </div>
+              </div>
+              <!-- END -->
+      
+              <!-- Demo info-->
+              <div class="row text-center mt-4">
+                <div class="col-6 border-right">
+                  <div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
+                </div>
+                <div class="col-6">
+                  <div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
+                </div>
+              </div>
+              <!-- END -->
+            </div>
+          </div>
+      
+          <div class="col-xl-3 col-lg-6 mb-4">
+            <div class="bg-white rounded-lg p-5 shadow">
+              <h2 class="h6 font-weight-bold text-center mb-4">Valid Orders Percent</h2>
+      
+              <!-- Progress bar 3 -->
+              <div class="progress mx-auto" data-value='76'>
+                <span class="progress-left">
+                              <span class="progress-bar border-success"></span>
+                </span>
+                <span class="progress-right">
+                              <span class="progress-bar border-success"></span>
+                </span>
+                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                  <div class="h2 font-weight-bold">63<sup class="small">%</sup></div>
+                </div>
+              </div>
+              <!-- END -->
+      
+              <!-- Demo info -->
+              <div class="row text-center mt-4">
+                <div class="col-6 border-right">
+                  <div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
+                </div>
+                <div class="col-6">
+                  <div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
+                </div>
+              </div>
+              <!-- END -->
+            </div>
+          </div>
+      
+          <div class="col-xl-3 col-lg-6 mb-4">
+            <div class="bg-white rounded-lg p-5 shadow">
+              <h2 class="h6 font-weight-bold text-center mb-4">Paid Orders Percent</h2>
+      
+              <!-- Progress bar 4 -->
+              <div class="progress mx-auto" data-value='12'>
+                <span class="progress-left">
+                              <span class="progress-bar border-warning"></span>
+                </span>
+                <span class="progress-right">
+                              <span class="progress-bar border-warning"></span>
+                </span>
+                <div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                  <div class="h2 font-weight-bold">12<sup class="small">%</sup></div>
+                </div>
+              </div>
+              <!-- END -->
+      
+              <!-- Demo info -->
+              <div class="row text-center mt-4">
+                <div class="col-6 border-right">
+                  <div class="h4 font-weight-bold mb-0">28%</div><span class="small text-gray">Last week</span>
+                </div>
+                <div class="col-6">
+                  <div class="h4 font-weight-bold mb-0">60%</div><span class="small text-gray">Last month</span>
+                </div>
+              </div>
+              <!-- END -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+   
+</div>
+
+
+
+
+
+<!-- charts here  -->
+<!-- 
+<div class="container shadow-lg p-3 mb-5 bg-white rounded" >
+    <google-chart [type]="myType" [data]="myData" ></google-chart>
+
+</div>
+
+
+    -->
+
+    
+
+
+   
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+<div class="mainContainer">
+
+    
+
+    <mat-card class="statCards">
+        <img class="img" src="assets/svgs/people.svg" width="90" alt="people image" />
+        <span class="number">100</span>
+        <span class="desc">SalesManager Added this month</span>
+    </mat-card>
+    <mat-card class="statCards">
+        <img class="img" src="assets/svgs/orders.svg" width="90" alt="people image" />
+        <span class="number">60</span>
+        <span class="desc">Orders Passed this month</span>
+    </mat-card>
+    <mat-card class="statCards">
+        <img class="img" src="assets/svgs/products.svg" width="90" alt="people image" />
+        <span class="number">12</span>
+        <span class="desc">Products Added this month</span>
+    </mat-card>
+    <mat-card class="statCards">
+        <img class="img" src="assets/svgs/sale.svg" width="90" alt="people image" />
+        <span class="number">$2000</span>
+        <span class="desc">Sales this month</span>
+    </mat-card>
+    <mat-card id="barChart">
+        <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+    </mat-card>
+    <mat-card id="lineChart">
+        <div style="display: block;">
+            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+        </div>
+
+    </mat-card>
+    <mat-card id="pieChart">
+        <div class="chart">
+            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                [colors]="pieChartColors" [legend]="pieChartLegend">
+            </canvas>
+        </div>
+    </mat-card>
+</div>
+
+ -->

@@ -1,0 +1,99 @@
+  
+.container{
+    margin-top: 100px;
+    width:90%;
+    height: 90%;
+}
+.secondary-img img{
+    max-width: 80px;
+    max-height: 80px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+}
+ul{
+    padding-top: -10px;
+}
+.price{
+    color: red;
+}
+body {  
+    margin: 0;  
+    background: #e6e6e6;  
+}  
+.showSlide {  
+    display: none  
+}  
+    .showSlide img {  
+        width: 100%;  
+    }  
+.slidercontainer {  
+    max-width: 1000px;  
+    position: relative;  
+    margin: auto;  
+}  
+.left, .right {  
+    cursor: pointer;  
+    position: absolute;  
+    top: 50%;  
+    width: auto;  
+    padding: 16px;  
+    margin-top: -22px;  
+    color: white;  
+    font-weight: bold;  
+    font-size: 18px;  
+    transition: 0.6s ease;  
+    border-radius: 0 3px 3px 0;  
+}  
+.right {  
+    right: 0;  
+    border-radius: 3px 0 0 3px;  
+}  
+    .left:hover, .right:hover {  
+        background-color: rgba(115, 115, 115, 0.8);  
+    }  
+.content {  
+    color: #eff5d4;  
+    font-size: 30px;  
+    padding: 8px 12px;  
+    position: absolute;  
+    top: 10px;  
+    width: 100%;  
+    text-align: center;  
+}  
+.active {  
+    background-color: #717171;  
+}  
+.fade {  
+    -webkit-animation-name: fade;  
+    -webkit-animation-duration: 1.5s;  
+    animation-name: fade;  
+    animation-duration: 1.5s;  
+}  
+@-webkit-keyframes fade {  
+    from {  
+        opacity: .4  
+    }  
+    to {  
+        opacity: 1  
+    }  
+}  
+@keyframes fade {  
+    from {  
+        opacity: .4  
+    }  
+    to {  
+        opacity: 1  
+    }  
+}  
+ul{
+    list-style-type: none;
+}
+.dot {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .pr_name{
+      text-transform: capitalize;
+  }

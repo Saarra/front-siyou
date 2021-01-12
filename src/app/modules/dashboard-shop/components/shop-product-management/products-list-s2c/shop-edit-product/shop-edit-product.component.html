@@ -1,0 +1,180 @@
+<div class="mainContainer p-3 mb-5 bg-white rounded pb-8">
+
+  <div>
+    <div style="padding: 10px">
+      <h3 class="mb-8">{{'Product Informations' |translate}}</h3>
+
+      <form [formGroup]="form" class="form">
+        <div class="form-group">
+
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'Barcode'| translate}} <span style="color: red;">*</span></mat-label>
+            <input matInput [value]="currentProd.product_barcode" #product_barcode readonly>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'Product-Name'| translate}}<span style="color: red;">*</span></mat-label>
+            <input matInput [value]="currentProd.product_name" #product_name>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'goods-shelf-No.'| translate}}</mat-label>
+            <input matInput [value]="currentProd.range_id" #range_id>
+
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'Product-quantity'| translate}}</mat-label>
+            <input matInput [value]="currentProd.product_quantity" #product_quantity>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'Unit-Price'| translate}}<span style="color: red;">*</span></mat-label>
+            <input matInput [value]="currentProd.unit_price" #unit_price>
+
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'Cost-Price'| translate}}<span style="color: red;">*</span></mat-label>
+            <input matInput [value]="currentProd.cost_price" #cost_price>
+
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+
+          <mat-form-field appearance="legacy" class="example-full-width">
+            <mat-label>{{'Tax rate'|translate}} </mat-label>
+            <input matInput [value]="currentProd.tax_rate" #tax_rate>
+
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>{{'Expired date' | translate}}</mat-label>
+            <input matInput [matDatepicker]="dp" placeholder="{{'Expired date'|translate}}"
+              [value]="currentProd.expired_date" #expired_date formControlName="expired_date">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+
+          <mat-form-field appearance="legacy" class="form-element">
+            <mat-icon matSuffix> swap_horiz </mat-icon>
+            <mat-label>{{'warn_quant' | translate}}<span style="color: red;">*</span></mat-label>
+            <input matInput placeholder="Warning Quantity" [value]="currentProd.warn_quantity" #warn_quantity
+              formControlName="warn_quantity">
+
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+
+          <mat-form-field appearance="legacy" class="form-element">
+            <mat-label>{{'Supplier' | translate}}</mat-label>
+            <mat-select #supplier_id [value]="currentProd.supplier_id" formControlName="supplier_id">
+              <input matInput style="padding: 8px 8px 8px 8px;" type="search"
+                (input)="onSearchChange($event.target.value)">
+              <mat-option *ngFor="let supp of suppliers" [value]="supp.id"> {{supp.supplier_name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+
+          <mat-form-field class="example-full-width" appearance="outline" style="width: 85%;">
+            <mat-label>{{'Category' | translate}} <span style="color: red;">*</span></mat-label>
+            <input matInput #category_id [value]="categoryname" readonly>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="outline" style="display: none;">
+            <input matInput #category_id [value]="categoryId" formControlName="category_id" readonly>
+          </mat-form-field>
+          <button mat-raised-button style="background-color: #003366;float: right; vertical-align: center; margin-top: 4px;padding: 10px 10px 10px 10px;"
+            (click)="openChooseCategory()">
+            {{  "Choose-Category" | translate}}
+          </button>
+        </div>
+        <!-- <mat-form-field appearance="legacy" class="example-full-width" > 
+          <mat-label>{{'Choose-Category' | translate}} </mat-label>
+          <mat-select #category_id [value]="currentProd.category.id">
+            <mat-option [value]="66" selected>No Category</mat-option>
+            <mat-optgroup *ngFor="let category of categoryData" [label]="category.category_name" class="opt"
+              style="color:blue">
+              <mat-option *ngFor="let subcat of category.sub_categories" [value]="subcat.id">
+                <p *ngIf="translate.currentLang === 'English'">{{subcat.category_name }}</p>
+                <p *ngIf="translate.currentLang === 'Chinese'">{{subcat.category_cn }}</p>
+                <p *ngIf="translate.currentLang === 'Italian'">{{subcat.category_it }}</p>
+                <p *ngIf="translate.currentLang === 'Français'">{{subcat.category_fr }}</p>              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field> -->
+
+
+
+
+
+
+        <mat-form-field appearance="legacy" class="example-full-width">
+          <mat-label>{{chainName}}</mat-label>
+          <input matInput readonly #chain_id>
+
+        </mat-form-field>
+        <div class="uploadImage">
+          <label id="imageBtn">
+            <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+            <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}"
+              (click)="fileInput.click()">
+              <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+            </section>
+            <!-- </button> -->
+          </label>
+          <input class="none" #fileInput type="file" name="product_image" (change)="getFileChange($event)"
+            style="display: none;" />
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{'Product-image' | translate}}</mat-label>
+            <input matInput type="text" #resultInput readonly>
+          </mat-form-field>
+        </div>
+        <!-- <mat-form-field class="example-full-width" appearance="legacy" *ngIf="!catName">
+
+          <mat-select formControlName="category_id" #category_id>
+            <mat-option value="">-- None --</mat-option>
+            <mat-optgroup *ngFor="let category of catList" [label]="category.category_name">
+              <mat-option *ngFor="let subcat of category.sub_categories" [value]="subcat.id">
+                {{ subcat.category_name }}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+        </mat-form-field> -->
+        <!-- <mat-form-field class="example-full-width" appearance="legacy">
+
+          <mat-label>Choose Chain</mat-label>
+          <mat-select  #chain_id >
+            <mat-option value="">-- None --</mat-option>
+            <mat-option *ngFor="let chain of chainData" [value]="chain.id">
+              {{ chain.chain_name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+        <button mat-flat-button color="primary" style="margin-right: 1%;"
+          (click)="onUpdateProduct(product_name.value,cost_price.value,unit_price.value,range_id.value,tax_rate.value,product_quantity.value,category_id.value,supplier_id.value,warn_quantity.value,expired_date.value)">
+          {{'Update'|translate}} </button>
+        <button mat-stroked-button routerLink="/shop/products-list-s2c">
+          {{'Back' | translate}}</button>
+
+      </form>
+    </div>
+  </div>
+</div>

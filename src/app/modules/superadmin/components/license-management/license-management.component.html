@@ -1,0 +1,173 @@
+<div class="body">
+    <!-- <div style="float: right; text-align: right;">
+
+        <div>
+            <a class="myButton3" routerLink="/superadmin/add-license/">New Licence</a>
+        </div>
+    </div> -->
+    <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="getLicenseList()">view_headline</mat-icon>
+    <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="getLicense()"> view_module</mat-icon>
+    <div *ngIf="grid">
+        <div class="row">
+            <div class="col-md-4" *ngFor=" let licence of licenceData">
+                <div class="card">
+                    <div class="card__side card__side--back">
+                        <div class="card__cover">
+                            <h4 class="card__heading">
+                                <span class="card__heading-span">{{licence.shop_owner.first_name}}
+                                    {{licence.shop_owner.last_name}}</span>
+                            </h4>
+                        </div>
+                        <div class="card__details">
+                            <ul>
+                                <li>Max chains: {{licence.max_chains}}</li>
+                                <li>Max managers: {{licence.max_managers}}</li>
+                                <li>Max cashiers: {{licence.max_cachiers}}</li>
+                                <li>
+                                    <p style="font-size: 0.8rem;"> Start: {{licence.start_date}}</p>
+                                </li>
+                                <li>
+                                    <p style="font-size: 0.8rem;"> Finish: {{licence.finish_date}}</p>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div style="float: center; text-align: center;">
+                            <a routerLink="/superadmin/edit-license/{{licence.id}}" class="myButton">Edit</a>
+                            <a class="myButton2" (click)="onDeleteLicense(licence.id)">Delete </a>
+                        </div>
+                    </div>
+
+                    <div class="card__side card__side--front">
+                        <div class="card__theme">
+                            <div class="card__theme-box">
+                                <p class="card__subject">{{licence.shop_owner.email}}</p>
+                                <p class="card__title">{{licence.shop_owner.first_name}}
+                                    {{licence.shop_owner.last_name}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center pagination-sm">
+                <li class="page-item " [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a class="page-link" (click)="setPageFilter(1);getLicense(1)">{{'first'|
+                        translate}}</a>
+                </li>
+                <li class="page-item " [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a class="page-link" (click)="setPageFilter(pager.currentPage - 1);getLicense(page)">{{'previous'|
+                        translate}}</a>
+                </li>
+                <li class="page-item active" *ngFor="let page of pager.pages"
+                    [ngClass]="{active:pager.currentPage === page}">
+                    <a class="page-link" (click)="setPageFilter(page);getLicense(page)">{{page}}</a>
+                </li>
+                <li class="page-item " [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a class="page-link" (click)="setPageFilter(pager.currentPage + 1);getLicense(page)">{{'Next'|
+                        translate}}</a>
+                </li>
+                <li class="page-item " [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a class="page-link" (click)="setPageFilter(pager.totalPages);getLicense(page)">{{'last'|
+                        translate}}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+
+
+    <div *ngIf="list">
+        <mat-form-field>
+            <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" class="table1" matSort>
+            <ng-container matColumnDef="shop">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Shop </th>
+                <td mat-cell *matCellDef="let element"> {{element.shop_owner.first_name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="chains">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Chains </th>
+                <td mat-cell *matCellDef="let element"> {{element.max_chains}}</td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="cashiers">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Cashiers </th>
+                <td mat-cell *matCellDef="let element"> {{element.max_cachiers}} </td>
+            </ng-container>
+
+
+            <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+            <ng-container matColumnDef="managers">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Managers </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.max_managers}}
+
+
+                </td>
+            </ng-container>
+
+
+
+            <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+            <ng-container matColumnDef="operators">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Operators </th>
+                <td mat-cell *matCellDef="let element">
+
+                    {{element.country}}
+
+                </td>
+            </ng-container>
+
+
+            <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+            <ng-container matColumnDef="start_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Start Date </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.start_date}}
+
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="finish_date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Finish Date </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.finish_date}}
+
+                </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'More-details' | translate}} </th>
+                <td mat-cell *matCellDef="let element">
+                    <button routerLink="/superadmin/edit-license/{{element.shop_owner_id}}" title=""
+                        matTooltip="Show supplier full details" mat-icon-button><i class="material-icons icon-green"
+                            style="color: #003366;">
+                            edit
+                        </i>
+                    </button>
+                 
+                    <button mat-icon-button (click)="onDeleteLicense(element.id)"><i class="material-icons icon-green"
+                            style="color: #7e2a49be">delete
+                        </i>
+                    </button>
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+        </table>
+
+    </div>
+    <mat-paginator [pageSizeOptions]="[5,10, 20,100]" showFirstLastButtons></mat-paginator>
+
+</div>

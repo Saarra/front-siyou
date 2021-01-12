@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+  background-color: #003366;
+  font-size: 12px
+}
+
+.menu-list-item {
+  &.mat-list-item {
+    font-size: 12px;
+    font-family: arial;
+    display:flex ;
+    width:100%;
+    mat-icon {
+      color: white;
+    }
+    &.active {
+      background-color: rgb(84, 105, 155);
+    }
+    .mat-list-item-content {
+      width: 100%;
+    }
+    .itemName {
+      color: white;
+    }
+    .routeIcon {
+      color:white;
+      margin-right: 20px;
+    }
+  }
+}

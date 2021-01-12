@@ -1,0 +1,201 @@
+  
+@import "~@angular-mdc/theme/material";
+@keyframes hideCarousel {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes showCarousel {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  padding-top: 75px;
+  .carouselContainer {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    ngx-slick-carousel {
+      width: 95%;
+      button {
+        &.slick-arrow::before {
+          color: #FEA12F;
+        }
+      }
+      mat-card {
+        padding: 0px;
+        width: 95%;
+        .imageContainer {
+          margin-bottom: 5px;
+          img {
+            width: 100%;
+            max-width: 100%;
+            max-height: 100px;
+            object-fit: cover;
+          }
+        }
+        .description {
+          padding: 5px;
+        }
+      }
+    }
+    .imageCarousel {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-rows: auto;
+      gap: 1em;
+      &.showCarousel {
+        animation-name: showCarousel;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+      }
+      &.hideCarousel {
+        animation-name: hideCarousel;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+      }
+      mat-card {
+        padding: 0px;
+        .imageContainer {
+          margin-bottom: 5px;
+          img {
+            width: 100%;
+            max-width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+          }
+        }
+        .description {
+          padding: 5px;
+        }
+        .name {
+          padding: 5px;
+          justify-content: center;
+          color: aqua;
+        }
+        .actionContainer {
+          padding: 10px;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+        }
+      }
+    }
+    .indicators {
+      margin-top: 20px;
+      width: 85%;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: center;
+      column-gap: 1em;
+      align-items: center;
+      .circleIndicators {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .circle {
+          width: 10px;
+          height: 10px;
+          border: 1px solid black;
+          border-radius: 50%;
+          &:nth-child(odd) {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+          }
+          &:nth-child(even) {
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+          }
+        }
+      }
+    }
+  }
+  .productChoiceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    button {
+      align-self: flex-end;
+      margin-bottom: 30px;
+    }
+  }
+  .masonry-image-list {
+    @include mdc-image-list-masonry-columns(5);
+  }
+  @media (max-width: 1024px) {
+    .masonry-image-list {
+      @include mdc-image-list-masonry-columns(3);
+    }
+  }
+  @media (max-width: 599px) {
+    .masonry-image-list {
+      @include mdc-image-list-masonry-columns(2);
+    }
+  }
+  popper-content {
+    div {
+      background-color: white;
+      &.ngxp__inner.ng-star-inserted {
+        display: flex;
+        flex-direction: column;
+      }
+      &.ngxp__arrow {
+        background-color: unset;
+      }
+    }
+  }
+}
+.card{
+  cursor: pointer;
+}
+.carousel a{
+  color: white;
+}
+.card-img-top{
+  max-height: 100px;
+  max-width: 100px;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+ngx-slick-carousel button {
+  background-color: red;
+  color : green;
+}
+.slick-prev,
+.slick-next {
+  background: #4e36a8;
+  color: blue;
+}
+.car_card{
+  height: 350px;
+  min-height: 350px;
+}
+.nameContainer{
+  height: 10%;
+}
+.descContainer{
+  height: 30%;
+}
+.btnContainer{
+  height: 8%;
+}

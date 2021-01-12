@@ -1,0 +1,155 @@
+<div class=" rounded bgc">
+
+  <div class="row">
+    <div class="col">
+      <div class="card-box bg-red rounded-lg">
+        <div class="inner">
+          <h3>{{suppliersNum}}</h3>
+          <h5>{{"Supplier"| translate}}</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card-box bg-red rounded-lg ">
+        <div class="inner">
+          <h3>{{suppwebsite}}</h3>
+          <h5>{{"Supplier"| translate}}</h5>
+          <p>{{"Have-a-phone-number"| translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card-box bg-red rounded-lg ">
+        <div class="inner">
+          <h3>{{suppcontact}}</h3>
+          <h5>{{"Supplier"| translate}}</h5>
+          <p>{{"Have-an-email"| translate}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card-box bg-red rounded-lg ">
+        <div class="inner">
+          <h3>{{suppemail}}</h3>
+          <h5>{{"Supplier"| translate}}</h5>
+          <p>{{"Have-a-website"| translate}}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" mainContainer mb-5"
+    style="padding: 5%;">
+      
+      
+        <button mat-raised-button style="background-color: #7e2a49be; float:right;"
+       (click)="onChooseSupplier()" >
+        <i class="fa fa-plus" aria-hidden="true"></i>
+
+        {{ "Choose-Supplier" | translate}} </button>
+        <button mat-raised-button style="background-color: #003366; float:right;margin-right:2%;"
+        (click)="onexportAsExcelFile()" >
+         <i class="fa fa-plus" aria-hidden="true"></i>
+ 
+         {{ "Export-Excels" | translate}} </button>
+     
+      
+ 
+    <div>
+      <mat-form-field>
+        <mat-label>{{"search-supplier" | translate}}</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+      <table mat-table [dataSource]="dataSource" class="table1" matSort>
+        <ng-container matColumnDef="supplier_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Supplier-Name' | translate}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.supplier_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="company_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'company-name' | translate}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.company_name}}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Email' | translate}} </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+
+        <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+        <ng-container matColumnDef="phone_num1">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Phone-Number' | translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.contact}}
+
+
+          </td>
+        </ng-container>
+
+
+
+        <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+        <ng-container matColumnDef="country">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Country' | translate}} </th>
+          <td mat-cell *matCellDef="let element">
+
+            {{element.country}}
+
+          </td>
+        </ng-container>
+
+
+        <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+        <ng-container matColumnDef="tax_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Tax-ID' | translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.tax_id}}
+
+          </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'More-details' | translate}} </th>
+          <td mat-cell *matCellDef="let element">
+            <button routerLink="/shop/edit-supplier/{{element.id}}" title=""
+            matTooltip="Show supplier full details" mat-icon-button><i class="material-icons icon-green"
+              style="color: #003366;">
+              edit
+            </i>
+          </button>
+            <button routerLink="/shop/supplier-full-details/{{element.id}}" title=""
+              matTooltip="Show supplier full details" mat-icon-button><i class="material-icons icon-green"
+                style="color: #003366;">
+                view_headline
+              </i>
+            </button>
+            <button mat-icon-button (click)="onDeleteSupplier(element.id)"><i
+              class="material-icons icon-green" style="color: #7e2a49be">delete
+          </i>
+      </button>
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+</div>

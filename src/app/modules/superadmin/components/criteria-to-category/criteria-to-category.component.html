@@ -1,0 +1,96 @@
+<section class="mainContainer" style="margin-top: 70px; margin-bottom: 70px;">
+    <span>Categories with Criterias</span>
+    <button color="primary" class="topbuttons" style=" float:right; margin-top: 10px;margin-bottom: 10px;"
+        mat-raised-button (click)="openAddCriteriaToCategoryModal()">+ Append Criteria to Category
+        <!-- <i class="material-icons" style="margin-top: 10px;">
+        add
+    </i> -->
+    </button>
+
+    <table mat-table [dataSource]="category_criterias_List" mat-sort class="mat-elevation-z8" multiTemplateDataRows matSort>
+
+        <!-- Order Date Column -->
+        <ng-container matColumnDef="category_name">
+            <th mat-header-cell *matHeaderCellDef> Category Name </th>
+            <td mat-cell *matCellDef="let order">{{ order.category_name}}</td>
+        </ng-container>
+
+        <!-- Order Price Column -->
+        <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef> Date Created </th>
+            <td mat-cell *matCellDef="let order"> {{ order.created_at }} </td>
+        </ng-container>
+
+        <!-- Supplier Column -->
+        <ng-container matColumnDef="updated_at">
+            <th mat-header-cell *matHeaderCellDef> Last Update </th>
+            <td mat-cell *matCellDef="let order"> {{ order.updated_at }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="padding-left: 40px;">Expand</th>
+            <td mat-cell style="padding-left: 30px;" *matCellDef="let row">
+
+                <button mat-icon-button title="Show Units">
+                    <i class="material-icons icon-green" style="color: darkcyan;">expand_more</i>
+                </button>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+
+            <td mat-cell *matCellDef="let order" [attr.colspan]="orderDisplayedColumns.length">
+
+                <div class="example-element-detail"
+                    [@detailExpand]="order == expandedElement ? 'expanded' : 'collapsed'">
+
+                    <div class="orderProducts">
+
+                        <table class="mat-elevation-z8">
+                            <button style="align-items: right;" title="Add New Criteria Unit" mat-icon-button color="primary"><i
+                                    class="material-icons">
+                                    add_box
+                                </i>Append Criteria to this Category</button>
+
+
+
+                            <tr>
+                                <th style="margin-right: 35px; padding: 10px;">Criteria Name</th>
+                                <th style="margin-right: 15px; padding: 10px;">Date Created</th>
+                                <th style="margin-left: 15px; padding: 10px;">Last Update</th>
+                                <th style="margin-left: 15px; padding: 10px;">Actions</th>
+
+                            </tr>
+
+                            <tr *ngFor="let criteria of order.criteria_base">
+                                <td style="margin-right: 15px; padding: 10px;">{{criteria.name}}</td>
+                                <td style="margin-right: 15px; padding: 10px;">{{criteria.created_at}}</td>
+                                <td style="margin-left: 15px; padding: 10px;">{{criteria.updated_at}}</td>
+                                <td style="margin-left: 15px; padding: 10px;">
+
+
+                                    <button title="Remove this criteria"
+                                        (click)="openRemoveCriteriaFromCategoryModal(criteria, order)" mat-icon-button
+                                        color="warn"><i class="material-icons">
+                                            delete_forever
+                                        </i></button>
+
+                                </td>
+
+                            </tr>
+                        </table>
+
+
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="orderDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let order; columns: orderDisplayedColumns;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === order"
+            (click)="expandedElement = expandedElement === order ? null : order"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+</section>

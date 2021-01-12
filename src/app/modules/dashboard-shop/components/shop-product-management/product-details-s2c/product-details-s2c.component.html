@@ -1,0 +1,71 @@
+<div class="container shadow p-3 mb-2 bg-white rounded">
+
+
+  <p>{{'Product_details' | translate}}</p>
+
+  <div class="card mb-3" style="padding-top: 20px;">
+    <div class="row no-gutters">
+      <div class="col-md-4 main-img">
+        <img *ngFor="let mainimgg of currentProduct.images | slice:0:1" id="main-img"
+          [src]="mainimgg.image_url" class="card-img" alt="...">
+        <div class="row secondary-img no-gutters" id="secondary-img">
+          <div>
+            <img *ngFor="let secimgg of currentProduct.images | slice:0:4" id="sec-img" class="sec-img"
+              [src]="secimgg.image_url" alt="" (click)="setToMainImg(secimgg.image_url)">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title pr_name">{{currentProduct.product.product_name}} :</h5>
+
+          <p class="card-text" style="color: green;"><small class="text-muted" style="color: green;">{{"Product-barcode" | translate}} :
+              {{currentProduct.item_barcode}}</small></p>
+
+          <p class="card-text">{{currentProduct.product.product_description}}</p>
+          <p class="card-text" style="color: green;"><small class="text-muted" style="color: green;">{{"Product-Quantity" | translate}} :
+              {{currentProduct.item_quantity}}</small></p>
+
+          <h5 *ngIf="currentProduct.item_discount_price" class="card-title price"> <span
+              style="text-decoration: line-through; color: grey;">
+              {{currentProduct.item_offline_price |currency:'EUR':'symbol'}}</span> <span
+              class="ml-2">{{currentProduct.item_discount_price |currency:'EUR':'symbol'}}</span></h5>
+          <h5 *ngIf="!currentProduct.item_discount_price" class="card-title price">
+            {{currentProduct.item_offline_price |currency:'EUR':'symbol'}} </h5>
+
+
+          <div>
+            <div class="example-button-row mb-3">
+              <button class="btn btn-success"
+                (click)="openCartModal(currentProduct.id,  currentProduct.product.product_name, currentProduct.item_offline_price,currentProduct.item_discount_price, currentProduct.item_quantity, currentProduct.product.product_image_url, currentProduct.product.supplier.id, currentProduct.product.supplier.first_name, currentProduct.product.supplier.last_name, currentProduct.product.supplier.email, currentProduct.product.supplier.phone_num1 , currentProduct.product.supplier.logistic_service , currentProduct)">
+                <span class="mx-1">
+                  <i class="fa fa-cart-plus" aria-hidden="true"></i>
+
+                </span>
+                {{"Your basket"| translate}}</button>
+
+
+            </div>
+          </div>
+
+
+
+
+          <p>Specs:</p>
+          <ul>
+            <div *ngFor="let criteria of currentProduct.criteria_base">
+              <li *ngIf="CheckColor(criteria.name); else elseBlock">&#9679; {{'color'| translate}}: <span class="dot"
+                  [style.background-color]="criteria.pivot.criteria_value"></span>
+              </li>
+              <ng-template #elseBlock>&#9679; {{criteria.name}}: {{criteria.pivot.criteria_value}}</ng-template>
+
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

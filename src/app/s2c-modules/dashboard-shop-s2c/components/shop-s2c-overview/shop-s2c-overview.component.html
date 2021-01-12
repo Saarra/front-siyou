@@ -1,0 +1,45 @@
+<div class="mainContainer">
+    <mat-card class="statCards">
+        <img class="img" src="assets/svgs/people.svg" width="90" alt="people image" />
+        <span class="number">100</span>
+        <span class="desc">SalesManager Added this month</span>
+    </mat-card>
+    <mat-card class="statCards">
+        <img class="img" src="assets/svgs/orders.svg" width="90" alt="people image" />
+        <span class="number">60</span>
+        <span class="desc">Orders Passed this month</span>
+    </mat-card>
+    <mat-card class="statCards">
+        <img class="img" src="assets/svgs/products.svg" width="90" alt="people image" />
+        <span class="number">12</span>
+        <span class="desc">Products Added this month</span>
+    </mat-card>
+    <mat-card class="statCards">
+        <img class="img" src="assets/svgs/sale.svg" width="90" alt="people image" />
+        <span class="number">$2000</span>
+        <span class="desc">Sales this month</span>
+    </mat-card>
+    <mat-card id="barChart">
+        <div style="display: block">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+    </mat-card>
+    <mat-card id="lineChart">
+        <div style="display: block;">
+            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+        </div>
+
+    </mat-card>
+    <mat-card id="pieChart">
+        <div class="chart">
+            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                [colors]="pieChartColors" [legend]="pieChartLegend">
+            </canvas>
+        </div>
+    </mat-card>
+</div>

@@ -1,0 +1,279 @@
+
+
+
+.container {
+	width: 100%;
+	height: 100%;
+	padding-top: 30%;
+    padding-left: 10%;
+
+}
+.email-input {
+	display: inline-block;
+
+	font-size: 1.15rem;
+	width: 100%;
+	padding: .5rem 1rem;
+	border: 2px solid transparent;
+	outline: none;
+	border-radius: 1.5rem;
+	border-color:#989ba0;
+	letter-spacing: 1px;
+  }
+  
+  .text-field-position {
+  position: relative;
+  }
+  
+  .text-field-position span {
+  position: absolute;
+  right: 1em;
+  top: 0;
+  bottom: 0;
+  line-height: 40px;
+  }
+.navbar {
+	padding: 2rem 1rem !important ;
+
+}
+.full-width-field {
+	width: 100%;
+ }
+.row{
+    width: 100%;
+}
+.first {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20%;
+
+}
+li {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.bg>.nav-link {
+    white-space: nowrap;
+    text-align: left;
+    font-size: 22px;
+    font-family: Helvetica Neue;
+    font-style: normal;
+    font-weight: normal;
+    color: rgba(153,153,153,1);
+}
+
+body {
+	background-color: #e9e9e9;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	line-height: 1.25;
+	letter-spacing: 1px;
+}
+
+
+
+.login-container {
+	display: block;
+	position: absolute;
+	z-index: 0;
+	margin: 2rem auto 2rem;
+    padding: 4rem 2rem 4rem 2rem;
+	width: 100%;
+	max-width: 550px;
+	min-height: 600px;
+} 
+
+
+.login-container:after {
+	content: '';
+	border-radius:3rem;
+	display: inline-block;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+    box-shadow: 0 0px 50px 0px rgba(161, 161, 161, 0.5);
+}
+
+.form-login {
+	position: relative;
+	z-index: 1;
+}
+
+.login-nav {
+	position: relative;
+	padding: 0;
+	margin: 0rem 0rem 2rem 0rem;
+}
+
+.login-nav__item {
+	list-style: none;
+	display: inline-block;
+	font-size: 14px;
+
+	
+}
+
+.login-nav__item + .login-nav__item {
+	margin-left: 1.25rem;
+	    font-size: 14px;
+
+}
+
+.login-nav__item a {
+	position: relative;
+	color:#989ba0;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: 500;
+	font-size: 0.95rem;
+	padding-bottom: .5rem;
+	transition: .20s all ease;
+
+}
+
+.login-nav__item.active a,
+.login-nav__item a:hover{
+	color:#D90D1E;
+	transition: .15s all ease;
+}
+
+.login-nav__item a:after {
+	content: '';
+  display: inline-block;
+  height: 10px;
+  background-color: #D90D1E;
+    position: absolute;
+  right: 100%;
+  bottom: -1px;
+  left: 0;
+  border-radius: 50%;
+  transition: .15s all ease;
+}
+
+.login-nav__item a:hover:after,
+.login-nav__item.active a:after{
+	color:#989ba0;
+	height: 2px;
+	right: 0;
+	bottom: 2px;
+	border-radius: 0;
+	transition: .20s all ease;
+}
+.login__label {
+	display: block;
+	padding-left: 1rem;
+}
+
+.login__label,
+.login__label--checkbox {
+	color:#989ba0;
+	text-transform: uppercase;
+	font-size: .75rem;
+	margin-bottom: 1rem;
+}
+
+.login__label--checkbox {
+	display: inline-block;
+	position: relative;
+	padding-left: 1.5rem;
+	margin-top: 2rem;
+	margin-left: 1rem;
+	color:#989ba0;
+	font-size: .75rem;
+	text-transform: inherit;
+}
+
+.login__input {
+	font-size: 1.15rem;
+	width: 100%;
+	padding: .5rem 1rem;
+	border: 2px solid transparent;
+	outline: none;
+	border-radius: 1.5rem;
+	border-color:#989ba0;
+	letter-spacing: 1px;
+}
+
+.login__input:hover,
+.login__input:focus{
+	color:#989ba0;
+	border: 2px solid #989ba0;
+	;
+	background-color: transparent;
+}
+
+.login__input + .login__label {
+	margin-top: 1.5rem;
+}
+
+.login__input--checkbox {
+	position: absolute;
+	top: .1rem;
+	left: 0;
+	margin: 0;
+}
+
+.login__submit {
+	
+	color: #ffffff;
+	font-size: 1rem;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-top: 3rem;
+	padding: .75rem;
+	border-radius: 2rem;
+	display: block;
+	width: 100%;
+	background-color:#989ba0;
+	border: none;
+	cursor: pointer;
+}
+
+.login__submit:hover {
+	background-color: #003cb4;
+}
+
+.login__forgot {
+	display: block;
+	margin-top: 3rem;
+	text-align: center;
+	color: #989ba0;
+	font-size: 14px;
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+}
+
+.login__forgot:hover {
+	color: #003cb4;
+}
+.phone{
+	margin-top: 5%;
+}
+.email{
+	margin-top: 5%;
+}
+
+.login__submit_si {
+	
+	color: #ffffff;
+	font-size: 1rem;
+	font-family: 'Montserrat', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-top: 0.5rem;
+	padding: .75rem;
+	border-radius: 2rem;
+	display: block;
+	width: 100%;
+	background-color:#003cb4;
+	border: none;
+	cursor: pointer;
+}
+.login__submit:hover {
+	background-color: #989ba0;
+}

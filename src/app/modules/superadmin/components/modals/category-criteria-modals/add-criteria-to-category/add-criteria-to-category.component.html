@@ -1,0 +1,34 @@
+<h3>Append Criterias to Category:</h3>
+<hr>
+<!-- <p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name:</mat-label>
+    <input matInput placeholder="Enter Category Name" #category_name>
+  </mat-form-field>
+</p> -->
+<mat-form-field appearance="fill" style="margin-top: 20px;">
+  <mat-label>Select Category</mat-label >
+  <mat-select #category_id>
+    <!-- <mat-option [value]="getNullValue()">None</mat-option> -->
+    <div *ngFor="let cat of categoryList">
+        <mat-option *ngFor="let sub of cat.sub_categories"  [value]="sub.id" >{{sub.category_name}}</mat-option>
+
+    </div>
+  </mat-select>
+  <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+</mat-form-field>
+<br>
+
+<mat-form-field appearance="fill">
+    <mat-label>Select Criterias</mat-label >
+    <mat-select #criteria_ids multiple>
+      <!-- <mat-option [value]="getNullValue()">None</mat-option> -->
+      <mat-option *ngFor="let criteria of criteriaList"  [value]="criteria.id" >{{criteria.name}}</mat-option>
+    </mat-select>
+    <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+  </mat-form-field>
+<br>
+
+<button mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;"
+(click)="onaddCriteriaToCategory(category_id.value, criteria_ids.value )">Submit</button>
+<button mat-raised-button mat-dialog-close>Close</button>

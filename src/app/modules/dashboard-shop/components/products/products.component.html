@@ -1,0 +1,110 @@
+<section class="mainContainer">
+
+    <section class="filterContainer" *ngIf="!mobileQuery.matches">
+        <!-- <span>Filter By</span> -->
+        <form class="filterMetrics" [formGroup]="filterForm">
+            <div class="categories">
+                <span>{{'Categories' | translate}}</span>
+                <mat-form-field appearance="outline" style="width: 100%; margin-top: 10px;">
+                    <mat-label>{{'Choose-Category' | translate}}</mat-label>
+                    <mat-select formControlName="category">
+                        <mat-option value="">-- None --</mat-option>
+                        <mat-optgroup *ngFor="let category of categoryData" [label]="category.category_name">
+                            <mat-option *ngFor="let subcat of category.sub_categories" [value]="subcat.id">
+                                {{ subcat.category_name }}
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="supplier">
+                <span>{{'Supplier' | translate}}</span>
+                <mat-form-field appearance="outline" style="width: 100%; margin-top: 10px;">
+                    <mat-label>{{'Choose-Supplier' | translate}}</mat-label>
+                    <mat-select formControlName="supplier">
+                        <mat-option value="">-- None --</mat-option>
+                        <mat-option *ngFor="let supplier of supplierList" [value]="supplier.id">
+                            {{ supplier.first_name }}
+                            {{ supplier.last_name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- <div class="price">
+                <span>Price</span>
+                <ion-range id="dual-range" min="1000" max="2000" dual-knobs pin color="dark">
+                    <ion-icon slot="start" size="small" name="cash"></ion-icon>
+                    <ion-icon slot="end" name="cash"></ion-icon>
+                </ion-range>
+            </div> -->
+            <!-- <ion-button>Default</ion-button> -->
+            <mat-spinner [ngStyle]="{'display':'none'}" diameter="25" id="productSearchSpinner"></mat-spinner>
+            <!-- <button mat-raised-button>Search</button> -->
+            <!-- <div class="barcode">
+                <span>Barcode</span>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Please insert email" type="Email">
+                    <mat-icon *ngIf="!isSearch" (click)="searchSalesManagerByEmail()" matSuffix id="searchIcon">search</mat-icon>
+                    <mat-spinner *ngIf="isSearch" [diameter]="25" id="loadingSpinner" matSuffix #loadingSpinner>
+                    </mat-spinner>
+                </mat-form-field>
+            </div> -->
+        </form>
+    </section>
+    <section *ngIf="productList.length" class="productsContainer">
+        <!-- <cdk-virtual-scroll-viewport style="height: 100vh;" autosize> -->
+            <mat-card *ngFor="let product of productList, let index = index">
+                <div class="actionsContainer">
+                    <span class="spanPackageProduct" #spanProd>{{ '+ ' + product.product_package }}</span>
+                    <mat-icon style="color: coral; align-self: flex-end;" matTooltip="add to favorite">favorite_border
+                    </mat-icon>
+                    <mat-icon matTooltip="add to Basket" id="addProductIcon"
+                        (click)="addProductToBasket(product, index)" style="color: #41a8c5;"> add_circle</mat-icon>
+                </div>
+
+                <div class="imageContainer"
+                    [ngStyle]="{'background': 'url(' + getProductImage(product) + ')', 'background-position': 'center', 'background-size': 'contain', 'background-repeat': 'no-repeat'}">
+                </div>
+                <mat-card-content>
+                    <div class="product_name" style="color: #41a8c5;">
+                        {{ product.product_name}}
+                    </div>
+                    <div class="product_name">
+                        Barcode: {{ product.taxe_rate }}
+                    </div>
+                    <div class="description">
+                        {{ mobileQuery.matches ? ((product.product_description | slice: 0:20 ) + '...') : product.product_description.length > 50 ? ((product.product_description | slice: 0:50 ) + '...') : product.product_description }}
+                    </div>
+                    <div class="containerInfos">
+                        <div class="quantity">
+                            Packet: {{ product.product_box }}/{{ product.product_package }} Stock:
+                            {{ product.quantity }}
+                        </div>
+                        <div class="product_price" style="color: #ff0000;">
+                            {{ product.taxe_rate |currency }}
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        <!-- </cdk-virtual-scroll-viewport> -->
+    </section>
+
+    <!-- <section class="noData" *ngIf="!productList.length" style="background: url('assets/svgs/no_data.svg');"></section> -->
+    <section class="noDataFoundSection" *ngIf="!productList.length">
+        <mat-icon width="unset" height="unset" id="noDataImage" svgIcon="noData"></mat-icon>
+        <span>{{'No-Data-Found' | translate}}</span>
+    </section>
+
+    <!-- </div> -->
+    <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" id="fabFilterBtn" *ngIf="mobileQuery.matches"
+        style=" position: fixed; bottom: 24px; right: 24px;" (click)="openFilterProductModal()">
+        <ion-fab-button>
+            <mat-icon>filter_list</mat-icon>
+        </ion-fab-button>
+    </ion-fab> -->
+</section>
+<button mat-fab color="primary" id="fabFilterBtn" *ngIf="mobileQuery.matches"
+    style="position:fixed; bottom: 24px; right: 24px; z-index: 100;" (click)="openFilterProductModal()">
+    <mat-icon>filter_list</mat-icon>
+</button>

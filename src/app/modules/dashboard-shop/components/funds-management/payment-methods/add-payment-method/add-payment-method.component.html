@@ -1,0 +1,27 @@
+<div class="example-container">
+    <form>
+        <mat-form-field appearance="standard"  class="example-full-width">
+          <input matInput #name [placeholder]="'Payment-Method-Name' | translate" >
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="standard"  class="example-full-width">
+          <input matInput #days type="number" [placeholder]="'Days'| translate" >
+          <mat-icon matSuffix>mode_edit</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard"  class="example-full-width">
+          <mat-label>{{'Chain' | translate}}</mat-label>
+          <mat-select #chain_id>
+            <mat-option value=0 selected>None</mat-option>
+            <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    <!-- onAddPayment(name.value,days.value,chain_id.value) -->
+        <button mat-raised-button style="background-color:#730E33;margin-right: 2%;" (click)="onAddPayment(name.value,days.value,chain_id.value)">{{"Submit" | translate}}</button>
+        <button mat-raised-button style="background-color:gray" (click)="cancel()">{{"Cancel" | translate}}</button>
+
+        
+      </form>
+
+</div>

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Supplier: {{user_data.row.first_name}} {{user_data.row.last_name}}</h1>
+<div mat-dialog-content>
+  <p>Update commission percent of this supplier:</p>
+ 
+  
+</div>
+<form>
+<mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Commission Percent (%)</mat-label>
+    <textarea style="border-color: 0099ff;" matInput placeholder="Enter Commission Percent" #commission>{{user_data.row.siyoucommissions.commission_percent}}</textarea>
+  </mat-form-field>
+<div mat-dialog-actions>
+  <button  style="background-color: #0099ff; color: azure;"  mat-button (click)="OnUpdateCommissionToSupplier(user_data.row.id, commission.value)">Validate</button>
+  <button  mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Close</button>
+</div>
+</form>
+

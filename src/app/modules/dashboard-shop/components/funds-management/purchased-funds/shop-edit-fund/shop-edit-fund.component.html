@@ -1,0 +1,73 @@
+<div class="mainContainer shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="my-2 mx-2">
+        <form action="" [formGroup]="form" >
+            <mat-form-field appearance="outline"  >
+                <mat-label>{{'Amount'|translate}}</mat-label>
+                <input matInput type="number" [value]="current.amount" #amount>
+            </mat-form-field>
+            <br/>
+            <mat-form-field appearance="outline" >
+                <mat-label>{{'Supplier'|translate}}</mat-label>
+                <mat-select #supplier_id [value]="current.supplier_id">
+                    <mat-option value=0 selected>{{'None'|translate}}</mat-option>
+                    <mat-option *ngFor="let supp of suppliersData" [value]="supp.id">
+                        {{supp.supplier_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" >
+                <mat-label>{{'Select-Chain' | translate}}</mat-label>
+                <mat-select #chain_id  [value]="current.chain_id">
+                    <mat-option value=0>--{{'None'|translate}}--</mat-option>
+                    <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>{{'Payment-method'| translate}}</mat-label> 
+                <mat-select #payment_method_id [value]="current.payment_method_id">
+                    <mat-option value=0>--{{'None'|translate}}--</mat-option>
+                    <mat-option *ngFor="let pay of paymentData" [value]="pay.id">{{pay.name}} - {{pay.days}} Days
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>{{'Start-date'|translate}}</mat-label>
+                <input matInput #start_date type="date" [value]="current.start_date">
+            </mat-form-field>   
+             <br>
+            <div class="uploadImage">
+            
+                <input class="none" #fileInputImg type="file" (change)="getFileChange($event)" style="display: none;" />
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>{{'Upload image'|translate}}</mat-label>
+                    <input matInput type="text" #resultInput readonly>
+                </mat-form-field>
+                <label id="imageBtn">
+                    <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+                    <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}"
+                        (click)="fileInputImg.click()">
+                        <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+                    </section>
+                    <!-- </button> -->
+                </label>
+            </div>
+            <br>
+            <mat-form-field appearance="outline"  >
+                <mat-label>{{'Status'|translate}}</mat-label>
+                <mat-select #status [value]="current.status">
+                    <mat-option value="paid">{{'Paid'|translate}}</mat-option>
+                    <mat-option value="not paid">{{'Not paid'|translate}}</mat-option>
+                    <mat-option value="cancelled">{{'Cancel'|translate}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <button class="btn btn-primary" 
+                      (click)="onUpdateFunds(amount.value,supplier_id.value,chain_id.value,payment_method_id.value,start_date.value,status.value)">{{'Submit' | translate}}</button>
+                      <button class="btn btn-secondary"  routerLink="/shop/purchased-funds">
+                        {{'Back' | translate}}</button>
+        </form>
+    </div>
+</div>

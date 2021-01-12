@@ -1,0 +1,15 @@
+<h3>Add a new Criteria Unit:</h3>
+<hr>
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Criteria Unit Name:</mat-label>
+    <input matInput placeholder="{{currentCriteriaUnit.unit_name}}" #unit>
+    
+  </mat-form-field>
+</p>
+
+<br>
+
+<button mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;"
+(click)="onEditCriteriaUnit(currentCriteriaUnit.id, unit.value)">Submit</button>
+<button mat-raised-button mat-dialog-close>Close</button>

@@ -1,0 +1,206 @@
+<div class="main-content" style="width: 100%; margin-top: 150px; margin-bottom: 70px;">
+
+    <div class="container" style="width: 100%;">
+        <div class="row" style="width: 100%;">
+
+            <div class="col-xl-12 m-auto order-xl-1">
+                <div class="card bg-secondary shadow">
+                    <div class="card-header bg-white border-0">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">{{'Profile-Informations' | translate}}</h3>
+                            </div>
+                            <div class="col-4 text-right">
+
+
+
+                                <a class="btn btn-sm btn-primary" routerLink="/shop/my-account"><i
+                                        class="fa fa-user fa-fw"></i>
+                                    {{'Edit Profile' | translate}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form>
+
+                            <h6 class="heading-small text-muted mb-4">{{'User-information' | translate}}</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-username"><i class="fa fa-user"
+                                                    aria-hidden="true"></i>
+                                                {{'First-Name' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{user.first_name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-email"><i class="fa fa-user"
+                                                    aria-hidden="true"></i>
+                                                {{'Last-Name' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{user.last_name}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-first-name"><i
+                                                    class="fa fa-envelope" aria-hidden="true"></i>
+                                                {{'Email-address' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{user.email}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-last-name"><i
+                                                    class="fa fa-phone" aria-hidden="true"></i>
+                                                {{'Contact' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{user.contact}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                            <h6 class="heading-small text-muted mb-4">
+                                {{'Contact-Information' | translate}}</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-address"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+
+                                                {{'Address' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{user.billing_address_1}}</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-country"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+                                                {{'Country' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{user.billing_city}}</p>
+
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-city"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+                                                {{'City' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{user.billing_country}}</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-country"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+
+                                                {{'Postal-code' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{user.billing_postal_code}}</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4" *ngIf="user.role_id==1">
+
+
+                            <h6 class="heading-small text-muted mb-4" *ngIf="user.role_id==1">
+                                {{'Licence Information'  | translate}}</h6>
+                            <div class="pl-lg-4" *ngIf="user.role_id==1">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-address"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+
+                                                {{'Maximum managers' | translate }}</label>
+                                            <p style="font-weight: bold;"> {{licence.max_managers}}</p>
+
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-md-3">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-city"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+                                                {{'Maximum cashiers' | translate }}</label>
+                                            <p style="font-weight: bold;"> {{licence.max_cachiers}}</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group focused">
+                                            <label class="form-control-label" for="input-country"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+                                                {{'Maximum chains' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{licence.max_chains}}</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-country"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+
+                                                {{'Maximum Operators' | translate }}</label>
+                                            <p style="font-weight: bold;"> {{licence.max_operators}}</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-country"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+
+                                                {{'Start date' | translate }}</label>
+                                            <p style="font-weight: bold;"> {{licence.start_date}}</p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="input-country"><i class="fa fa-globe"
+                                                    aria-hidden="true"></i>
+
+                                                {{'End date' | translate}}</label>
+                                            <p style="font-weight: bold;"> {{licence.finish_date}}</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4" >
+                            <h6 class="heading-small text-muted mb-4">{{'Social-Media' | translate}}</h6>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-country"><i class="fa fa-google"
+                                            aria-hidden="true"></i>
+                                        {{'Google-Account' | translate}}</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-country"><i
+                                            class="fa fa-facebook-official" aria-hidden="true"></i>
+                                        {{'Facebook-Account' | translate}}</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

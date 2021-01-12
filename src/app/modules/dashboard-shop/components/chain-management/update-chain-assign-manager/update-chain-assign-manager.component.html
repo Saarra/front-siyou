@@ -1,0 +1,24 @@
+<form>
+
+
+    <h4>Update Manager of {{currentChain.chain_name}}</h4>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Select Manager</mat-label>
+        <mat-select #manager_id>
+          <mat-option *ngFor="let manager of managersData"  [value]="manager.id">{{manager.email}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+    <div style="margin-top: 30px;">
+        <button mat-raised-button color="primary" style="margin-right:10px" (click)="submit(currentChain.id, manager_id.value)">Submit</button>
+        <button mat-raised-button mat-dialog-close>Close</button>
+
+    </div>
+    
+
+
+
+</form>    
+  

@@ -1,0 +1,14 @@
+    <div class="rounded bgc">
+        <div class="rounded ">
+            <div class="row">
+                <div class="img col-md-3" *ngFor="let item of imgData">
+                    <a class="remove-image" (click)="onDelete(item.id)" style="display: inline;">&#215;</a>
+
+
+                    <img src={{item.img_url}}>
+                    <span>{{item.width}}px * {{item.height}}px</span>
+                </div>
+
+            </div>
+        </div>
+    </div>

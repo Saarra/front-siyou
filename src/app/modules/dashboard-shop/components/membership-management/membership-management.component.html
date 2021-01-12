@@ -1,0 +1,301 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link
+rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"  
+/>
+<div class="jumbotron" style="margin-top: 80px;">
+  <div class="mainContainer p-3 mb-5 bg-white rounded">
+    <div class="mx-4 my-4">
+      <button mat-raised-button style=" background-color:#003366;margin-right: 10px;" routerLink="/shop/invalid-members">
+        <i class="fa fa-plus" aria-hidden="true"></i> {{"activate_membership" | translate}}
+      </button>
+        <button mat-raised-button style=" background-color:#003366;margin-right: 10px;" (click)="openGenerateBarcodeModal()">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+        {{"export_barcode" | translate}}
+      </button>
+      <button mat-raised-button style=" background-color:#003366;" (click)="zaama()">
+        <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+        {{"Export Members"| translate}}
+      </button>
+      <button mat-raised-button style=" background-color:#730E33;margin-right: 10px;float: right; "
+        routerLink="../../shop/add-new-member"
+      >
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        {{ "New-Member" | translate }}</button
+      ><br />
+
+      <mat-divider class="my-4"></mat-divider>
+
+
+      <!-- Hidden For Export Excel -->
+
+      <table hidden>
+        <tr>
+          <td>Eid</td>
+          <td>Ename</td>
+          <td>Esal</td>
+        </tr>
+        <tr *ngFor="let item of data">
+          <td>{{item.eid}}</td>
+          <td>{{item.ename}}</td>
+          <td>{{item.esal}}</td>
+        </tr>
+       </table>
+
+      <!-- <mat-form-field>
+
+        
+        <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+
+      </mat-form-field>
+     -->
+
+      <form style="margin-bottom: 20px;">
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="legacy">
+              <mat-label>{{"Number-Card" | translate}}</mat-label>
+              <input matInput #card_num/>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="legacy">
+              <mat-label>{{"Member-Surname" |translate}}</mat-label>
+              <input matInput #first_name />
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="legacy">
+              <mat-label>{{"MemberName" |translate}}</mat-label>
+              <input matInput #last_name />
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="legacy">
+              <mat-label>{{"Member-Phone" |translate}}</mat-label>
+              <input matInput #contact />
+            </mat-form-field>
+          </div>
+
+
+
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field appearance="legacy">
+              <mat-label>{{"Level" |translate}}</mat-label>
+              <mat-select #level_id>
+                <mat-option value="0">{{"none" | translate}}</mat-option>
+
+                <mat-option *ngFor="let level of levelData" [value]="level.id">{{level.level}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="legacy">
+              <mat-label>{{"Gender" |translate}}</mat-label>
+              <mat-select #gender>
+                <mat-option value="0">{{'none' |translate}}</mat-option>
+                <mat-option value="Male">{{'male' | translate}}</mat-option>
+                <mat-option value="Female">{{'female' |translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="legacy">
+              <mat-label>{{"Status" | translate}}</mat-label>
+              <mat-select #status>
+                <mat-option value="2">{{'none' |translate}}</mat-option>
+                <mat-option value="1">{{'Activated' |translate}}</mat-option>
+                <mat-option value="0">{{'Not activated' |translate}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="legacy">
+              <mat-label>{{"Referrer-CardNumber" | translate}}  </mat-label>
+              <input matInput  #card_id/>
+            </mat-form-field>
+          </div>
+
+
+
+        </div>
+
+        
+
+        <div class="row my-3">
+          <div class="col">
+          <button mat-raised-button style=" background-color:#003366;margin-right: 10px;float: right; " (click)="filterMemberList(page,card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+          gender.value, status.value, card_id.value)"><i class="fa fa-search" aria-hidden="true"></i>
+            {{"Inquire" | translate}}</button>
+          <button (click)="ResetForm()" mat-raised-button style=" background-color:#730E33;margin-right: 10px;float: right; "><i class="fa fa-trash-o" aria-hidden="true"></i>
+            {{"Reset" | translate}}</button>
+        </div>
+
+      </div>
+      </form>
+
+
+
+
+
+      <div style="margin-bottom: 70px;">
+        <p class="mx-2 my-2" style="padding-top: 10px;">
+          {{ "List-of-Members" | translate }}
+        </p>
+
+        <mat-divider style="width: 100%; margin-left: 5px;"></mat-divider>
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="memberName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >
+              {{ "Name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member"  >
+              {{ member.first_name }} {{ member.last_name }}
+            </td>
+            <!-- <td mat-cell *ngFor="let level of levelData" [value]="level.id"> {{level.level}} </td> -->
+          </ng-container>
+        
+
+          <ng-container matColumnDef="card_num">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >
+              {{ "Number-Card" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member" >{{ member.card_num }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >
+              {{ "Email" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member" >{{ member.email }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="contact">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Contact" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member" >{{ member.contact }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="points" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Member-Points" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member" style="color:red;">
+              {{ member.points }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Status" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member" >
+              <p style="color: red" *ngIf="member.is_active == 1 ">
+                <svg height="14" width="14" >
+                    <circle cx="7" cy="7" r="7" class="red-svg" />
+                </svg></p>
+            <p style="color: green" *ngIf="member.is_active == 0 "><svg height="14"
+                    width="14">
+                    <circle cx="7" cy="7" r="7" class="green-svg" />
+                </svg> </p>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ "Member-Level" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let member" >
+                {{ member.level.level }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="actions" >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>  {{ "actions" | translate }}</th>
+            <td mat-cell *matCellDef="let member" >
+              <button mat-icon-button><i class="material-icons icon-green"
+                  style="color: #003366;" routerLink="/shop/edit-member/{{member.id}}">edit
+                </i>
+              </button>
+              <button mat-icon-button><i class="material-icons icon-green" (click)="onDeleteMember(member.id)"
+                  style="color:#730E33;">delete
+                </i>
+              </button>
+            </td>
+  
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+      
+      </div>
+      <nav aria-label="Page navigation example" *ngIf="!filtred">
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center pagination-sm" >
+          <li  class="page-item " [ngClass]="{disabled:pager.currentPage === 1}">
+              <a  class="page-link" (click)="setPage(1);ongetMemberList(1)">{{'first'| translate}}</a>
+          </li>
+          <li class="page-item "  [ngClass]="{disabled:pager.currentPage === 1}">
+              <a class="page-link"  (click)="setPage(pager.currentPage - 1);ongetMemberList(pager.currentPage - 1)">{{'previous'| translate}}</a>
+          </li>
+          <li class="page-item active"  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a  class="page-link" (click)="setPage(page);ongetMemberList(page)">{{page}}</a>
+          </li>
+          <li class="page-item "  [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a  class="page-link" (click)="setPage(pager.currentPage + 1);ongetMemberList(pager.currentPage + 1);">{{'Next'| translate}}</a>
+          </li>
+        <li  class="page-item " [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a  class="page-link" (click)="setPage(pager.totalPages);ongetMemberList(pager.totalPages);">{{'last'| translate}}</a>
+          </li>
+      </ul>
+      </nav>
+      <nav aria-label="Page navigation example" *ngIf="filtred">
+        <ul *ngIf="pager2.pages && pager2.pages.length" class="pagination justify-content-center pagination-sm" >
+          <li  class="page-item " [ngClass]="{disabled:pager2.currentPage === 1}">
+              <a  class="page-link" (click)="setPageFilter(1,card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value);filterMemberList(card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value)">{{'first'| translate}}</a>
+          </li>
+          <li class="page-item "  [ngClass]="{disabled:pager2.currentPage === 1}">
+              <a class="page-link"  (click)="setPageFilter(pager2.currentPage - 1,card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value);filterMemberList(card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value)">{{'previous'| translate}}</a>
+          </li>
+          <li class="page-item active"  *ngFor="let page of pager2.pages" [ngClass]="{active:pager2.currentPage === page}">
+              <a  class="page-link" (click)="setPageFilter(page,card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value);filterMemberList(card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value)">{{page}}</a>
+          </li>
+          <li class="page-item "  [ngClass]="{disabled:pager2.currentPage === pager2.totalPages}">
+              <a  class="page-link" (click)="setPageFilter(pager2.currentPage + 1,card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value);filterMemberList(card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value)">{{'Next'| translate}}</a>
+          </li>
+          <li  class="page-item " [ngClass]="{disabled:pager2.currentPage === pager2.totalPages}">
+              <a  class="page-link" (click)="setPageFilter(pager2.totalPages,card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value);filterMemberList(card_num.value, first_name.value, last_name.value, contact.value, level_id.value,
+              gender.value, status.value, card_id.value)">{{'last'| translate}}</a>
+          </li>
+      </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

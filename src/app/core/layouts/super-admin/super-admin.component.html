@@ -1,0 +1,78 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-sidenav-container class="example-container" style="background-color: #003366;">
+        <mat-sidenav #snav color="primary" [mode]="mobileQuery.matches ? 'over' : 'side'"  style="background-color: #003366;"
+            [opened]="mobileQuery.matches ? 'false' : 'true'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="0">
+            <div class="logoContainer">
+                <mat-icon svgIcon="gear" style="width: 500px;"></mat-icon>
+
+            </div>
+            
+            <mat-nav-list>
+             
+
+                <app-menu-list-item *ngFor="let item of navItems" [item]="item" style="color: white;">
+                </app-menu-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <mat-toolbar class="example-toolbar">
+                <button mat-icon-button aria-label="Menu" (click)="snav.toggle()">
+                    <mat-icon >menu</mat-icon>
+                </button>
+                <span></span>
+
+                <section class="actionsContainer" [ngStyle]="{'margin-right':  snav.opened ? '260px' : ''}">
+                    <div>
+                        <mat-icon matBadge="{{invalidUsers_length}}" matBadgeColor="warn"
+                        [ngStyle]="{'color': mobileQuery.matches ? '#00000' : '#00000', 'font-size': mobileQuery.matches ? '24px' : '32px'}"
+                            class="toolbarIcons" [matMenuTriggerFor]="menu_notification">notification_important
+                        </mat-icon>
+                        <span class="cdk-visually-hidden">
+                            Example with a home icon with overlaid badge showing the number 15
+                        </span>
+                    </div>
+                    <mat-icon
+                    [ngStyle]="{'color': mobileQuery.matches ? '#00000' : '#00000', 'font-size': mobileQuery.matches ? '24px' : '32px'}"
+                        class="toolbarIcons" [matMenuTriggerFor]="menu" [ngStyle]="{'color':'#00000'}">person</mat-icon>
+                </section>
+
+
+
+
+            </mat-toolbar>
+            <div>
+                <mat-menu #menu_notification="matMenu" style="width:300px">
+
+                    <div class="menuList" *ngFor="let user of invalidUsers" style="display: flex; flex-direction: column; height: 100px;" mat-menu-item>
+                        <div class="NotifInfos" style="display: flex; flex-direction: row; align-items: center;" (click)="goToInvalidUsers()">
+                           
+                            <mat-icon [ngStyle]="{'color':'#00000'}">info</mat-icon>
+                            <button  style="font-weight: bold;" (click)="goToInvalidUsers()" mat-menu-item style="font-weight: bold;">{{user.email}}
+                            
+                            </button>
+
+                        </div>
+                        
+                        <span (click)="goToInvalidUsers()">Sent you an account request</span>
+                    </div>
+                    <hr>
+                    <button (click)="goToInvalidUsers()" mat-menu-item style="font-weight: bold;">See All</button>
+
+                </mat-menu>
+
+            </div>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Settings</button>
+                <button mat-menu-item (click)="logoutUser()">Logout</button>
+            </mat-menu>
+            <section class="content" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+                <router-outlet></router-outlet>
+            </section>
+         
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+
+

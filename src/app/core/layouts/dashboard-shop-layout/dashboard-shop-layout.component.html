@@ -1,0 +1,263 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container>
+    <mat-sidenav style="background-color: #003366" #snav [mode]="mobileQuery.matches ? 'side' : 'over'"
+      [opened]="mobileQuery.matches ? 'true' : 'false'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="0">
+      <div class="logContainer">
+        <mat-icon svgIcon="logo_store"></mat-icon>
+      </div>
+
+      <!-- All Menu -->
+        <mat-nav-list>
+          <div *ngFor="let item of navItemsDashboard">
+            <app-menu-list-item  [item]="item"></app-menu-list-item>
+          </div>
+          <mat-divider></mat-divider>
+          <div id="purchase" #purchase>
+
+            <p style="
+              text-align: center;
+              font-size: 14px;
+              text-decoration: underline;
+              color: #e0e0e0;
+            ">
+              {{ 'purchaseQuick' | translate }}
+            </p>
+            <div *ngFor="let item of navItemsQuickPurchase">
+              <app-menu-list-item [item]="item" ></app-menu-list-item>
+            </div>
+
+            <mat-divider></mat-divider>
+            <p style="
+            text-align: center;
+            font-size: 14px;
+            text-decoration: underline;
+            color: #e0e0e0;
+          ">
+            {{ 'purchase' | translate }}
+          </p>
+            <div *ngFor="let item of navItemsPurchase">
+              <app-menu-list-item  [item]="item"></app-menu-list-item>
+            </div>
+            <mat-divider></mat-divider>
+
+          </div>
+
+
+        
+
+          <div id="store">
+
+            <p style="
+              text-align: center;
+              font-size: 14px;
+              text-decoration: underline;
+              color: #e0e0e0;
+            ">
+              {{ 'store' | translate}}
+            </p>
+          <div *ngFor="let item of navItemsStore">
+            <app-menu-list-item [item]="item">
+            </app-menu-list-item>
+          </div>
+          <mat-divider></mat-divider>
+
+        </div>
+
+          <div id="ware">
+
+            <p style="
+              text-align: center;
+              font-size: 14px;
+              text-decoration: underline;
+              color: #e0e0e0;
+            ">
+              {{ 'warehouse' | translate }}
+            </p>
+            <div *ngFor="let item of navItemsWarehouse">
+              <app-menu-list-item [item]="item"></app-menu-list-item>
+            </div>
+            <mat-divider></mat-divider>
+          </div>
+          
+
+          <p style="
+              text-align: center;
+              font-size: 14px;
+              text-decoration: underline;
+              color: #e0e0e0;
+            ">
+            {{ "myAccount" | translate }}
+          </p>
+
+          <app-menu-list-item *ngFor="let item of navItemsAccount" [item]="item"></app-menu-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar class="toolbar" style=" height: 114px">
+        <mat-toolbar-row>
+          <div>
+            <button mat-icon-button aria-label="Menu" (click)="snav.toggle()" sea>
+              <mat-icon>menu</mat-icon>
+            </button>
+            <button  *ngIf="B2S == 1 && S2C == 1 && warehouse == 1 "mat-button (click)="snav.opened ? openAll() : snav.toggle(); openAll()">
+              {{ 'system' | translate }}
+            </button>
+            <!-- *ngIf="B2S == 1" -->
+            <button  *ngIf="B2S == 1"  mat-button (click)="snav.opened ? openPurchase() : snav.toggle(); openPurchase()">
+              {{ 'wholesalers' | translate }}
+            </button>
+            <button  *ngIf="S2C == 1" mat-button (click)="snav.opened ? openStore() : snav.toggle(); openStore()">
+              <!-- *ngIf="s2c == 1" -->
+              {{ 'store-management' | translate }}
+            </button>
+            <button *ngIf="warehouse == 1" mat-button (click)="snav.opened ? openWarehouse() : snav.toggle(); openWarehouse()">
+
+              {{ 'warehouse-management' | translate }}
+            </button>
+         
+              <button mat-button *ngIf="product_list == 1" routerLink="/shop/online-products" (click)="snav.opened ? openAll() : snav.toggle(); openAll()" >
+                {{ 'online-shop' | translate }}
+          
+              </button>
+         
+          </div>
+
+          <span></span>
+
+          <section class="actionContainer" [ngStyle]="{ 'margin-right': snav.opened ? '15%' : '' }">
+            <span style="margin-right: 10px; margin-top: 3px">
+              <select class="form-control" class="select-css" #selectedLang (change)="switchLang(selectedLang.value)">
+                <option *ngFor="let language of translate.getLangs()" [value]="language"
+                  [selected]="language === translate.currentLang">
+                  {{ language }}
+                </option>
+              </select>
+            </span>
+            <mat-icon [matMenuTriggerFor]="menuNot" matBadge="{{badge}}" matBadgeColor="warn" matBadgePosition="after"
+              [ngStyle]="{ 'font-size': mobileQuery.matches ? '24px' : '32px' }" class="toolbarIcons">
+              notifications
+            </mat-icon>
+            <mat-icon [matBadge]="basketLength" matBadgeColor="warn" matBadgePosition="after" class="toolbarIcon"
+              [ngStyle]="{ 'font-size': mobileQuery.matches ? '24px' : '32px' }" matTooltip="show Basket"
+              [matMenuTriggerFor]="menuBasket">shopping_cart</mat-icon>
+
+            <mat-icon [matMenuTriggerFor]="menu" [ngStyle]="{ 'font-size': mobileQuery.matches ? '24px' : '32px' }"
+              style="margin-right: 4rem">settings
+            </mat-icon>
+          </section>
+        </mat-toolbar-row>
+        <mat-toolbar-row id="content-desktop">
+          <div style="width: 100%" [ngStyle]="{ 'margin-right': snav.opened ? '280px' : '' }">
+            <div>
+              <button mat-icon-button aria-label="Menu" (click)="backClicked()">
+                <mat-icon [ngStyle]="{
+                    'font-size': mobileQuery.matches ? '18px' : '32px'
+                  }">arrow_back_ios
+                </mat-icon>
+              </button>
+
+              <button mat-icon-button aria-label="Menu" (click)="forwardClicked()">
+                <mat-icon [ngStyle]="{
+                    'font-size': mobileQuery.matches ? '18px' : '32px'
+                  }">arrow_forward_ios
+                </mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <mat-menu #menu="matMenu" backdropClass="custom__menu">
+        <section class="userInfos">
+
+          <div style="display: flex; flex-direction: column">
+            <span style="margin-left: 6px; font-size: 15px">{{ name }} {{ lastname }}</span>
+            <span style="
+                font-family: Roboto;
+                font-weight: 300;
+                font-size: 12px;
+                margin-left: 6px;
+              ">{{ email }}</span>
+          </div>
+        </section>
+
+        <button mat-menu-item routerLink="/shop/useraccount">
+          {{"Edit profile"| translate }}
+        </button>
+        <button mat-menu-item (click)="logoutUser()">{{'Logout'| translate }}</button>
+      </mat-menu>
+
+      <mat-menu #menuBasket="matMenu" backdropClass="custom__menu__basket">
+        <div class="menuList">
+          <h4>{{"Your basket"| translate }}</h4>
+          <table class="tab">
+            <thead>
+              <tr>
+                <th>{{"Image"| translate }}</th>
+                <th>{{"Name"| translate }}</th>
+                <th>{{"Quantity"| translate }}</th>
+                <th>{{"Price"| translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prod of basket | slice: 0:5">
+                <td>
+                  <img [src]="prod.product_image_url" alt="" style="height: 30px; width: 30px" />
+                </td>
+                <td>{{ prod.product_name | slice: 0:24 }}...</td>
+
+
+                <td class="font-weight-bold; text-center">
+                  {{ prod.item_quantity }}
+                </td>
+                <td style="color: red">
+                  {{ prod.totalPrice | currency:'EUR':'symbol' }}
+                </td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td colspan="4">
+                  <p style="text-align: right; font-weight: bold">
+                    {{ "Total-ProductsPrice"| translate }} :
+                    <span style="font-weight: bold; color: red">{{
+                      orderTotal | currency:'EUR':'symbol'
+                      }}</span>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="text-align: center">....</p>
+          <p style="text-align: center;">
+            <a mat-raised-button style="color: black;" routerLink="cart"> {{"View-cart"| translate }}</a>
+          </p>
+        </div>
+      </mat-menu>
+      <mat-menu #menuNot="matMenu" backdropClass="custom__menu__notification">
+
+        <div class="menuList">
+          <div class="container" style="padding: 20px">
+            <h4 style="color:red">{{prodexpLength}} <a routerLink="/shop/expired-date">{{"Products"| translate }}</a>
+              {{"Expired"| translate }} {{"In 3 days"| translate }}</h4>
+            <button mat-raised-button color="warn" routerLink="/shop/expired-products">{{"Show products"| translate
+              }}</button>
+          </div>
+        </div>
+        <hr>
+        <div class="menuList">
+          <div class="container" style="padding: 20px">
+            <h4 style="color:red">{{"warn_quant"| translate }} :{{prodwarnLength}} <a
+                routerLink="/shop/warn-products">{{"Products"| translate }}</a></h4>
+            <button mat-raised-button color="warn" routerLink="/shop/warn-products">{{"Show products"| translate
+              }}</button>
+          </div>
+        </div>
+
+      </mat-menu>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

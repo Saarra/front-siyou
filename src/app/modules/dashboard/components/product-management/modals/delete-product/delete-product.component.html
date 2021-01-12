@@ -1,0 +1,10 @@
+<form>
+    <h3>Are you sure you want to delete this product?</h3>
+    <p> (this will delete all the items of this product)</p>
+   
+   
+    <p style="margin-top: 40px;" class="text-center d-block">
+        <button style="margin-right: 10px;" type="submit" mat-raised-button mat-button style="background-color: darkcyan; color: white; margin-right: 10px;" (click)="onDeleteProduct(currentProduct.id)">Submit</button>
+        <button mat-dialog-close  mat-raised-button mat-button color="link">Close</button>
+    </p>
+</form>

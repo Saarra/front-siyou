@@ -1,0 +1,115 @@
+<!-- (click)="generatePdf(element.supplier.supplier_name,element.supplier.adress,element.supplier.company_name, element.supplier.contacts,element.products)" -->
+
+<div style=" padding: 40px; margin-top: 80px; margin-bottom: 30px;">
+  <div class="container-fluid">
+    <form #resumeForm="ngForm">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="shadow-sm card">
+            <div class="card-body">
+              <h4 class="card-title d-flex align-items-center">
+               
+                {{'Order details' | translate }} </h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label> {{'Supplier-Name' | translate }} </label>
+
+                    <input type="text" class="form-control"  name="Supplier" #supplier placeholder="Supplier Name" [value]="currentOrderData.supplier.supplier_name" required>
+                  </div>
+                 
+                  <div class="form-group">
+                    <label> {{'Company name' | translate }}</label>
+                    <input type="text" class="form-control"  name="Company" placeholder="Company Name" #company [value]="currentOrderData.supplier.company_name" required>
+                  </div>
+                  <div class="form-group">
+                    <label> {{'Company address' | translate }}</label>
+
+                    <input type="text" class="form-control"  name="Adress" placeholder="Company Adress"  #adress [value]="currentOrderData.supplier.adress" required>
+                  </div>
+                  
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label> {{'Total price' | translate }}</label>
+    
+                        <input type="text" class="form-control" [value]="currentOrderData.total_price" #total
+                          placeholder="Total Price" required>
+                      </div>
+                  <div class="form-group">
+                    <label> IVA </label>
+
+                    <input type="text" class="form-control" [value]="22"  #tax
+                      placeholder="Status" required>
+                  </div>
+                  <div class="form-group">
+                    <label> {{'Created at' | translate }}  </label>
+
+                    <input type="text" class="form-control"  name="Created at" placeholder="Created at" #date [value]="currentOrderData.created_at" required>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>     
+        </div>
+  
+        <div class="col-md-4">
+          <div class="shadow-sm card action-buttons">
+            <button class="btn btn-primary d-flex align-items-center justify-content-center"
+            (click)="generatePdf('open',currentOrderData.order_number,supplier.value,company.value,adress.value, currentOrderData.supplier.contact,currentOrderData.products,date.value,tax.value,total.value,banquaire.value)">
+              <i class="material-icons">
+                picture_as_pdf
+              </i> <span>{{'Open PDF' | translate }}</span></button>
+            <button class="btn btn-primary d-flex align-items-center justify-content-center"
+              (click)="generatePdf('download',currentOrderData.order_number,supplier.value,company.value,adress.value, currentOrderData.supplier.contact,currentOrderData.products,date.value,tax.value,total.value,banquaire.value)">
+              <i class="material-icons">
+                cloud_download
+              </i><span>{{'Download PDF'| translate }}</span></button>
+            <button
+              class="btn btn-primary d-flex align-items-center justify-content-center" 
+              (click)="generatePdf('print',currentOrderData.order_number,supplier.value,company.value,adress.value, currentOrderData.supplier.contact,currentOrderData.products,date.value,tax.value,total.value,banquaire.value)">
+              <i class="material-icons">
+                print
+              </i><span>{{'Print PDF'| translate }}</span></button>
+  
+            <button type='reset'
+              class="btn btn-primary d-flex align-items-center justify-content-center" >
+              <i class="material-icons">
+                clear
+              </i><span>{{'Reset'| translate }}</span></button>
+          </div>
+  
+          <div class="card p-4">
+            <div class="form-group">
+              <label class="h4 mb-3" for="">{{'Show your picture in Resume'| translate }}</label>
+              <input type="file" class="form-control-file" (change)="fileChanged($event)" aria-describedby="fileHelpId">
+            </div>
+            <img *ngIf="resume.profilePic" [src]="resume.profilePic" class="img-thumbnail">
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="shadow-sm card">
+            <div class="card-body">
+              <h4 class="card-title d-flex align-items-center">
+               
+             Coordinate Bancarie</h4>
+             
+                    <div class="form-group">    
+                        <textarea type="text" class="form-control"  #banquaire
+                          placeholder="Coordinate Bancarie" required></textarea>
+                      </div>
+               
+                 
+                
+            </div>
+          </div>     
+        </div>
+  
+       
+      </div>
+    </form>
+  </div>
+</div>

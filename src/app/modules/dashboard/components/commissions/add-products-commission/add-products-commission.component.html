@@ -1,0 +1,267 @@
+<div class="container shadow-lg bg-white rounded"
+  style="background-color: white; padding: 40px; margin-top: 100px; margin-bottom: 30px;">
+
+
+  <div>
+
+
+
+
+
+
+    <div class="row">
+
+
+      <div class="col-md-8">
+        <form>
+          <div class="row ml-3">
+            <mat-form-field appearance="fill" style="width: 25%;">
+              <mat-label>{{'Search-byKeyword' | translate}}</mat-label>
+              <input matInput #keyword>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill" style="width: 25%; margin-left: 20px;">
+              <mat-label>{{'Search-byBarcode' | translate}}</mat-label>
+              <input matInput #barcode>
+            </mat-form-field>
+
+            <div class="example-button-row" style="height: 80px;vertical-align: center; margin-left: 20px;">
+              <button class="btn btn-secondary btn-lg text-center d-block mt-2 mr-4" style="vertical-align: center"
+                (click)="ongetAllProductsItems( keyword.value,  barcode.value)">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                Filter</button>
+            </div>
+
+          </div>
+
+
+        </form>
+
+        <div class="table1-container" style="margin-bottom: 200px;">
+
+
+
+
+
+
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8  table1" matSort>
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null; getCheckeditems()"
+                  [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="product_image">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Image' | translate}} </th>
+              <td mat-cell *matCellDef="let element">
+
+
+               
+
+                <img *ngFor="let img of element.images | slice:0:1" [src]="img.image_url" alt="" class="imgtable1">
+
+
+
+
+              </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="product_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Product-Name' | translate}}  </th>
+              <td mat-cell *matCellDef="let element"> {{element.product.product_name}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="product_barcode">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Barcode' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.item_barcode}} </td>
+            </ng-container>
+
+         
+
+
+
+
+            <ng-container matColumnDef="unit_price">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Unit-Price' | translate}}  </th>
+              <td mat-cell *matCellDef="let element" class="pricetable1"> 
+                <span *ngIf="element.item_discount_price">
+                    {{element.item_discount_price |currency:'EUR':'symbol'}}
+                </span>  
+                <span *ngIf="!element.item_discount_price">
+                    {{element.item_offline_price |currency:'EUR':'symbol'}}
+                </span>  
+               
+              </td>
+            </ng-container>
+
+
+
+
+            <ng-container matColumnDef="details">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'More details ' | translate}} </th>
+              <td mat-cell *matCellDef="let element">
+
+
+                <button routerLink="/dashboard/product-details/{{element.id}}" title=""
+                  matTooltip="Show product item full details" mat-icon-button><i class="material-icons icon-green"
+                    style="color: darkcyan;">
+                    view_headline
+                  </i>
+                </button>
+
+
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              (click)="selection.toggle(row) ; getCheckeditems()">
+            </tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="mat-elevation-z8"></mat-paginator>
+
+        </div>
+
+      </div>
+
+
+
+
+
+      <div class="col-md-4" style="display: block;">
+
+
+
+        <div class="example-container mat-elevation-z8 table2" style="margin-top: 80px;">
+          <table mat-table [dataSource]="selecteditems" matSort>
+
+            <ng-container matColumnDef="product_image">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Image' | translate}} </th>
+              <td mat-cell *matCellDef="let element">
+                <img *ngFor="let img of element.images | slice:0:1" [src]="img.image_url" alt="" class="imgtable1">
+
+
+
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="product_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Product-Name' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.product.product_name}} </td>
+            </ng-container>
+
+
+
+
+            <ng-container matColumnDef="unit_price">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Unit-Price' | translate}} </th>
+              <td mat-cell *matCellDef="let element" class="pricetable1"> 
+
+                <span *ngIf="element.item_discount_price">
+                    {{element.item_discount_price |currency:'EUR':'symbol'}}
+                </span>  
+                <span *ngIf="!element.item_discount_price">
+                    {{element.item_offline_price |currency:'EUR':'symbol'}}
+                </span>  
+
+
+              </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns1; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+          </table>
+
+
+
+
+
+        </div>
+
+
+
+        <div class="form-container mat-elevation-z8" style="margin-top: 400px;">
+
+          <div class="dis_form">
+            <mat-form-field appearance="outline" class="select_field">
+              <mat-label>{{'Select-SalesManager' | translate}}</mat-label>
+              <mat-select #sales_manager_id>
+                <mat-option *ngFor="let salesmanager of salesmanagerList" [value]="salesmanager.id"
+                  style="text-transform: capitalize;">{{salesmanager.email}}</mat-option>
+
+              </mat-select>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+              <mat-label>{{'Percent-Value' | translate}}</mat-label>
+              <input matInput #commission_percent>
+            </mat-form-field>
+            <br>
+
+
+          
+
+           
+
+
+
+
+
+
+            <button class="btn btn-primary" style="background-color: #6b88b5; border-color:6b88b5; margin-top: 20px;"
+              (click)="Submit(sales_manager_id.value, commission_percent.value)">{{'Submit' | translate}}</button>
+
+
+
+            <br>
+
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+</div>

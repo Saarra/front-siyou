@@ -1,0 +1,21 @@
+<a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" (click)="onItemSelected(item)"
+   [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}"
+   class="menu-list-item" *ngIf="item.can_view == '1'">
+  <mat-icon class="routeIcon" *ngIf="item.iconName">{{item.iconName}}</mat-icon>
+  <mat-icon class="routeIcon" *ngIf="item.svgIcon" [svgIcon]="item.svgIcon"></mat-icon>
+  <span *ngIf="translate.currentLang === 'English'" class="itemName" [ngStyle]="{'flex': 1}">{{item.displayName}}</span>
+  <span *ngIf="translate.currentLang === 'Italian'" class="itemName" [ngStyle]="{'flex': 1}">{{item.displayNameIT}}</span>
+  <span *ngIf="translate.currentLang === 'Chinese'" class="itemName" [ngStyle]="{'flex': 1}">{{item.displayNameCH}}</span>
+  <span *ngIf="translate.currentLang === 'Français'" class="itemName" [ngStyle]="{'flex': 1}">{{item.displayNameFR}}</span>
+  <span fxFlex *ngIf="item.children && item.children.length">
+    <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+      expand_more
+    </mat-icon>
+  </span>
+</a>
+<div *ngIf="expanded">
+  <div *ngFor="let child of item.children" >
+  <app-menu-list-item [item]="child"  *ngIf="child.can_view == '1'" [depth]="depth+1">
+  </app-menu-list-item>
+</div>
+</div>

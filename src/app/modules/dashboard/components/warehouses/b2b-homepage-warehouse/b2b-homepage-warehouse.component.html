@@ -1,0 +1,49 @@
+<div class=" bgc rounded">
+
+    <div class="row">
+      <div class="col-md-6">
+  
+        <div class="card-box bg-blue rounded-lg shadow" style="height: 150px;">
+          <div class="inner">
+            <h3>0</h3>
+            <p>{{'Store-warning'| translate}}</p>
+          </div>
+          <ul *ngFor= "let war of warProducts"><li>{{war}}</li></ul>
+        </div>
+      </div>
+  
+      <div class="col-md-6">
+        <div class="card-box bg-orange rounded-lg shadow" style="height: 150px;">
+          <div class="inner">
+            <h3>0</h3>
+            <p>{{'Good-to-remind'| translate}}</p>
+          </div>
+      
+         
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <a routerLink="/shop/stock-management">
+        <div class="card-box bg-green rounded-lg shadow" style="height: 150px;">
+          <div class="inner">
+            <h4>{{'Stock-details'| translate}}</h4>
+          </div>
+     
+        </div>
+      </a>
+      </div>
+      <div class="col-md-6">
+        <div class="card-box bg-red rounded-lg shadow" style="height: 150px;">
+          <div class="inner">
+            <h5>0</h5>
+            <br/><br/>
+
+            <h4>{{'Today-stock‘s-actions'| translate}}</h4>
+          </div>
+
+        </div>
+      </div>
+    </div>
+</div>

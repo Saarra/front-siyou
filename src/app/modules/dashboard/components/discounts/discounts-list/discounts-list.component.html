@@ -1,0 +1,191 @@
+<div class="container shadow-lg bg-white rounded"
+  style="background-color: white; padding: 40px; margin-top: 100px; margin-bottom: 30px;">
+
+
+
+
+
+  <div>
+    <div class="row">
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-blue order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">{{'dis_received' | translate}}</h6>
+            <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>{{discLength}}</span></h2>
+            <p class="m-b-0">{{'compl_disc' | translate}}<span class="f-right">{{discLength}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-green order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">{{'sum_disc' |translate}} </h6>
+            <h2 class="text-right"><i class="fa fa-money f-left"></i><span>${{sumDisc}}</span></h2>
+            <p class="m-b-0">{{'last_disc' | translate}} <span class="f-right">${{lastDiscPrice}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-yellow order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">{{'max_disc_price' |translate}} </h6>
+            <h2 class="text-right"><i class="fa fa-arrow-up f-left"></i><span>${{maxDiscPrice}}</span></h2>
+            <p class="m-b-0">{{'disc_date' | translate}} <span class="f-right">{{maxDiscDate | date}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 col-xl-3">
+        <div class="card bg-c-pink order-card">
+          <div class="card-block">
+            <h6 class="m-b-20">{{'min_disc_amount' | translate}} </h6>
+            <h2 class="text-right"><i class="fa fa-arrow-down f-left"></i><span>${{minDiscPrice}}</span></h2>
+            <p class="m-b-0">{{'disc_date' | translate}}<span class="f-right">{{minDiscDate | date}}</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div>
+
+
+
+    <form>
+      <div class="row">
+        <mat-form-field appearance="fill" style="width: 25%;">
+          <mat-label>{{'searchBarcode' | translate}}</mat-label>
+          <input matInput #barcode>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" style="width: 25%; margin-left: 20px;">
+          <mat-label>{{'searchKeyword' | translate}}</mat-label>
+          <input matInput #keyword>
+        </mat-form-field>
+
+        <div class="example-button-row" style="height: 80px;vertical-align: center; margin-left: 20px;">
+          <button class="btn btn-secondary btn-lg text-center d-block mt-2 mr-4" style="vertical-align: center"
+            (click)="ongetDiscountList(keyword.value, barcode.value)">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            {{'filter' | translate}}</button>
+        </div>
+
+      </div>
+
+
+    </form>
+
+
+
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table1 " matSort>
+
+
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="image_url">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'image' | translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngFor="let img of element.images | slice:0:1">
+            <img [src]="img.image_url" alt="" class="imgtable1">
+
+          </div>
+
+
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+
+
+      <ng-container matColumnDef="product_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'prod_namee' | translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.product.product_name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="item_offline_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'online_price' |translate}} </th>
+        <td mat-cell *matCellDef="let element" class="pricetable1 disprice"> {{element.item_offline_price | currency:'EUR':'symbol'}}
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'disc_type' | translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngFor="let dis of element.discount | slice:0:1" class="distype">
+            {{dis.type}}
+
+          </div>
+
+
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="item_discount_price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'price_after_disc' |translate}} </th>
+        <td mat-cell *matCellDef="let element" class="pricetable1"> {{element.item_discount_price | currency:'EUR':'symbol'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="start_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'start_date' |translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngFor="let dis of element.discount | slice:0:1">
+            {{dis.pivot.start_date | date}}
+          </div>
+
+
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="finish_date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'finish_date' | translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngFor="let dis of element.discount | slice:0:1">
+            {{dis.pivot.finish_date | date}}
+
+
+          </div>
+
+
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'more_details' |translate}} </th>
+        <td mat-cell *matCellDef="let element">
+
+
+          <button routerLink="/dashboard/product-details/{{element.id}}" title=""
+            matTooltip="Show product item full details" mat-icon-button><i class="material-icons icon-green"
+              style="color: 003366;">
+              view_headline
+            </i>
+          </button>
+
+
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" class="pagclass"></mat-paginator>
+
+
+
+  </div>
+
+</div>

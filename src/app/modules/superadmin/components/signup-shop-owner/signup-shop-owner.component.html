@@ -1,0 +1,311 @@
+<div class="container mainContainer bg-white shadow-lg rounded">
+    <p style="padding-top: 20px;">Create a shop owner account:</p>
+    <hr />
+
+    <div class="container">
+        <form autocomplete="off">
+
+
+            <mat-tab-group>
+                <mat-tab label="Personal Informations">
+
+                    <div class="container subContainer">
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>First Name</mat-label>
+                                <input type="text" matInput placeholder="First Name" />
+                                <mat-icon matSuffix>account_circle</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Last Name</mat-label>
+                                <input type="text" matInput placeholder="Last Name" />
+                                <mat-icon matSuffix>account_circle</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput placeholder="Email" />
+                                <mat-icon matSuffix>email</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Password</mat-label>
+                                <input type="password" matInput placeholder="Password" />
+                                <mat-icon matSuffix>vpn_key</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Contact</mat-label>
+                                <input type="number" matInput placeholder="Contact" />
+                                <mat-icon matSuffix>call</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field>
+                                <mat-label>Birthdate</mat-label>
+                                <input matInput [matDatepicker]="picker" #birthdate>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+
+                        </p>
+
+
+                        <button class="btn btn-info mr-2 my-4">
+                            Next <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+
+
+                    </div>
+
+
+
+
+                </mat-tab>
+
+
+
+                <mat-tab label="Billing Informations">
+
+                    <div class="container subContainer">
+
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing First Name</mat-label>
+                                <input type="text" matInput placeholder="Billing First Name" #billing_first_name />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing Last Name</mat-label>
+                                <input type="text" matInput placeholder="Billing Last Name" #billing_last_name />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing Company</mat-label>
+                                <input type="text" matInput placeholder="Billing Company" #billing_company />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing Address 1</mat-label>
+                                <input type="text" matInput placeholder="Billing Address 1" #billing_address_1 />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing Address 2</mat-label>
+                                <input type="text" matInput placeholder="Billing Address 2" #billing_address_2 />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing Country</mat-label>
+                                <input type="text" matInput placeholder="Billing Country" #billing_country />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing State</mat-label>
+                                <input type="text" matInput placeholder="Billing State" #billing_state />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing City</mat-label>
+                                <input type="text" matInput placeholder="Billing City" #billing_city />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing Postal Code</mat-label>
+                                <input type="number" matInput placeholder="Billing Postal Code" #billing_postal_code />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing Email</mat-label>
+                                <input type="email" matInput placeholder="Billing Email" #billing_email />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Billing Phone</mat-label>
+                                <input type="number" matInput placeholder="Billing Phone" #billing_phone />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <button class="btn btn-info mr-2 my-4">
+                            Next <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+
+
+                    </div>
+
+                   
+
+                </mat-tab>
+
+
+
+
+
+
+
+
+                <mat-tab label="Shipping Informations">
+
+
+                    <div class="container subContainer">
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping First Name</mat-label>
+                                <input type="text" matInput placeholder="Shipping First Name" #shipping_first_name />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping Last Name</mat-label>
+                                <input type="text" matInput placeholder="Shipping Last Name" #shipping_last_name />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping Company</mat-label>
+                                <input type="text" matInput placeholder="Shipping Company" #shipping_company />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping Address 1</mat-label>
+                                <input type="text" matInput placeholder="Shipping Address 1" #shipping_address_1 />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping Adress 2</mat-label>
+                                <input type="text" matInput placeholder="Email" #shipping_address_2 />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping Country</mat-label>
+                                <input type="text" matInput placeholder="Shipping Country" #shipping_country />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping City</mat-label>
+                                <input type="text" matInput placeholder="Shipping City" #shipping_city />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping Code Postal</mat-label>
+                                <input type="number" matInput placeholder="Shipping Code Postal" #shipping_postal_code />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping Email</mat-label>
+                                <input type="email" matInput placeholder="Shipping Email" #shipping_email />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <p>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Shipping Phone</mat-label>
+                                <input type="number" matInput placeholder="Shipping Phone" #shipping_phone />
+                                <mat-icon matSuffix>text_snippet</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+
+                        <div class="my-4">
+                            <button class="btn btn-info mr-2 "><i class="fa fa-check" aria-hidden="true"></i>
+                                Submit</button>
+                            <button class="btn btn-secondary"><i class="fa fa-ban" aria-hidden="true"></i>
+                                Cancel</button>
+                        </div>
+
+
+                    </div>
+
+
+                   
+
+                </mat-tab>
+            </mat-tab-group>
+
+
+
+
+
+           
+
+        </form>
+    </div>
+</div>

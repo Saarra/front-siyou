@@ -1,0 +1,13 @@
+<section class="actionsContainer">
+    <!--  [ngStyle]="{'margin-right':  snav.opened ? '260px' : ''}" -->
+    <mat-icon
+        [ngStyle]="{'color': mobileQuery.matches ? 'unset' : 'unset', 'font-size': mobileQuery.matches ? '24px' : '32px'}"
+        class="toolbarIcons" [matMenuTriggerFor]="menu">notification_important</mat-icon>
+
+    <mat-icon
+        [ngStyle]="{'color': mobileQuery.matches ? 'unset' : 'unset', 'font-size': mobileQuery.matches ? '24px' : '32px'}"
+        class="toolbarIcons" [matMenuTriggerFor]="menu">person</mat-icon>
+</section>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>You have a new account request</button>
+</mat-menu>

@@ -1,0 +1,414 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"  >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.1/css/all.min.css"   >
+
+<div class="main-content">
+  <div class="header pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <h1 class="mb-4" style="color:#003366 "> {{"Statistics-Dashboard"| translate}} </h1>
+      <div class="header-body">
+        <div class="row">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body1">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Chains"| translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{chainLength}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap">{{'since last month'| translate}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body1">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Orders"| translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{orderLength}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                  <span class="text-nowrap">{{'since last week'| translate}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body1">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Shop-managers"| translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{managerLength}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                  <span class="text-nowrap">{{'since yesterday'| translate}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body1">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Members"| translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{memberLength}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-percent"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                  <span class="text-nowrap">{{'since last month'| translate}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="header-body">
+        <div class="row">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Returned-goods"| translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{returnGoods}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                      <i class="fas fa-chart-bar"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                  <span class="text-nowrap"> {{'since last month'| translate}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Cashiers"| translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{cashierLength}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                  <span class="text-nowrap">{{'since last week'| translate}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Operators"| translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{operatorsLength}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                  <span class="text-nowrap">{{'since yesterday'| translate}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-4 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Categories"| translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{catLenght}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                      <i class="fas fa-percent"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-muted text-sm">
+                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                  <span class="text-nowrap">{{'since last month'| translate}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab [label]="'Orders'| translate" active>
+            <app-shop-orders-statistics></app-shop-orders-statistics>
+
+          </mat-tab>
+          <mat-tab [label]="'Sales'| translate">
+            <app-shop-sales-statistics></app-shop-sales-statistics>
+          </mat-tab>
+          <mat-tab [label]="'Discounts'| translate">
+            <app-shop-discount-statistics></app-shop-discount-statistics>
+          </mat-tab>
+
+          <mat-tab [label]="'Funds'| translate">
+            <app-shop-funds-statistics></app-shop-funds-statistics>
+          </mat-tab>
+
+          <mat-tab [label]="'Products'| translate">
+            <app-shop-products-statistics></app-shop-products-statistics>
+          </mat-tab>
+
+        </mat-tab-group>
+      </div>
+    </div>
+
+  </div>
+  <!-- Page content -->
+
+
+</div>
+
+
+
+
+
+<!-- <div class=" bgc rounded">
+  <div class="row">
+
+    <div class="col">
+      <div class="card  bgorder text-center" (click)="ordersStat()">
+        <div class="card-header">
+          <h2>{{'Statistics Orders'|translate}}</h2>
+          <span class="material-icons icons">
+            shopping_basket
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bgppurchase text-center" (click)="salesStat()">
+        <div class="card-header">
+          <h2>{{'Statistics sales'|translate}}</h2>
+          <span class="material-icons icons">
+            shopping_cart
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bgpromo text-center" (click)="promoStat()">
+        <div class="card-header">
+          <h2>{{'Statistics promotion'|translate}}</h2>
+          <span class="material-icons icons">
+            attach_money
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bgfund text-center" (click)="fundsStat()">
+        <div class="card-header">
+          <h2>{{'Statistics funds'|translate}}</h2>
+          <span class="material-icons icons">
+            money
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card bgprod text-center" (click)="productStat()">
+        <div class="card-header">
+          <h2>{{'Statistics products'|translate}}</h2>
+          <span class="material-icons icons">
+            all_inbox
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div *ngIf="products_stat">
+    <app-shop-products-statistics></app-shop-products-statistics>
+  </div>
+<div *ngIf="orders_stat && !products_stat">
+</div>
+<div *ngIf="sales_stat && !orders_stat && !products_stat">
+  <app-shop-sales-statistics></app-shop-sales-statistics>
+</div>
+<div *ngIf="promo_stat && !sales_stat && !orders_stat && !products_stat">
+<app-shop-discount-statistics></app-shop-discount-statistics>
+</div>
+<div *ngIf="funds_stat && !promo_stat && !sales_stat && !orders_stat && !products_stat">
+  <app-shop-funds-statistics></app-shop-funds-statistics>
+  </div>
+
+<!-- <br /><br />
+  <div class="row">
+    <mat-card id="chart" class="bg-white rounded-lg p-5 ">
+        <form action="" novalidate>
+
+        
+          <mat-form-field appearance="standard" style="width: 27%; margin-right: 2%">
+            <mat-label>{{'Start-date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" #from />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+         
+          <mat-form-field appearance="standard" style="width: 27%; margin-right: 2%">
+            <mat-label>{{'End-date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker2" #to />
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          
+          <mat-form-field appearance="standard" style="width: 27%; margin-right: 2%">
+            <mat-label>{{'Select-Chain' | translate}}</mat-label>
+            <mat-select #chain>
+
+              <mat-option value=0>--None--</mat-option>
+              <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}</mat-option>
+
+
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button style="background-color: #730E33; color: white" (click)="onGetstatKpi(chain.value,from.value,to.value)">
+            {{'validate' | translate }}
+          </button>
+          <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+            [dataLabels]="chartOptions.dataLabels" [grid]="chartOptions.grid" [stroke]="chartOptions.stroke"
+            [title]="chartOptions.title"></apx-chart>
+        </form>
+    </mat-card>
+  </div>
+  <br/><br/><br/>
+
+  <div class="row">
+    <mat-card id="chart2" class="bg-white rounded-lg p-5 ">
+        <form action="" novalidate>
+          <mat-form-field appearance="standard" style="width: 28%; margin-right: 2%">
+            <mat-label>{{'Start-date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker3" #FromData />
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="standard" style="width: 28%; margin-right: 2%">
+            <mat-label>{{'End-date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker4" #ToData />
+            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+            <mat-datepicker #picker4></mat-datepicker>
+          </mat-form-field>
+      
+      
+          <mat-form-field appearance="standard" style="width: 28%; margin-right: 2%">
+            <mat-label>{{'Select-Chain' | translate }} </mat-label>
+            <mat-select #chain_id>
+              <mat-option *ngFor="let chain of chainData" [value]="chain.id">
+                {{ chain.chain_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button style="width:10%;background-color: #730E33; color: white" (click)="onGetStatproducts(FromData.value,ToData.value,chain_id.value)">
+            {{'validate' | translate }}
+          </button>
+          <apx-chart [series]="chart2Options.series" [chart]="chart2Options.chart" [xaxis]="chart2Options.xaxis"
+          [dataLabels]="chart2Options.dataLabels" [grid]="chart2Options.grid" [stroke]="chart2Options.stroke"
+          [title]="chart2Options.title"></apx-chart>
+        </form>
+
+    </mat-card>
+  </div>
+  <br /><br />
+  <div class="row">
+    <mat-card id="chart3" class="bg-white rounded-lg p-5 ">
+        <form action="" novalidate>
+          <mat-form-field appearance="standard" style="width: 28%; margin-right: 2%">
+            <mat-label>{{'Start-date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker5" #_start />
+            <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+            <mat-datepicker #picker5></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="standard" style="width: 28%; margin-right: 2%">
+            <mat-label>{{'End-date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker6" #_end />
+            <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+            <mat-datepicker #picker6></mat-datepicker>
+          </mat-form-field>
+      
+      
+          <mat-form-field appearance="standard" style="width: 28%; margin-right: 2%">
+            <mat-label>{{'Select-Chain' | translate }} </mat-label>
+            <mat-select #_chain_id>
+              <mat-option *ngFor="let chain of chainData" [value]="chain.id">
+                {{ chain.chain_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-raised-button style="width:10%;background-color: #730E33; color: white" (click)="onGetStatFunds(_start.value,_end.value,_chain_id.value)">
+            {{'validate' | translate }}
+          </button>
+          <apx-chart
+          [series]="chart3Options.series"
+          [chart]="chart3Options.chart"
+          [dataLabels]="chart3Options.dataLabels"
+          [plotOptions]="chart3Options.plotOptions"
+          [xaxis]="chart3Options.xaxis"
+          [stroke]="chart3Options.stroke"
+          [fill]="chart3Options.fill"
+          [yaxis]="chart3Options.yaxis"
+          [title]="chart3Options.title"
+          [tooltip]="chart3Options.tooltip"
+          [legend]="chart3Options.legend"
+        ></apx-chart>
+        </form>
+
+    </mat-card>
+  </div> -->

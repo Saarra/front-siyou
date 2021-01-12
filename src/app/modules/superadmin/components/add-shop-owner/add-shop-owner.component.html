@@ -1,0 +1,38 @@
+<div class="container ">
+  <form autocomplete="off">
+     
+      <div class="form-group" style="margin-top: 70px;">
+          <h1>Add a new Shop Owner:</h1>
+          <hr>
+        <label for="exampleInputEmail1">First Name:</label>
+        <input type="email" class="form-control form-control-lg"  aria-describedby="emailHelp" placeholder="Enter Your First Name" #first_name>
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      </div>
+      <div class="form-group" >
+          <label for="exampleInputEmail1">Last Name:</label>
+          <input type="email" class="form-control form-control-lg"  aria-describedby="emailHelp" placeholder="Enter Your Last Name" #last_name>
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group" >
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control form-control-lg"  aria-describedby="emailHelp" placeholder="Enter email" #email>
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control form-control-lg"  placeholder="Password" #password>
+      </div>
+      <div class="form-group">
+          <label for="exampleInputPassword1">Confirm Password</label>
+          <input type="password" class="form-control form-control-lg"  placeholder="Confirm Your Password">
+        </div>
+      <!-- <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div> -->
+      <!-- <div class="text-center d-block"> -->
+      <button  (click)="onAddShopOwner(first_name.value, last_name.value, email.value, password.value)" type="submit" class="btn btn-primary btn-lg mt-2 mb-5">Submit</button>
+      <button routerLink="../../superadmin/accounts-list" class="btn btn-secondary ml-2 btn-lg mt-2 mb-5">Back</button>
+    <!-- </div> -->
+    </form>
+  </div>

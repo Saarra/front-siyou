@@ -1,0 +1,128 @@
+<div class="container mainContainer bg-white shadow-lg rounded">
+  <p class="titlePage">
+    Update product item:
+  </p>
+  <mat-divider></mat-divider>
+
+  <form>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Product Barcode</mat-label>
+        <input
+          matInput
+          placeholder="Product Barcode"
+          type="number"
+          [value]="currentProd.item_barcode"
+          #item_barcode
+        />
+        <mat-icon matSuffix>qr_code</mat-icon>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Product Online Price</mat-label>
+        <input
+          matInput
+          placeholder="Product Online Price"
+          type="number"
+          [value]="currentProd.item_online_price"
+          #item_online_price
+        />
+        <mat-icon matSuffix>attach_money</mat-icon>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Product Offline Price</mat-label>
+        <input
+          matInput
+          placeholder="Product Offline Price"
+          type="number"
+          [value]="currentProd.item_offline_price"
+          #item_offline_price
+        />
+        <mat-icon matSuffix>attach_money</mat-icon>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Product Quantity</mat-label>
+        <input
+          matInput
+          placeholder="Product Quantity"
+          type="number"
+          [value]="currentProd.item_quantity"
+          #item_quantity
+        />
+        <mat-icon matSuffix>money</mat-icon>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Product Warn Quantity</mat-label>
+        <input
+          matInput
+          placeholder="Product Warn Quantity"
+          type="number"
+          [value]="currentProd.item_warn_quantity"
+          #item_warn_quantity
+        />
+        <mat-icon matSuffix>report_problem</mat-icon>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Product Item Package </mat-label>
+        <input
+          matInput
+          placeholder="Product Warn Quantity"
+          type="number"
+          [value]="currentProd.item_package"
+          #item_package
+        />
+        <mat-icon matSuffix>widgets</mat-icon>
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Product Item Box</mat-label>
+        <input
+          matInput
+          placeholder="Product Warn Quantity"
+          type="number"
+          [value]="currentProd.item_box"
+          #item_box
+        />
+        <mat-icon matSuffix>inbox</mat-icon>
+      </mat-form-field>
+    </p>
+
+    <div class="row ml-2 mb-3" style="margin-bottom: 50px;">
+      <button
+        class="btn btn-success mr-2"
+        (click)="
+          onUpdateProduct(
+            item_barcode.value,
+            item_online_price.value,
+            item_offline_price.value,
+            item_quantity.value,
+            item_warn_quantity.value,
+            item_package.value,
+            item_box.value
+          )
+        "
+      >
+        <i class="fa fa-check-square" aria-hidden="true"></i> Submit
+      </button>
+      <button class="btn btn-secondary" routerLink="/dashboard/products-list">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+      </button>
+    </div>
+  </form>
+</div>

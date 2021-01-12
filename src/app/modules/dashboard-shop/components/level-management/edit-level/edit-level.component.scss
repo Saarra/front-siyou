@@ -1,0 +1,46 @@
+form {
+  
+    mat-form-field {
+      width: 100%;
+    }
+  
+    .groupInput {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      // mat-form-field {
+      //   width: 48%;
+      // }
+    }
+  }
+  .buttomActionContainer {
+      display: flex;
+      // justify-content: center;
+      flex-direction: row;
+      .closeButton {
+          margin-right: auto;
+      }
+     
+  }
+  // .forma{
+  //   display: flex;
+  //   flex-direction: column;
+  //   // flex-wrap: wrap;
+
+  //   width: 1000px;
+  //   height: 1000px;
+ 
+
+  // }
+  .forma {
+    display: block;
+    padding: 24px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: auto;
+    outline: 0;
+    width: 600px;
+    height: 500px;
+    min-height: inherit;
+    max-height: inherit;
+}

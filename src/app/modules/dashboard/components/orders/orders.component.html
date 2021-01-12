@@ -1,0 +1,108 @@
+<section class="mainContainer">
+    <span>Orders List</span>
+    <table mat-table [dataSource]="orderList" mat-sort class="mat-elevation-z8" multiTemplateDataRows matSort>
+
+        <!-- Order Date Column -->
+        <ng-container matColumnDef="order_date">
+            <th mat-header-cell *matHeaderCellDef> {{'Order-Date' | translate}} </th>
+            <td mat-cell *matCellDef="let order">{{ order.created_at | date: 'medium' }}</td>
+        </ng-container>
+
+        <!-- Order Price Column -->
+        <ng-container matColumnDef="order_price">
+            <th mat-header-cell *matHeaderCellDef> {{'Order-Price' | translate}} </th>
+            <td mat-cell *matCellDef="let order"> {{ order.order_price |currency:'EUR':'symbol' }} </td>
+        </ng-container>
+
+        <!-- Supplier Column -->
+        <ng-container matColumnDef="shop_owner_name">
+            <th mat-header-cell *matHeaderCellDef> {{'Shop-Owner-Name' | translate}} </th>
+            <td mat-cell style="padding: 5px;" *matCellDef="let order"> {{ order.shop_owner.first_name }}
+                {{ order.shop_owner.last_name}}</td>
+        </ng-container>
+
+        <!-- Statut Column -->
+        <ng-container matColumnDef="order_statut">
+            <th mat-header-cell *matHeaderCellDef>{{'Order-Statut' | translate}} </th>
+            <td mat-cell *matCellDef="let order"> {{ order.statut.statut_name }}
+            </td>  
+        </ng-container>
+
+        <!-- Logistics Column -->
+        <ng-container matColumnDef="logistics">
+            <th mat-header-cell *matHeaderCellDef> {{'Logistic' | translate}} </th>
+            <td mat-cell *matCellDef="let order"> {{ 1 |currency:'EUR':'symbol' }}
+            </td>
+        </ng-container>
+
+        <!-- Commission Percent Column -->
+        <ng-container matColumnDef="commission_percent">
+            <th mat-header-cell *matHeaderCellDef>{{'Commission-SalesManager' | translate}}  </th>
+            <td mat-cell *matCellDef="let order">{{ order.salesmanager_commission_percentage ? (order.salesmanager_commission_percentage + '%') : '0%' }}
+            </td>
+        </ng-container>
+
+        <!-- Commission Value Column -->
+        <ng-container matColumnDef="commission_value">
+            <th mat-header-cell *matHeaderCellDef> {{'Commission-Value' | translate}} </th>
+            <td mat-cell *matCellDef="let order">{{ order.commission_value |currency:'EUR':'symbol' }}
+            </td>
+        </ng-container>
+
+        <!-- Products Number Column -->
+        <ng-container matColumnDef="products_number">
+            <th mat-header-cell *matHeaderCellDef> {{'Products-Number' | translate}} </th>
+            <td mat-cell *matCellDef="let order"> {{ order.products.length }}
+            </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">{{'Actions' | translate}}</th>
+            <td mat-cell *matCellDef="let order">
+                <div class="actionsContainer">
+                    <mat-icon matTooltip="Select to choose an option">expand_more</mat-icon>
+                    <mat-icon matTooltip="Delete Product" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+                    <mat-spinner [ngStyle]="{'display': 'none'}" diameter="20" id="spinner"></mat-spinner>
+                </div>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="changeOrderStatus('confirm', order.id)">{{'Confirm-Order' | translate}}</button>
+                    <button mat-menu-item (click)="changeOrderStatus('rejected', order.id)">{{'Reject-Order' | translate}}</button>
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let order" [attr.colspan]="orderDisplayedColumns.length">
+                <div class="example-element-detail"
+                    [@detailExpand]="order == expandedElement ? 'expanded' : 'collapsed'">
+                    <div class="orderProducts">
+                        <mat-card *ngFor="let product of order.products">
+                            <div class="imageContainer" [ngStyle]="{'background': 'url(' + product.product_image + ')', 
+                            'width': '100%', 'height': '150px', 'background-position': 'center',
+                            'background-size': 'contain', 'background-repeat': 'no-repeat' }">
+                            </div>
+                            <div class="product_name">
+                                {{ product.product_name }}
+                            </div>
+                            <div class="productData">
+                                <div class="quantity">
+                                    Quanity: {{ product.pivot.quantity }}
+                                </div>
+                                <div class="price">
+                                    Price: {{ product.pivot.quantity |currency:'EUR':'symbol' }}
+                                </div>
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="orderDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let order; columns: orderDisplayedColumns;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === order"
+            (click)="expandedElement = expandedElement === order ? null : order"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+</section>

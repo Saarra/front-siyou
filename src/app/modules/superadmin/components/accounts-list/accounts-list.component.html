@@ -1,0 +1,136 @@
+
+<div  style="margin-top: 100px; margin-right: 10px;">
+
+<!-- <hr style="margin-bottom: 40px;" >
+
+  <div class="row w-100">
+    <div class="col-md-3 ">
+      <div class="card border-info mx-sm-1 p-3 shadow bg-white rounded">
+        <div class="card border-info shadow text-info p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span>
+        </div>
+        <div class="text-info text-center mt-3">
+          <h4>Total Accounts</h4>
+        </div>
+        <div class="text-info text-center mt-2">
+          <h1> {{sum_accounts}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-success mx-sm-1 p-3 shadow bg-white rounded">
+        <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye"
+            aria-hidden="true"></span></div>
+        <div class="text-success text-center mt-3">
+          <h4>Suppliers <span> </span> </h4>
+        </div>
+        <div class="text-success text-center mt-2">
+          <h1>{{sum_suppliers}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-danger mx-sm-1 p-3 shadow bg-white rounded">
+        <div class="card border-danger shadow text-danger p-3 my-card"><span class="fa fa-heart"
+            aria-hidden="true"></span></div>
+        <div class="text-danger text-center mt-3">
+          <h4> Sales Managers</h4>
+        </div>
+        <div class="text-danger text-center mt-2">
+          <h1>{{sum_salesmanagers}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-warning mx-sm-1 p-3 shadow bg-white rounded">
+        <div class="card border-warning shadow text-warning p-3 my-card"><span class="fa fa-inbox"
+            aria-hidden="true"></span></div>
+        <div class="text-warning text-center mt-3">
+          <h4> Shop Owners</h4>
+        </div>
+        <div class="text-warning text-center mt-2">
+          <h1>{{sum_shop_owner}}</h1>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+
+
+
+
+
+
+<!-- <button routerLink="../../superadmin/add-supplier" type="button" class="btn-lg btn-outline-primary mr-3 ml-4 mb-3">Add Supplier</button>
+<button routerLink="../../superadmin/add-salesmanager" type="button" class="btn-lg btn-outline-success mr-3 ml-4">Add Sales Manager</button>
+<button routerLink="../../superadmin/add-shop-owner" type="button" class="btn-lg btn-outline-danger mr-3 ml-4">Add Shop Owner</button> -->
+
+<div class="mx-4">
+  <mat-form-field>
+    <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
+  </mat-form-field>
+  <div class="mat-elevation-z8" style=" margin-bottom: 70px;">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+     
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+        <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="first_name" >
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.first_name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.last_name}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="contact">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+        <td mat-cell *matCellDef="let user"> {{user.contact}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let row">
+          <button title="Delete this user" (click)="onDeleteUser(row.id)" mat-icon-button color="warn"><i class="material-icons">
+            delete_forever
+            </i></button>
+            <button *ngIf="isBlocked(row)"  title="Block this user" (click)="onBlockUser(row.id)" mat-icon-button color="warn"><i class="material-icons">
+              block
+              </i></button>
+
+               <button *ngIf="!isBlocked(row)" title="Validate this user" (click)="OnValidateUser(row.id)" mat-icon-button ><i class="material-icons icon-green" style="color: green;">
+              done_outline
+            </i>
+          </button>
+            
+        </td>
+
+       
+        
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 50,100]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

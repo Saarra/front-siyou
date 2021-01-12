@@ -1,0 +1,31 @@
+ul.no-bullets {
+    list-style-type: none; /* Remove bullets */
+  }
+  .mainContainer {
+      max-height: 500px !important;
+      margin-bottom: 10% !important;
+  }
+/* CSS to change Default/'Accent' color */
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color:  #003366 !important; 
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color:  #00336667 !important; 
+}
+::ng-deep .mat-slide-toggle .mat-slide-toggle-thumb {
+  background-color:  #343a40  !important; 
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    opacity: 0.03 !important;
+    background-color:  #003366 !important; 
+  }
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color:  #003366 !important; 
+  }
+  .full-width-dialog .mat-dialog-container {
+    max-width: 1000px !important;
+  }

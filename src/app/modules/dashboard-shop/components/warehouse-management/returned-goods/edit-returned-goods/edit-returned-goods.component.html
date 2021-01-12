@@ -1,0 +1,26 @@
+<div class=" mainContainer p-3 mb-5 bg-white rounded">
+    <form action="">
+
+        <mat-form-field appearance="fill" class="form-element">
+            <mat-label>{{"product_name" | translate}}</mat-label>
+            <input matInput #product_name [value]="currentProd.product_name">
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill" class="form-element">
+            <mat-label>{{"Product-barcode" | translate}}</mat-label>
+            <input matInput #product_barcode [value]="currentProd.product_barcode">
+        </mat-form-field>
+        <br/>
+
+        <mat-form-field appearance="fill" class="form-element">
+            <mat-label>{{"return_quantity" | translate}}</mat-label>
+            <input matInput #return_quantity [value]="currentProd.item_return">
+        </mat-form-field>
+        <br/>
+        <button type="submit" mat-raised-button style="background-color: #730E33; margin-right: 10px;"
+                (click)="onAddReturn(return_quantity.value,product_barcode.value)">{{'Submit' | translate}}</button>
+            <button class="btn btn-secondary" routerLink="/shop/returned-goods">
+                {{'Back' | translate}}</button>
+    </form>
+
+</div>

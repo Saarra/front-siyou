@@ -1,0 +1,235 @@
+<div class="mainContainer" style="
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 50px;
+  ">
+    <mat-tab-group dynamicHeight #tabSection>
+        <mat-tab label="{{'prod_base' | translate }}">
+            <div id="basic_info" class="example-large-box">
+                <h1>{{'prod_base' | translate }}</h1>
+                <form class="example-form" [formGroup]="productBaseGroup">
+                    <div>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label> {{'product_name' |translate}}</mat-label>
+                            <input matInput placeholder="Enter product name" formControlName="product_name"
+                                minlength="4" #product_name />
+
+                         
+
+
+                            <mat-error *ngIf="
+                                    productBaseGroup.get('product_name').invalid &&
+                                      (productBaseGroup.get('product_name').dirty || productBaseGroup.get('product_name').touched)
+                                    " class="alert alert-danger">
+                                <span *ngIf="productBaseGroup.get('product_name').errors.required">
+                                    Product Name is required
+
+                                </span>
+
+                                <span
+                                    *ngIf="productBaseGroup.get('product_name').errors.minlength || productBaseGroup.get('product_name').errors.maxlength">
+                                    Product Name must be less than 250 characters
+
+                                </span>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field class="example-full-width" id="product_description" appearance="outline">
+                        <mat-label>{{'product_desc' | translate}}</mat-label>
+                        <textarea matInput apperance="outline" formControlName="product_description" maxlength="990"
+                            placeholder="Full Description of the product" minlength="4" maxlength="1000"
+                            #product_description></textarea>
+
+
+                        <mat-error *ngIf="
+                            productBaseGroup.get('product_description').invalid &&
+                              (productBaseGroup.get('product_description').dirty || productBaseGroup.get('product_description').touched)
+                            " class="alert alert-danger">
+                            <span *ngIf="productBaseGroup.get('product_description').errors.required">
+                                Product Description is required
+
+                            </span>
+
+                            <span
+                                *ngIf="productBaseGroup.get('product_description').errors.minlength || productBaseGroup.get('product_description').errors.maxlength">
+                                Product Description must be more than 4 characters and less than 1000 characters
+
+                            </span>
+                        </mat-error>
+
+                      
+
+
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" id="product_taxe_rate">
+                        <mat-label>{{'taxe_rate' |translate}}</mat-label>
+                        <input type="number" matInput placeholder="Enter Taxe Rate" formControlName="taxe_rate"
+                            #taxe_rate />
+
+                        <mat-error *ngIf="
+                        productBaseGroup.get('taxe_rate').invalid &&
+                          (productBaseGroup.get('taxe_rate').dirty || productBaseGroup.get('taxe_rate').touched)
+                        " class="alert alert-danger">
+                            <span *ngIf="productBaseGroup.get('taxe_rate').errors.required">
+                                Taxe rate is required
+
+                            </span>
+
+
+                        </mat-error>
+
+                      
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'choose_categ' | translate }}</mat-label>
+                        <mat-select formControlName="category_id" (selectionChange)="onChangeSelect($event)">
+                            <mat-option value="">-- None --</mat-option>
+                            <mat-optgroup *ngFor="let category of categoriesList" [label]="category.category_name">
+                                <mat-option *ngFor="let subcat of category.sub_categories" [value]="subcat.id">
+                                    {{ subcat.category_name }}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-select>
+
+                      
+
+                        <mat-error *ngIf="
+                        productBaseGroup.get('category_id').invalid &&
+                          (productBaseGroup.get('category_id').dirty || productBaseGroup.get('category_id').touched)
+                        " class="alert alert-danger">
+                            <span *ngIf="productBaseGroup.get('category_id').errors.required">
+                                Category is required
+
+                            </span>
+
+
+                        </mat-error>
+
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{'brand' | translate}}</mat-label>
+                        <mat-select formControlName="brand_id">
+                            <mat-option *ngFor="let brand of brandsList" [value]="brand.id">
+                                {{ brand.brand_name }}
+                            </mat-option>
+                        </mat-select>
+
+                    
+
+
+                        <mat-error *ngIf="
+                        productBaseGroup.get('brand_id').invalid &&
+                          (productBaseGroup.get('brand_id').dirty || productBaseGroup.get('brand_id').touched)
+                        " class="alert alert-danger">
+                            <span *ngIf="productBaseGroup.get('brand_id').errors.required">
+                                Brand is required
+
+                            </span>
+
+
+                        </mat-error>
+
+
+                    </mat-form-field>
+
+         
+                </form>
+                <div class="buttonsSection">
+                    <button mat-raised-button color="primary" class="nextButton" (click)="goToNext($event)">
+                        {{'next' | translate}}
+                    </button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="{{'prod_item' | translate}}">
+            <div id="items_infos" class="example-large-box">
+                <section class="itemsInfosHeader">
+                    <h1>{{'prod_item' | translate}}</h1>
+                    <button mat-button mat-raised-button color="primary" (click)="openAddProductManagementModal()">
+                        Add New Item
+                    </button>
+                </section>
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #itemsTable matSort>
+                    <!-- Image Column -->
+                    <ng-container matColumnDef="image">
+                        <th mat-header-cell *matHeaderCellDef>Item Image</th>
+                        <td mat-cell *matCellDef="let element" style="height: 70px; min-width: 50px;">
+                            <img [src]="element.item_image_list[0].image_url" alt="" />
+                        </td>
+                    </ng-container>
+
+                    <!-- Barcode Column -->
+                    <ng-container matColumnDef="barcode">
+                        <th mat-header-cell *matHeaderCellDef>Item Barcode</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.item_values.item_barcode }}
+                        </td>
+                    </ng-container>
+
+                    <!-- Quantity Column -->
+                    <ng-container matColumnDef="quantity">
+                        <th mat-header-cell *matHeaderCellDef>Item Quantity</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.item_values.item_quantity }}
+                        </td>
+                    </ng-container>
+
+                    <!-- Actions Column -->
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>Actions</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button title="Delete this product item" mat-icon-button color="warn">
+                                <i class="material-icons">
+                                    delete_forever
+                                </i>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+                <div class="buttonsSection">
+                    <button mat-stroked-button color="primary" (click)="goToBack($event)">
+                        Previous
+                    </button>
+                    <button mat-raised-button color="primary" class="nextButton" (click)="goToNext($event)">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="{{'chose_img' | translate }}">
+            <div id="imagesContainer" class="example-large-box">
+                <span>{{'chose_img' | translate }}</span>
+                <section class="imagesList">
+                    
+                    <div *ngFor="let image of imagesList" class="imageItem" [ngClass]="{
+              'image-selected': image.image_id == imageItemSelectionId
+            }" (click)="onSelectImage(image)">
+                        <img [src]="image.image_url" alt="" />
+                        <span [matTooltip]="
+                image.image_id == imageItemSelectionId ? 'Deselect' : 'Select'
+              " class="selection">
+                            <mat-icon>check_circle</mat-icon>
+                        </span>
+                    </div>
+                </section>
+                <section class="buttonsSection">
+                    <button mat-stroked-button color="primary" (click)="goToBack($event)">
+                        Previous
+                    </button>
+                    <button mat-raised-button color="primary" class="nextButton" (click)="addProduct()">
+                        Confirm
+                    </button>
+                </section>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

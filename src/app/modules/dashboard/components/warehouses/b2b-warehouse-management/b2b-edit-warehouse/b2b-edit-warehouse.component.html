@@ -1,0 +1,84 @@
+
+<div class="container">
+
+  <div class="form-group" style="margin-top: 50px;">
+    <h3>Edit Warehouse</h3>
+    <hr>
+</div>
+  <form action="" [formGroup]="form" novalidate>
+      <p>
+      <mat-form-field appearance="legacy" class="form-element">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" [value]="currentWarehouse.name">
+
+      </mat-form-field>
+  
+ 
+       </p>
+   <p>
+      <mat-form-field appearance="legacy" class="form-element">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-label>First Responsible</mat-label>
+        <input matInput  formControlName="first_responsible" [value]="currentWarehouse.first_responsible">
+
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+          <mat-icon matSuffix>edit</mat-icon>
+          <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"  [value]="currentWarehouse.description"></textarea>
+
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="legacy" class="form-element">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-label>Second responsible</mat-label>
+        <textarea matInput formControlName="second_responsible" [value]="currentWarehouse.second_responsible"></textarea>
+
+      </mat-form-field>
+    </p>
+
+  
+    <p style="display: none;">
+      <mat-form-field appearance="fill" class="form-element">
+        <mat-icon matSuffix>add_location</mat-icon>
+        <mat-label>Latitude</mat-label>
+        <input matInput placeholder="Enter Latitude" formControlName="latitude">
+
+      </mat-form-field>
+    </p>
+
+    <p style="display: none;">
+      <mat-form-field appearance="fill" class="form-element">
+        <mat-icon matSuffix>add_location</mat-icon>
+        <mat-label>Longitude</mat-label>
+        <input matInput placeholder="Enter Longitude" formControlName="longitude">
+
+      </mat-form-field>
+    </p>
+
+    <agm-map style="margin-top: 1.5rem;" [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
+      <agm-marker [latitude]="lat" [longitude]="lng" *ngIf="locationChosen">
+      </agm-marker>
+    </agm-map>
+
+
+
+    <button class="btn-submit"(click)="onSubmit()" mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;">Submit</button>
+    <button mat-raised-button="warn">Back</button>
+      
+
+
+
+
+   
+    
+  </form>
+</div>
+
+
+
+  

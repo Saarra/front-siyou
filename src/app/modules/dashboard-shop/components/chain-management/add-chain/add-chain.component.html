@@ -1,0 +1,93 @@
+<!-- <input type="time" id="exampleInput" name="input" ng-model="example.value"
+placeholder="HH:mm:ss" min="08:00:00" max="17:00:00" required /> -->
+<div class="mainContainer shadow-lg p-3 mb-5 bg-white rounded">
+  <div class=" my-2 mx-2">
+    <form autocomplete="off">
+      <div>
+        <p style="size: 50px;">{{ "Add-a-newStore" | translate }}</p>
+        <mat-divider style="margin-bottom: 30px;"></mat-divider>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>storefront</mat-icon>
+          <mat-label>{{ "StoreName" | translate }}</mat-label>
+          <input type="text" matInput placeholder="Store Name" #chain_name />
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>place</mat-icon>
+          <mat-label> {{ "StoreAddress" | translate }} </mat-label>
+          <input type="text" matInput placeholder="Store Adress" #adress />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-label>{{ "StoreContact" | translate }}</mat-label>
+          <input type="text" matInput placeholder="Store Contact" #contact />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <!-- <mat-icon matSuffix> Close Hours </mat-icon> -->
+          <mat-label>{{ "Opening-Hours" | translate }} </mat-label>
+          <input
+            type="time"
+            matInput
+            placeholder="Opening Hours : HH:mm:ss"
+            min="06:00:00"
+            max="16:00:00"
+            #chain_opening_hours
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <!-- <mat-icon matSuffix> Close Hours </mat-icon> -->
+          <mat-label>{{ "CloseHours" | translate }} </mat-label>
+          <input
+            type="time"
+            matInput
+            placeholder="Close Hours : HH:mm:ss"
+            min="16:00:00"
+            max="00:00:00"
+            #chain_close_hours
+          />
+        </mat-form-field>
+      </div>
+
+      <button
+        (click)="
+          onAddStore(
+            chain_name.value,
+            adress.value,
+            contact.value,
+            chain_opening_hours.value,
+            chain_close_hours.value,
+            1
+          )
+        "
+        type="submit"
+        class="btn btn-primary mt-2 mb-5"
+        style="background-color: #303842; border-color: #303842;"
+      >
+      <i class="fa fa-check" aria-hidden="true"></i>
+
+        {{ "Submit" | translate }}
+      </button>
+      <button
+        routerLink="/shop/chains-list"
+        class="btn btn-secondary ml-2 mt-2 mb-5"
+      >
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+
+        {{ "Back" | translate }}
+      </button>
+    </form>
+  </div>
+</div>

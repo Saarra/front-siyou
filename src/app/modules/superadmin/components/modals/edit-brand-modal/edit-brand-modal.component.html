@@ -1,0 +1,19 @@
+<form>
+    <h3>Edit this Brand:</h3>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Brand Name:</mat-label>
+            <input matInput placeholder="{{currentBrand.brand_name}}" #brand_name>
+            
+        </mat-form-field>
+    </p>
+    <p>
+        <label>Brand logo: </label>
+        <button type="button" mat-raised-button (click)="fileInput.click()"> Choose File</button>
+        <input hidden #fileInput type="file" id="file" #brand_logo>
+    </p>
+    <p style="margin-top: 40px;">
+        <button style="margin-right: 10px;" type="submit" mat-raised-button mat-button color="primary" (click)="onEditBrand(currentBrand.id, brand_name.value, brand_logo.value )">Submit</button>
+        <button mat-dialog-close  mat-raised-button mat-button color="link">Close</button>
+    </p>
+</form>

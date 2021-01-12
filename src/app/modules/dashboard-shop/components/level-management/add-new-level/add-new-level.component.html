@@ -1,0 +1,74 @@
+<div class="mainContainer p-3 mb-5 bg-white rounded">
+
+    <div>
+        <form action="" [formGroup]="form" novalidate>
+    
+    
+            <div>
+                <p style="size: 50px;">{{'Add-a-newLevel' | translate}}</p>
+               <mat-divider style="width: 95%; margin-bottom: 30px;"></mat-divider>
+            </div>
+    
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-element">
+                    <mat-icon matSuffix>military_tech</mat-icon>
+                    <mat-label> {{'Level-Name' | translate}} </mat-label>
+                    <input matInput placeholder="Enter Level Name" formControlName="level_name">
+    
+                </mat-form-field>
+            </div>
+    
+    
+            <div class="form-group">
+                <mat-form-field appearance="fill" class="form-element">
+                  <mat-icon matSuffix>not_started</mat-icon>
+                  <mat-label> {{'Start-Point-Level' | translate}} </mat-label>
+                  <input matInput placeholder="Start Point Level " formControlName="start_point">
+          
+                </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="fill" class="form-element">
+              <mat-icon matSuffix>pause</mat-icon>
+              <mat-label>{{'End-Point-Level' | translate}} </mat-label>
+              <input matInput placeholder="End Point Level " formControlName="end_point">
+      
+            </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>format_align_left</mat-icon>
+          <mat-label> {{'Level-Description' | translate}} </mat-label>
+          <!-- <textarea matInput></textarea> -->
+    
+          <input matInput placeholder="Enter Level Description" formControlName="description">
+    
+        </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-icon matSuffix>exposure_plus_1</mat-icon>
+          <mat-label>{{'Increment-Point' | translate}} </mat-label>
+          <input matInput placeholder="Enter Level Increment Point" formControlName="increment_point">
+    
+        </mat-form-field>
+    </div>    
+    <div class="form-group">
+    
+    <mat-form-field appearance="fill">
+        <mat-label>{{'Textarea' | translate}} </mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>  
+         </div>
+          
+    
+    
+            <p style="margin-top: 8px;">
+                <button      type="submit" class="btn btn-primary btn-lg mt-2 mb-5"
+                    (click)="onSubmit()" style="background-color: #303842; border-color: #303842;">{{'Submit' | translate}}</button>
+                <button routerLink="../../shop/level-membership-management" class="btn btn-secondary ml-2 btn-lg mt-2 mb-5" 
+                > {{'Back' | translate}}</button>
+            </p>
+        </form>
+    </div>
+</div>

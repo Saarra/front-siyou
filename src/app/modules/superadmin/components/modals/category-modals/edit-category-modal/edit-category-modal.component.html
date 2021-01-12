@@ -1,0 +1,49 @@
+<h3>Edit this category:</h3>
+<hr>
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name:</mat-label>
+    <input matInput placeholder="{{currentCategory.category_name}}" #category_name>
+   
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name (Italian):</mat-label>
+    <input matInput placeholder="{{currentCategory.category_it}}" #category_it>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name (Chinese):</mat-label>
+    <input matInput placeholder="{{currentCategory.category_cn}}" #category_cn>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+  </mat-form-field>
+</p>
+
+<p>
+  <mat-form-field appearance="outline">
+    <mat-label>Category Name (French):</mat-label>
+    <input matInput placeholder="{{currentCategory.category_fr}}" #category_fr>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <!-- <mat-hint>Hint</mat-hint> -->
+  </mat-form-field>
+</p>
+<mat-form-field appearance="fill">
+  <mat-label>Parent Category</mat-label >
+  <mat-select #parent_category_id>
+    <mat-option [value]="getNullValue()">None</mat-option>
+    <mat-option *ngFor="let cat of categoryList"  [value]="cat.id" >{{cat.category_name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<br>
+
+<button mat-raised-button color="primary" style="margin: 20px 10px 0px 0px;"
+(click)="onEditCategory(currentCategory.id,category_name.value,category_fr.value,category_cn.value, category_it.value , parent_category_id.value)">Submit</button>
+<button mat-raised-button mat-dialog-close>Close</button>

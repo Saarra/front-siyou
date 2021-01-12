@@ -1,0 +1,101 @@
+<div class=" mainContainer p-3 mb-5 bg-white rounded">
+  <div>
+
+    <form action="" [formGroup]="form">
+      <div>
+        <p style="size: 50px;"> {{"Add-new-category"| translate}}  </p>
+        <mat-divider style="margin-bottom: 30px;"></mat-divider>
+      </div>
+      <div class="form-group">
+
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-label>{{'category_name' | translate}} </mat-label>
+          <input matInput formControlName="name">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="form-group" *ngIf="italian == true">
+
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-label>{{'category_name_(IT)' | translate}} </mat-label>
+          <input matInput formControlName="category_it">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+      </div>
+      <div class="form-group" *ngIf="chinois == true">
+
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-label>{{'category_name_(CN)' | translate}}</mat-label>
+          <input matInput formControlName="category_cn">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+      </div>
+      <div class="form-group" *ngIf="french == true">
+
+        <mat-form-field appearance="fill" class="form-element">
+          <mat-label>{{'category_name_(FR)' | translate}}</mat-label>
+          <input matInput formControlName="category_fr">
+          <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+          <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+      </div>
+      <div class="uploadImage">
+        <label id="imageBtn">
+          <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+          <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}"
+            (click)="fileInputImg.click()">
+            <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+          </section>
+          <!-- </button> -->
+        </label>
+        <input class="none" #fileInputImg type="file" (change)="getFileChange($event)" style="display: none;" />
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>{{'category_image' | translate}}</mat-label>
+          <input matInput type="text" #resultInput readonly>
+        </mat-form-field>
+      </div>
+  <div class="form-group">
+        <div>
+          <div class="row">
+            <div class="col-sm">
+              <button mat-icon-button 
+              (click)="chooseitalian()"><i
+                  class="material-icons icon-green" style="background-color:#003366;color:white;">add
+              </i></button> {{'category_name_(IT)' | translate}} 
+
+        
+            </div>
+            <div class="col-sm">
+              <button mat-icon-button 
+              (click)="chooseChinois()"><i
+                  class="material-icons icon-green" style="background-color:#003366;color:white;">add
+              </i></button> {{'category_name_(CN)' | translate}}
+             
+            </div>
+            <div class="col-sm">
+              <button mat-icon-button 
+              (click)="choosefren()"><i
+                  class="material-icons icon-green" style="background-color:#003366;color:white;">add
+              </i></button> {{'category_name_(FR)' | translate}} 
+              
+            </div>
+            
+          </div>
+        </div>
+
+
+
+      </div>
+   
+      <button mat-raised-button style="background-color: #730E33; margin-right: 10px;" type="submit"
+        (click)="onaddCategoryByShop()">{{'submit' | translate}}</button>
+      <button mat-raised-button style="background-color: #003366;" routerLink="/shop/my-categories">{{'Back' | translate}}</button>
+    </form>
+  </div>
+</div>

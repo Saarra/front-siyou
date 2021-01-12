@@ -1,0 +1,120 @@
+
+
+
+table{
+  width: 100%;
+
+}
+
+.mat-raised-button{
+  padding: 12px 12px 12px 12px ;
+  color : white;
+}
+
+
+.pricetable1 {
+  color: red;
+}
+
+.distype {
+  text-transform: capitalize;
+}
+.disprice {
+  text-decoration: line-through;
+}
+
+.filterclass {
+  margin-right: 30px;
+  margin-left: 30px;
+  width: 90%;
+}
+
+.pagclass {
+  margin-right: 30px;
+  margin-left: 30px;
+  width: 90%;
+}
+
+.opt {
+  color: blue;
+  background-color: blue;
+}
+
+body {
+  background: #eee;
+}
+
+.card-box {
+  position: relative;
+  color: #fff;
+  padding: 20px 20px 20px 20px;
+  background-color: #ececec;
+}
+.card-box:hover {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+.card-box:hover .icon i {
+  font-size: 90px;
+  transition: 1s;
+  -webkit-transition: 1s;
+}
+
+.card-box p {
+  font-size: 15px;
+}
+.card-box .mat-icon {
+  color: white;
+}
+.card-box .card-box-footer {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  text-align: center;
+  padding: 3px 0;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  text-decoration: none;
+}
+.card-box:hover .card-box-footer {
+  background: rgba(0, 0, 0, 0.3);
+}
+.bg-blue {
+  background-color: #f37814;
+}
+.bg-green {
+  background-color: #e90088;
+  height: 130px;
+}
+.bg-orange {
+  background-color: #ffcc00;
+}
+.bg-red {
+  background-color: #3098f2;
+}
+.mat-raised-button{
+  padding: 12px 12px 12px 12px ;
+  color : white;
+}
+
+td {
+  margin-right: 10px;
+  padding-left: 10px;
+}
+.pagination{
+  cursor: pointer;
+
+}
+.page-item {
+  cursor: pointer;
+
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #003366;
+  border-color: #003366;
+  cursor: pointer;
+
+}

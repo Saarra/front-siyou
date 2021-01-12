@@ -1,0 +1,96 @@
+
+
+<div class=" mainContainer p-3 mb-5 rounded">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <div>
+    
+    
+    
+      <div class="mx-4">
+        <mat-form-field>
+          <input  matInput placeholder="{{'Filter' | translate}}">
+  
+          <!-- (keyup)="applyFilter($event.target.value)" -->
+        
+        </mat-form-field>
+        <!-- <button color="primary" class="topbuttons" style=" float:right; margin-top: 10px;" class="btn btn-primary"
+        (click)="openAddNewLevelModal()">+New Level MemberShip
+       
+      </button> -->
+      <button color="primary" class="topbuttons" style=" float:right; margin-top: 10px; background-color: #303842; border-color: #303842;" class="btn btn-primary"
+      routerLink="../../shop/add-level-membership"  >{{'New-Level-MemberShip' | translate }}   </button>
+      
+        <div style=" margin-bottom: 70px;">
+          <p class="mx-2 my-2" style="padding-top: 10px; size: 50px;">{{'List-of-Levels' | translate }}</p>
+          <mat-divider style="width: 95%; margin-left: 5px;"></mat-divider>
+  
+          <table mat-table [dataSource]="dataSource" matSort>
+      
+              
+                <ng-container matColumnDef="level">
+      
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Level-Name' | translate }} </th>
+                  <td mat-cell *matCellDef="let level" >  {{level.level}} </td>
+                  <!-- <td mat-cell *ngFor="let level of levelData" [value]="level.id"> {{level.level}} </td> -->
+      
+                </ng-container>
+      
+                <ng-container matColumnDef="start_point">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Stard-Point' | translate }} </th>
+                  <td mat-cell *matCellDef="let level"> {{level.start_point}} </td>
+                </ng-container>
+           
+      
+                <ng-container matColumnDef="end_point">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'End-Point' | translate }} </th>
+                  <td mat-cell *matCellDef="let level"> {{level.end_point}} </td>
+                </ng-container>
+      
+                <ng-container matColumnDef="description">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Level-Description' | translate }} </th>
+                  <td mat-cell *matCellDef="let level"> {{level.description}} </td>
+                </ng-container>
+      
+                <ng-container matColumnDef="increment_point">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Increment-Point' | translate }} </th>
+                  <td mat-cell *matCellDef="let level"> {{level.increment_point}} </td>
+                </ng-container>
+            
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>{{'Actions' | translate }}  </th>
+              <td mat-cell *matCellDef="let row">
+                  <button  title="Edit this level" (click)="openEditLevelModal(row)" mat-icon-button ><i class="material-icons icon-green" style="color: #303842">
+                      create
+                  </i>
+                </button>
+      
+                <button title="Delete this level" (click)="openDeleteLevelModal(row)" mat-icon-button color="warn" style="color: #303842"><i class="material-icons">
+                  delete_forever
+                  </i></button>
+                 
+                  
+      
+                    
+                  
+              </td>
+      
+             
+              
+            </ng-container>
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+      
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+      
+      <!-- Copyright 2019 Google LLC. All Rights Reserved.
+            Use of this source code is governed by an MIT-style license that
+            can be found in the LICENSE file at http://angular.io/license -->
+  
+  </div>

@@ -1,0 +1,72 @@
+
+
+.form-element{
+    width: 100%;
+}
+
+agm-map{
+    height: 400px !important;
+}
+.hr{
+    width:"70%"
+}
+
+@media only screen and (max-width: 600px) {
+    .form-element{
+        width: 100%;
+    }
+    .hr{
+        width:"100%";
+    }
+  }
+
+  .mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  .label-element{
+      margin-right: 16px;
+  }
+
+  .example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.container{
+    margin-bottom: 70px;
+    margin-top: 150px;
+
+}
+
+button{
+    height: 40px;
+    
+}
+
+
+.uploadImage {
+    #imageBtn {
+      margin-top: 15px;
+      margin-left: 8px;
+      margin-right: 8px;
+      .uploadIconContainer {
+        display: flex;
+        justify-content: center;
+        border-radius: 50%;
+        padding: 8px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    display: flex;
+    // flex-direction: row-reverse;
+    // align-items: center;
+    // justify-content: center;
+  }
+
+  .btn-submit{
+    color: white;
+  }
+  

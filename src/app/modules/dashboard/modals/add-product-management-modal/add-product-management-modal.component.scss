@@ -1,0 +1,127 @@
+.mat-dialog-content {
+    .productItemForm {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        gap: 1em;
+        overflow: hidden;
+        @media screen and (max-width: 900px) {
+            display: flex;
+            flex-direction: column;
+        }
+        .generalInfos {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: auto;
+            gap: 1em;
+            justify-content: center;
+            overflow: auto;
+            @media screen and (max-width: 600px) {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .itemCriteria {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: max-content;
+            gap: 1em;
+            justify-content: center;
+            overflow: auto;
+            @media screen and (max-width: 600px) {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .imagesUploadSection {
+            display: flex;
+            flex-direction: column;
+            span {
+                margin-bottom: 5px;
+                font-family: Roboto;
+            }
+            ngx-dropzone {
+                height: 100%;
+                max-height: 100px;
+                ngx-dropzone-label {
+                    grid-column: span 2;
+                    align-self: center;
+                    mat-icon {
+                        width: 48px;
+                        height: 48px;
+                        font-size: 48px;
+                        color: #717386;
+                    }
+                }
+            }
+            .selectedImages {
+                display: grid;
+                margin-top: 10px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: flex-start;
+                overflow: auto;
+                max-height: 250p;
+                mat-card {
+                    display: flex;
+                    position: relative;
+                    background-color: #e3e3e3;
+                    height: 150px;
+                    margin: 5px;
+                    padding: 8px;
+                    box-sizing: border-box;
+                    justify-content: center;
+                    align-items: center;
+                    &.imageBackgroundStyle {
+                        background-position: center;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                    }
+                    mat-icon {
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                        cursor: pointer;
+                        color: #e3e3e3;
+                    }
+                }
+            }
+            #imagesSelect {
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-style: dashed;
+                border-color: #e3e3e3;
+                mat-icon {
+                    width: 48px;
+                    height: 48px;
+                    font-size: 48px;
+                    color: #e3e3e3;
+                }
+            }
+        }
+        mat-form-field {
+            width: 100%;
+        }
+    }
+    .inputContainer {
+        display: flex;
+        flex-direction: row;
+        .selectedColor {
+            width: 25px;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+        mat-select {
+            display: flex;
+            width: unset;
+            .mat-select-trigger {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                .mat-select-value {
+                    max-width: unset;
+                }
+            }
+        }
+    }
+}

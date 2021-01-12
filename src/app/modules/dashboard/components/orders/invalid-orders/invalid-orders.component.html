@@ -1,0 +1,195 @@
+<div class="container  rounded"  style=" padding: 40px; margin-top: 100px; margin-bottom: 30px;">
+
+
+        <div class="row">
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{'Orders-Received' | translate}}</h6>
+                        <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>{{orderLength}}</span></h2>
+                        <p class="m-b-0">{{'Completed-Orders' | translate}}<span class="f-right">{{orderLength}}</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{'Sum-Order-Price' | translate}}</h6>
+                        <h2 class="text-right"><i class="fa fa-money f-left"></i><span>€{{sumOrder}}</span></h2>
+                        <p class="m-b-0">{{'Last-Order' | translate}}<span class="f-right">€{{lastOrderPrice}}</span></p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{'Max-Order-Price' | translate}}</h6>
+                        <h2 class="text-right"><i class="fa fa-arrow-up f-left"></i><span>€{{maxOrderPrice}}</span></h2>
+                        <p class="m-b-0">{{'Order-Date' | translate}}<span class="f-right">{{maxOrderDate | date}}</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-xl-3">
+                <div class="card bg-c-pink order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">{{'Min-Order-Amount' | translate}}</h6>
+                        <h2 class="text-right"><i class="fa fa-arrow-down f-left"></i><span>€{{minOrderPrice}}</span></h2>
+                        <p class="m-b-0">{{'Order-Date' | translate}}<span class="f-right">{{minOrderDate | date}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+<section class="mainContainer">
+    <!-- <span>List of invalid orders:</span> -->
+    <!-- <button color="primary" class="topbuttons" style=" float:right; margin-top: 10px;margin-bottom: 10px;" mat-raised-button
+    (click)="openAddCriteriaWithUnits()">+ Add New Criteria
+  </button> -->
+
+
+  
+  <mat-form-field style="width: 25%;">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Siyou">
+  </mat-form-field>
+  
+
+    <table mat-table [dataSource]="orderList" mat-sort multiTemplateDataRows matSort>
+
+        <!-- Order Date Column -->
+        <ng-container matColumnDef="order_date">
+            <th mat-header-cell *matHeaderCellDef> {{'Order-Date' | translate}}</th>
+            <td mat-cell *matCellDef="let order">{{ order.order_date | date}}</td>
+        </ng-container>
+
+        <!-- Order Price Column -->
+        <ng-container matColumnDef="order_price">
+            <th mat-header-cell *matHeaderCellDef> {{'Order-Price' | translate}}</th>
+            <td mat-cell *matCellDef="let order" class="price1"> {{ order.order_price |currency:'EUR':'symbol' }} </td>
+        </ng-container>
+
+        <!-- Supplier Column -->
+        <ng-container matColumnDef="shop_owner">
+            <th mat-header-cell *matHeaderCellDef>  {{'Shop-Owner-Name' | translate}} </th>
+            <td mat-cell *matCellDef="let order"> {{ order.shop_owner.first_name }} {{ order.shop_owner.last_name }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="statut">
+            <th mat-header-cell *matHeaderCellDef> {{'Order-Status' | translate}} </th>
+
+            <td mat-cell *matCellDef="let order">
+            <button mat-stroked-button color="warn"> {{ order.statut.statut_name }} <i
+                class="material-icons icon-green" color="warn">
+                access_time
+
+            </i> </button>
+
+            </td>
+        </ng-container>
+
+
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="padding-left: 40px;">{{'Actions' | translate}}</th>
+            <td mat-cell style="padding-left: 30px;" *matCellDef="let row">
+
+                <button mat-icon-button  matTooltip="Show order products">
+                    <i class="material-icons icon-green" style="color: darkcyan;">expand_more</i>
+                </button>
+                <!-- <button  title="Add this Criteria" (click)="openAddCriteriaModal(row)" mat-icon-button ><i class="material-icons icon-green" style="color: darkcyan;">
+                    create
+                </i>
+              </button>                  -->
+                <button matTooltip="Show full openOrderFullDetails" (click)="openOrderFullDetails(row.id)" mat-icon-button><i
+                        class="material-icons icon-green" style="color: darkcyan;">
+                        view_headline
+                    </i>
+                </button>
+
+                <button matTooltip="Validate order" (click)="validateOrder(row.id)" mat-icon-button><i
+                    class="material-icons icon-green" style="color: darkcyan;">
+                    offline_pin
+
+                </i>
+            </button>   
+
+                
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+
+
+
+            <td mat-cell *matCellDef="let order" [attr.colspan]="orderDisplayedColumns.length">
+                <!-- <button mat-raised-button color="primary">Add New Unit</button> -->
+               
+               
+
+                <div class="example-element-detail"
+                    [@detailExpand]="order == expandedElement ? 'expanded' : 'collapsed'">
+
+                    <div class="orderProducts">
+                       
+
+                      
+
+
+                            
+                        <table class="mat-elevation-z8">
+                           
+
+
+                            <tr>
+                                <th style="margin-right: 35px; padding: 10px;">{{'prod_imgg' | translate}}</th>
+                                <th style="margin-right: 15px; padding: 10px;">{{'prod_namee' | translate}}</th>
+                                <th style="margin-left: 15px; padding: 10px;">{{'Product-quantity' | translate}}</th>
+                                <th style="margin-left: 15px; padding: 10px;">{{'Product-Price' | translate}}</th>
+                                <th style="margin-left: 15px; padding: 10px;">{{'Actions' | translate}}</th>
+
+                            </tr>
+
+                            <tr *ngFor="let prod_item of order.product_item">
+                                <td style="margin-right: 15px; padding: 10px;">
+                                     <img *ngFor="let img of prod_item.images | slice:0:1" [src]="img.image_url" class="prod-img" alt="">
+                                </td>
+                                <td style="margin-right: 15px; padding: 10px;">{{prod_item.product.product_name}}</td>
+                                <td style="margin-left: 15px; padding: 10px;">{{prod_item.pivot.quantity}}</td>
+                                <td style="margin-left: 15px; padding: 10px; color:red" class="price1">{{prod_item.item_offline_price |currency:'EUR':'symbol'}}</td>
+                                <td style="margin-left: 15px; padding: 10px;">
+
+                                    <button mat-icon-button matTooltip="View full details"><i
+                                            class="material-icons icon-green" style="color: darkcyan;" routerLink="/dashboard/product-details/{{prod_item.id}}">
+                                            view_headline
+                                        </i>
+                                    </button>
+
+                                  
+                                </td>
+
+                            </tr>
+                        </table>
+
+
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="orderDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let order; columns: orderDisplayedColumns;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === order"
+            (click)="expandedElement = expandedElement === order ? null : order"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+</section>
+
+
+
+</div>

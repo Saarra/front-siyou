@@ -1,0 +1,59 @@
+<div class="container shadow p-3 mb-5 bg-white rounded">
+
+
+  <!-- <p>Product Details</p> -->
+  <p>{{'prod_details' | translate}}</p>
+  
+    <div class="card mb-3" style="min-height: 400px; padding-top: 20px;">
+        <div class="row no-gutters">
+          <div class="col-md-4 main-img">
+            <img *ngFor="let mainimgg of currentProduct.images | slice:0:1" id="main-img" [src]="mainimgg.image_url" class="card-img" alt="...">
+
+            <div class="row secondary-img no-gutters" id="secondary-img">
+              <div>
+                <img *ngFor="let secimgg of currentProduct.images | slice:0:4" id="sec-img" class="sec-img" [src]="secimgg.image_url" alt="" (click)="setToMainImg(secimgg.image_url)">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title pr_name">{{currentProduct.product.product_name}}</h5>
+
+              <p class="card-text" style="color: green;"><small class="text-muted" style="color: green;">Barcode: {{currentProduct.item_barcode}}</small></p>
+
+              <p class="card-text">{{currentProduct.product.product_description}}</p>
+              <p class="card-text" style="color: green;"><small class="text-muted" style="color: green;">Quantity: {{currentProduct.item_quantity}}</small></p>
+
+              <h5 *ngIf="currentProduct.item_discount_price" class="card-title price" > <span style="text-decoration: line-through; color: grey;" > {{currentProduct.item_offline_price |currency:'EUR':'symbol'}}</span> <span  class="ml-2">{{currentProduct.item_discount_price |currency:'EUR':'symbol'}}</span></h5>
+              <h5 *ngIf="!currentProduct.item_discount_price" class="card-title price" > {{currentProduct.item_offline_price |currency:'EUR':'symbol'}} </h5>
+             
+              
+             
+
+                <p>Specs:</p>
+                <ul>
+                  <div *ngFor="let criteria of currentProduct.criteria_base">
+                  <li *ngIf="CheckColor(criteria.name); else elseBlock">&#9679; Color: <span class="dot" [style.background-color]="criteria.pivot.criteria_value"></span>
+                    </li>
+                    <ng-template #elseBlock>&#9679; {{criteria.name}}: {{criteria.pivot.criteria_value}}</ng-template>
+                   
+                  </div>
+                 
+                
+                </ul>
+            
+
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+</div>
+
+
+  
+

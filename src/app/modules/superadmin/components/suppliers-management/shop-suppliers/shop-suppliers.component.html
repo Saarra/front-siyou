@@ -1,0 +1,120 @@
+<div class="jumbotron" style="margin-top: 20px;">
+
+    <div class="mx-4">
+        <mat-form-field appearance="outline" class="form-element" style="margin-right: 2%;">
+            <mat-icon matSuffix>storefront</mat-icon>
+            <mat-label>{{"Shop-Owner" | translate}}</mat-label>
+            <mat-select #shop (selectionChange)= ongetSuppliers(shop.value)>
+                <mat-option value=0 selected>None</mat-option>
+                <mat-option *ngFor="let shop of shopData" [value]="shop.id">
+                    {{shop.first_name}}{{shop.last_name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        
+        <div class="mat-elevation-z8" style=" margin-bottom: 70px;">
+            <h5 class="mx-2 my-2" style="padding-top: 10px;">List of suppliers (Total: <span
+                    style="color: red;">{{sum_brand}} </span>Suppliers):</h5>
+            <table mat-table [dataSource]="dataSource" matSort class="table1">
+
+                <ng-container matColumnDef="supplier_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Supplier-Name' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.supplier_name}}</td>
+                </ng-container>
+                <ng-container matColumnDef="company_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'company-name' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.company_name}}</td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Email' | translate}} </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+
+                <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+                <ng-container matColumnDef="phone_num1">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Phone-Number' | translate}} </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.contact}}
+
+
+                    </td>
+                </ng-container>
+
+
+
+                <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+                <ng-container matColumnDef="country">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Country' | translate}} </th>
+                    <td mat-cell *matCellDef="let element">
+
+                        {{element.country}}
+
+                    </td>
+                </ng-container>
+
+
+                <!-- <td mat-cell *matCellDef="let element"> {{element.images.image_url}} </td> -->
+                <ng-container matColumnDef="tax_id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'Tax-ID' | translate}} </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.tax_id}}
+
+                    </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="details">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'More-details' | translate}} </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button title=""
+                            matTooltip="Show supplier full details" mat-icon-button><i class="material-icons icon-green"
+                                style="color: #003366;">
+                                edit
+                            </i>
+                        </button>
+
+                        <button mat-icon-button (click)="onDeleteSupplier(element.id)"><i
+                                class="material-icons icon-green" style="color: #7e2a49be">delete
+                            </i>
+                        </button>
+
+                    </td>
+                </ng-container>
+
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+         
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center pagination-sm">
+                <li class="page-item " [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a class="page-link" (click)="setPageFilter(1,shop.value);ongetSuppliers(1,shop.value)">{{'first'|
+                        translate}}</a>
+                </li>
+                <li class="page-item " [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a class="page-link" (click)="setPageFilter(pager.currentPage - 1,shop.value);ongetSuppliers(pager.currentPage - 1,shop.value)">{{'previous'|
+                        translate}}</a>
+                </li>
+                <li class="page-item active" *ngFor="let page of pager.pages"
+                    [ngClass]="{active:pager.currentPage === page}">
+                    <a class="page-link" (click)="setPageFilter(page,shop.value);ongetSuppliers(page,shop.value);">{{page}}</a>
+                </li>
+                <li class="page-item " [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a class="page-link" (click)="setPageFilter(pager.currentPage + 1,shop.value);ongetSuppliers(pager.currentPage + 1,shop.value)">{{'Next'|
+                        translate}}</a>
+                </li>
+                <li class="page-item " [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a  class="page-link" (click)="setPageFilter(pager.totalPages,shop.value)">{{'last'| translate}}</a>
+
+                </li>
+            </ul>
+        </nav>
+    </div>

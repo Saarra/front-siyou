@@ -1,0 +1,134 @@
+<div class="mainContainer p-3 mb-5 rounded pb-8"
+    style=" padding: 40px; margin-top: 100px; margin-bottom: 30px;">
+    <!-- <nav aria-label="breadcrumb" style= "background-color: white;">
+     <ol class="breadcrumb" style= "background-color: white;">
+      <li li class="breadcrumb-item active" aria-current="page"><a href="#">Inventory</a></li>
+      <li class="breadcrumb-item" >New Inventory</li>
+    </ol>
+  </nav> -->
+    <div class="form-group">
+        <div>
+            <form>
+                <div>
+                    <!-- <mat-form-field class="example-full-width" style="margin-right: 1%;width: 12%;">
+                        <mat-label style="font-size: 12px;">Invoice Number</mat-label>
+                        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" #order_ref
+                            (change)=" onFiltreOrder(order_ref)">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+                            (optionSelected)='onFiltreOrder($event.option.value)'>
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field> -->
+                    <mat-form-field appearance="legacy" style="margin-right: 2%;width: 15%;">
+                        <mat-label style="font-size: 12px;">{{'Chain' | translate}}</mat-label>
+                        <mat-select #chain_id (selectionChange)="onGetWarehousesesList(chain_id.value)">
+                            <mat-option value=0 selected>None</mat-option>
+                            <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="legacy" style="margin-right: 2%;width: 15%;">
+                        <mat-label style="font-size: 12px;">{{'Warehouse' | translate}}</mat-label>
+                        <mat-select #warehouse_id>
+                            <mat-option value=0 selected>None</mat-option>
+                            <mat-option *ngFor="let warehouse of warehousesData" [value]="warehouse.id">
+                                {{warehouse.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="legacy" style="margin-right: 2%; width: 15%;">
+                        <mat-label style="font-size: 12px;">{{'Supplier' | translate}}</mat-label>
+                        <mat-select #supplier_id>
+                            <mat-option value=0 selected>None</mat-option>
+                            <mat-option *ngFor="let supplier of suppList" [value]="supplier.id">
+                                {{supplier.company_name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="legacy" style="margin-right: 3%;width: 16%;">
+                        <mat-label style="font-size: 12px;">{{'Batch-number' | translate}}</mat-label>
+                        <input #batch_number [value]="batchN" matInput placeholder="{{'Batch-number' | translate}}"
+                            style="margin-right: 1%;">
+                    </mat-form-field>
+
+                    <button mat-button (click)="onGetBatchNumber()" class="btn btn-secondary btn-sm"
+                        style="margin-right:1%;">
+                        {{'Get-new-batchnumber' | translate}} </button>
+                    <button type="button" class="btn btn-success btn-sm" style="margin-right: 1%;"
+                        (click)="onAddInventory(chain_id.value,batch_number.value, warehouse_id.value,supplier_id.value)">{{'Save' | translate}}</button>
+                    <button mat-button (click)="open()"
+                        class="btn btn-primary btn-sm">{{"New-ImportOrder"| translate}}</button>
+
+
+                </div>
+            </form>
+
+            <table mat-table [dataSource]="dataSource" mat-sort matSort>
+
+                <!-- Order Date Column -->
+                <ng-container matColumnDef="product_name">
+                    <th mat-header-cell *matHeaderCellDef> {{"product_name" | translate}}</th>
+                    <td mat-cell *matCellDef="let order">{{order.product_name}}</td>
+                </ng-container>
+                <ng-container matColumnDef="product_barcode">
+                    <th mat-header-cell *matHeaderCellDef> {{"Product-barcode" | translate}} </th>
+                    <td mat-cell *matCellDef="let order">{{order.product_barcode}}</td>
+                </ng-container>
+                <ng-container matColumnDef="tax_rate">
+                    <th mat-header-cell *matHeaderCellDef> {{"taxe_rate" | translate}} </th>
+                    <td mat-cell *matCellDef="let order">{{order.tax_rate}}</td>
+                </ng-container>
+                <ng-container matColumnDef="product_quantity">
+                    <th mat-header-cell *matHeaderCellDef> {{"Product-quantity" | translate}}</th>
+                    <td mat-cell *matCellDef="let order">{{order.product_quantity}}</td>
+                </ng-container>
+                <ng-container matColumnDef="arrived_quantity">
+                    <th mat-header-cell *matHeaderCellDef> {{"Arrived-Quantity" | translate}}</th>
+                    <td mat-cell *matCellDef="let order"> <input matInput [placeholder]="'warehouse-quantity' | translate"
+                            #warehouse_quantity
+                            (change)="changeQty(warehouse_quantity.value,order.product_barcode,order.product_quantity,supplier_id.value,order.product_name,order.category_id);CheckStat(order.product_barcode);">
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="verified_quantity">
+                    <th mat-header-cell *matHeaderCellDef> {{"verified-quantity"| translate}}</th>
+                    <td mat-cell *matCellDef="let order">
+                        <input matInput [placeholder]="'verified-quantity' | translate" #verified_quantity
+                            (change)="changVer(order.product_barcode,verified_quantity.value)">
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="category_id">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-form-field appearance="standard" class="form-element">
+
+                            <mat-label>{{"categ_namee"| translate}}</mat-label>
+                            <mat-select [(value)]="selected" #categoryAll
+                                (selectionChange)="chooseAllCat(categoryAll.value)">
+                                <mat-option *ngFor="let category of categoryData" [value]="category.id">
+                                    {{ category.category_name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </th>
+                    <td mat-cell *matCellDef="let order">
+                        <mat-form-field appearance="standard" class="form-element">
+                            <mat-select [ngModel]="selected" [value]="category_id.value" #category_id
+                                (selectionChange)="changeCat(category_id.value,order.product_barcode)">
+                                <mat-option *ngFor="let category of categoryData" [value]="category.id">
+                                    {{ category.category_name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="orderDisplayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: orderDisplayedColumns;">
+            </table>
+
+        </div>
+    </div>
+</div>

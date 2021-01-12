@@ -1,0 +1,106 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  mat-toolbar {
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+    &.mat-toolbar {
+      display: flex;
+      flex-direction: row;
+      background-color: #eee;
+      &.mat-primary {
+        color: unset;
+      }
+      span {
+        flex: 1;
+      }
+    }
+  }
+}
+.example-toolbar {
+  position: fixed;
+  z-index: 2;
+  span {
+    flex: 1;
+  }
+  .actionsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    mat-icon {
+      &.toolbarIcons {
+        font-size: 32px;
+      }
+      margin: 0px 10px 0px 10px;
+      cursor: pointer;
+    }
+  }
+}
+h1.example-app-name {
+  margin-left: 8px;
+}
+mat-sidenav-container {
+  flex: 1;
+  mat-sidenav {
+    display: flex;
+    flex-direction: column;
+    width: 256px;
+    &.mat-drawer {
+      background-color: #b30000;
+    }
+    .logoContainer {
+      height: 110px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      mat-icon {
+        color: white;
+        width: unset;
+        height: unset;
+      }
+    }
+    display: flex;
+    flex-direction: column;
+    mat-nav-list {
+      padding-top: 15px;
+      flex: 1;
+      a {
+        display: flex;
+        flex-direction: row;
+        mat-icon {
+          color: white;
+          margin-right: 15px;
+        }
+        &.mat-list-item {
+          .mat-list-item-content {
+            width: 100%;
+          }
+        }
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+  mat-sidenav-content {
+    background-color: #eee;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.example-is-mobile .example-sidenav-container {
+  flex: 1 0 auto;
+}
+app-menu-list-item {
+  .mat-list-item-content {
+    width: 100%;
+  }
+}
+i:hover {
+  cursor: pointer;
+}

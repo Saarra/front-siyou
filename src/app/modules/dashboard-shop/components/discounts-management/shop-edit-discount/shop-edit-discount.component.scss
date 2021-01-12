@@ -1,0 +1,20 @@
+.mainContainer{
+    width: 80%;
+    padding-top: 10px;
+    background-color: white; 
+    padding: 40px; 
+    margin-top: 10%; 
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+
+    .form{
+        margin-left: 5%;
+        margin-right: 5%;
+
+        mat-form-field{
+            width: 100%;
+        }
+       
+    }
+}

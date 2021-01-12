@@ -1,0 +1,319 @@
+.mainContainer {
+  display: grid;
+  grid-template-rows: auto auto;
+  mat-tab-group {
+    .mat-tab-label-content {
+      color: white;
+    }
+  }
+  .basketItems {
+    display: flex;
+    flex-direction: column;
+    grid-column: span 2;
+    span {
+      font-family: Roboto;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    mat-expansion-panel {
+      margin-top: 25px;
+      mat-expansion-panel-header {
+        mat-panel-title {
+          font-family: Roboto;
+          font-size: 20px;
+          font-weight: 500;
+        }
+      }
+      .orderInfos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1em;
+        span {
+          &.productInfo {
+            font-size: 15px;
+            font-weight: 300;
+          }
+          &.infoValue {
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 500;
+            &#totalOrderPrice {
+              font-weight: bold;
+              color: #ff0000;
+            }
+          }
+        }
+        .companySelection {
+          grid-column: span 2;
+          display: flex;
+          flex-direction: column;
+          .companies {
+            display: flex;
+            flex-direction: row;
+            .companyCard {
+              margin: 10px;
+              width: 150px;
+              &:hover .selection {
+                opacity: 1;
+              }
+              &.mat-elevation-z4 .selection {
+                opacity: 1;
+              }
+              &.card-selected {
+                border: 2px solid #283593;
+              }
+              .selection {
+                opacity: 0;
+                cursor: pointer;
+                color: #283593;
+                background: #fff;
+                position: absolute;
+                right: -10px;
+                top: -10px;
+                border-radius: 100%;
+                height: 24px;
+                width: 24px;
+              }
+              .companyInfos {
+                display: flex;
+                flex-direction: column;
+                #companyName {
+                  font-size: 15px;
+                  font-family: Roboto;
+                  font-weight: 500;
+                }
+                #companyLogisticPrice {
+                  font-size: 18px;
+                  font-family: Roboto;
+                  font-weight: 700;
+                  align-self: flex-end;
+                }
+              }
+            }
+          }
+        }
+        .productsContainer {
+          display: flex;
+          flex-direction: column;
+          grid-column: span 2;
+          .mobileDisplay {
+            display: flex;
+            flex-direction: column;
+            mat-card {
+              margin-bottom: 5px;
+              mat-card-title {
+                display: flex;
+                flex-direction: row;
+                font-size: 18px;
+                span {
+                  flex: 1;
+                }
+              }
+              mat-card-content {
+                display: grid;
+                grid-template-columns: 120px auto;
+                gap: 0.5em;
+                .cardProductInfo {
+                  display: flex;
+                  flex-direction: column;
+                  .productDescription {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                  }
+                  .productQuantity {
+                    display: flex;
+                    flex-direction: row;
+                    span:nth-child(1) {
+                      flex: 1;
+                    }
+                  }
+                  .productPrice {
+                    display: flex;
+                    flex-direction: row;
+                    span:nth-child(1) {
+                      flex: 1;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          table {
+            margin: 15px 0 0px 0;
+            width: 100%;
+            th {
+              text-align: center;
+            }
+            td {
+              max-width: 250px;
+              overflow-wrap: break-word;
+              white-space: normal;
+              mat-icon {
+                cursor: pointer;
+              }
+            }
+            .actionsContainer {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-evenly;
+            }
+          }
+          #passOrder {
+            margin-top: 10px;
+            align-self: flex-end;
+          }
+          ngx-slick-carousel {
+            width: 70%;
+            margin-right: auto;
+            margin-left: auto;
+            button {
+              &.slick-arrow::before {
+                color: #fea12f;
+              }
+            }
+            mat-card {
+              padding: 0px;
+              width: 100%;
+              .imageContainer {
+                width: 100%;
+                height: 200px;
+                margin-bottom: 5px;
+                img {
+                  width: 100%;
+                  max-width: 100%;
+                  max-height: 200px;
+                  object-fit: cover;
+                }
+              }
+              .description {
+                padding: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .orderList {
+    display: flex;
+    grid-column: span 2;
+    flex-direction: column;
+    margin-top: 60px;
+    span {
+      font-family: Roboto;
+      font-size: 25px;
+      font-weight: 500;
+    }
+    .mobileOrderDisplay {
+      margin: 15px 0 0px 0;
+      mat-card {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 0.5em;
+        margin-bottom: 8px;
+        span {
+          font-family: Roboto;
+          font-size: 15px;
+          &:nth-child(odd) {
+            font-weight: 300;
+          }
+          &:nth-child(even) {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    table {
+      margin: 15px 0 0px 0;
+      width: 100%;
+      td {
+        max-width: 250px;
+        overflow-wrap: break-word;
+        white-space: normal;
+        mat-icon {
+          cursor: pointer;
+        }
+      }
+      .actionsContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+      tr.example-detail-row {
+        height: 0;
+      }
+      tr.example-element-row:not(.example-expanded-row):active {
+        background: #efefef;
+      }
+      .example-element-row td {
+        border-bottom-width: 0;
+      }
+      .example-element-detail {
+        overflow: hidden;
+        display: flex;
+      }
+      .example-element-diagram {
+        min-width: 80px;
+        border: 2px solid black;
+        padding: 8px;
+        font-weight: lighter;
+        margin: 8px 0;
+        height: 104px;
+      }
+      .example-element-symbol {
+        font-weight: bold;
+        font-size: 40px;
+        line-height: normal;
+      }
+      .example-element-description {
+        padding: 16px;
+      }
+      .example-element-description-attribution {
+        opacity: 0.5;
+      }
+      .orderProducts {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        mat-card {
+          width: 200px;
+          height: 250px;
+          display: flex;
+          margin: 5px;
+          flex-direction: column;
+          .product_name {
+            font-family: Roboto;
+            font-weight: 500;
+          }
+          .productData {
+            margin-top: auto;
+            .quantity {
+              justify-content: flex-end;
+            }
+            .price {
+              justify-content: flex-end;
+            }
+          }
+        }
+      }
+    }
+  }
+  .noDataFoundSection {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    span {
+      text-align: center;
+    }
+    mat-icon {
+      &#noDataImage {
+        align-self: center;
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+}

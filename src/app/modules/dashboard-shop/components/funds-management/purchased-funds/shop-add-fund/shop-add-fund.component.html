@@ -1,0 +1,69 @@
+<div class="example-container">
+    <form action="" [formGroup]="form" >
+        <div class="form-group">
+            <mat-form-field appearance="fill"class="example-full-width" >
+                <mat-label>{{"amount" | translate}}</mat-label>
+                <input matInput type="number" #amount formControlName="amount">
+            </mat-form-field>
+        </div>
+    <mat-form-field  appearance="standard" class="example-full-width" >
+        <mat-label>{{"Suppliers" | translate}}</mat-label>
+        <mat-select #supplier_id formControlName="supplier_id">
+            <mat-option value=0 selected>None</mat-option>
+            <mat-option *ngFor="let supp of suppliersData" [value]="supp.id">
+                {{supp.supplier_name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+ 
+    <mat-form-field  appearance="standard" class="example-full-width" >
+        <mat-label>{{'Select-Chain' | translate}}</mat-label>
+        <mat-select #chain_id formControlName="chain_id">
+            <mat-option value=0>--None--</mat-option>
+            <mat-option *ngFor="let chain of chainData" [value]="chain.id">{{chain.chain_name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+ 
+    <mat-form-field  appearance="standard" class="example-full-width" >
+        <mat-label>{{'Payment-method'| translate}}</mat-label>
+        <mat-select #payment_method_id formControlName="payment_method_id">
+            <mat-option value=0>--None--</mat-option>
+            <mat-option *ngFor="let pay of paymentData" [value]="pay.id">{{pay.name}} - {{pay.days}} Days
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+ 
+    <mat-form-field  appearance="standard"  class="example-full-width" >
+        <mat-label>{{"Start-date"| translate}}
+        </mat-label>
+        <input matInput #start_date type="date" formControlName="start_date">
+    </mat-form-field>   
+  
+    <div class="uploadImage">
+            <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}"
+                (click)="fileInputImg.click()">
+            </section>
+            <!-- </button> -->
+        <input class="none" #fileInputImg type="file" (change)="getFileChange($event)" />
+        <mat-form-field appearance="standard" style="display: none;">
+            <mat-label>{{"upload image" | translate}}</mat-label>
+            <input matInput type="text" #resultInput readonly  >
+        </mat-form-field>
+    </div>
+ 
+    <mat-form-field  appearance="standard"  class="example-full-width" >
+        <mat-label>{{"Status" | translate}}</mat-label>
+        <mat-select #status formControlName="status">
+            <mat-option value="paid">{{'Paid'|translate}}</mat-option>
+            <mat-option value="not paid">{{'Not paid'|translate}}</mat-option>
+            <mat-option value="cancelled">{{'Cancel'|translate}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+ 
+    <button class="btn btn-primary" 
+              (click)="onAddFunds()" style="margin-right:20px">{{'Submit' | translate}}</button>
+              <button class="btn btn-secondary"  (click)="cancel()">
+                {{'Back' | translate}}</button>
+</form>
+
+</div>

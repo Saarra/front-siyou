@@ -1,0 +1,81 @@
+<div class="mainContainer p-3 mb-5 bg-white rounded pb-8">
+
+    <div>
+        <div style="padding: 10px">
+            <h3 class="mb-8"> {{'Manager-Informations' | translate}}</h3>
+
+            <form novalidate class="form">
+
+                <mat-form-field appearance="legacy" class="example-full-width">
+                    <mat-label>{{'First-Name' | translate}}</mat-label>
+                    <input matInput [value]="currentManager.first_name"  #first_name >
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy" class="example-full-width">
+                    <mat-label>{{'Last-Name' | translate}}</mat-label>
+                    <input matInput [value]="currentManager.last_name"  #last_name >
+                </mat-form-field>
+
+                <mat-form-field appearance="legacy" class="example-full-width">
+                    <mat-label>{{'Contact' | translate}}</mat-label>
+                    <input matInput [value]="currentManager.contact"  #contact >
+                </mat-form-field>
+                <mat-form-field appearance="legacy" class="example-full-width">
+                    <mat-label>{{'password' | translate}}</mat-label>
+                    <input matInput #password >
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="legacy">
+
+                    <mat-label> {{"Chose-a-chain" | translate}}</mat-label>
+                    <mat-select #chain_id [value]="currentManager.chain_id" >
+                        <mat-option value="">-- None --</mat-option>
+                        <mat-option *ngFor="let chain of chainData" [value]="chain.id" >
+                            {{ chain.chain_name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="uploadImage">
+                    <label id="imageBtn">
+                      <!-- <button mat-mini-fab color="primary" (click)="fileInput.click()"> -->
+                      <section class="uploadIconContainer" [ngStyle]="{'background-color': '#46b7d7'}"
+                        (click)="fileInputImg.click()">
+                        <mat-icon [ngStyle]="{'color': 'white'}">file_upload</mat-icon>
+                      </section>
+                      <!-- </button> -->
+                    </label>
+                    <input class="none" #fileInputImg type="file" (change)="getFileChange($event)" style="display: none;" />
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label> {{"manager-Image" | translate}} </mat-label>
+                      <input matInput type="text" #resultInput readonly>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group">
+                    <div>
+                      <button mat-icon-button 
+                          (click)="openAccess()"><i
+                              class="material-icons icon-green" style="background-color:#003366;color:white;">add
+                          </i></button> {{ "Access Rights" | translate}}
+                    </div>
+            
+            
+            
+                  </div>
+                <!-- <mat-form-field appearance="legacy" class="form-element">
+                    <mat-icon matSuffix>person</mat-icon>
+                    <mat-label> {{"cashier-code" | translate}}</mat-label>
+                    <input type="text"  matInput placeholder="cachier_code"  [value]="currentManager.cachier_code" #cachier_code>
+            
+                  </mat-form-field> -->
+
+                <button mat-flat-button color="primary" style="margin-right: 1%;"
+               (click)="onUpdateShopManager(chain_id.value,first_name.value,last_name.value,contact.value,password.value)">
+                    <!-- (click)="onUpdateShopManager(chain_id.value,first_name.value,last_name.value,contact.value)"> -->
+                    
+                     {{'Save' | translate}} </button>
+                <button mat-stroked-button routerLink="/shop/shopmanagers-list">
+                    {{'Back' | translate}}</button>
+
+            </form>
+        </div>
+    </div>
+</div>

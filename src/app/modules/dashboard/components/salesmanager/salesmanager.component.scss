@@ -1,0 +1,59 @@
+mat-icon {
+  cursor: pointer;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.table-sale-manager {
+  padding: 10px;
+}
+.containerTabOrder {
+  margin: 20px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 75px;
+  .tableSection {
+    display: flex;
+    flex-direction: column;
+    table {
+      width: 100%;
+      .actionsContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  button {
+    margin-right: 8px;
+    padding: 10px;
+    color: white;
+    width: 12rem;
+    text-align: center;
+    margin-bottom: 20px;
+    align-self: flex-end;
+  }
+  .noDataFoundSection {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    span {
+      text-align: center;
+    }
+    mat-icon {
+      &#noDataImage {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .example-button-row button,
+  .example-button-row a {
+    margin-top: 70px;
+  }
+}

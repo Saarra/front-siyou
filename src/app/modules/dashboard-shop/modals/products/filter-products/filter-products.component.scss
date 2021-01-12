@@ -1,0 +1,13 @@
+.card-header {
+    display: flex;
+    flex-direction: row;
+    h1 {
+        flex: 1;
+    }
+}
+
+.actionsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
